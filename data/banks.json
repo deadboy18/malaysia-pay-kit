@@ -1,0 +1,1155 @@
+[
+  {
+    "id": "affin-bank",
+    "name": "Affin Bank Berhad",
+    "shortName": "Affin Bank",
+    "type": "conventional",
+    "category": "commercial",
+    "islamicArm": "affin-islamic",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0232",
+      "bic": "PHBMMYKL",
+      "routingId": "100002322",
+      "acquirerId": "588710",
+      "fpx": { "retail": "ABB0233", "corporate": "ABB0232" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [12] },
+      "savings": { "lengths": [12] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [12] },
+      "hirePurchase": { "lengths": [12] }
+    },
+    "channels": ["OTC", "Internet", "Desktop Banking"]
+  },
+  {
+    "id": "affin-islamic",
+    "name": "Affin Islamic Bank Berhad",
+    "shortName": "Affin Islamic",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": "affin-bank",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0232",
+      "bic": "AIBBMYKL",
+      "routingId": null,
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [12] },
+      "savings": { "lengths": [12] },
+      "creditCard": null,
+      "loan": { "lengths": [12] },
+      "hirePurchase": { "lengths": [12] }
+    },
+    "channels": ["OTC", "Internet", "Desktop Banking"]
+  },
+  {
+    "id": "agrobank",
+    "name": "Bank Pertanian Malaysia Berhad (Agrobank)",
+    "shortName": "Agrobank",
+    "type": "conventional",
+    "category": "dfi",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": false,
+    "codes": {
+      "ibg": "3306",
+      "bic": "AGOBMYKL",
+      "routingId": "100033061",
+      "acquirerId": null,
+      "fpx": { "retail": "AGRO01", "corporate": "AGRO02" }
+    },
+    "accountFormats": {
+      "current": null,
+      "savings": { "lengths": [16] },
+      "creditCard": null,
+      "loan": { "lengths": [17] },
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet", "ATM"]
+  },
+  {
+    "id": "al-rajhi",
+    "name": "Al Rajhi Banking & Investment Corporation (Malaysia) Berhad",
+    "shortName": "Al Rajhi Bank",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0350",
+      "bic": "RJHIMYKL",
+      "routingId": "100003509",
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [15] },
+      "savings": { "lengths": [15] },
+      "creditCard": { "lengths": [16] },
+      "loan": null,
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet", "Cash Management"]
+  },
+  {
+    "id": "alliance-bank",
+    "name": "Alliance Bank Malaysia Berhad",
+    "shortName": "Alliance Bank",
+    "type": "conventional",
+    "category": "commercial",
+    "islamicArm": "alliance-islamic",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0212",
+      "bic": "MFBBMYKL",
+      "routingId": "100002128",
+      "acquirerId": "588708",
+      "fpx": { "retail": "ABMB0212", "corporate": "ABMB0213" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [15] },
+      "savings": { "lengths": [15] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [15] },
+      "hirePurchase": { "lengths": [15] }
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "alliance-islamic",
+    "name": "Alliance Islamic Bank Berhad",
+    "shortName": "Alliance Islamic",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": "alliance-bank",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0212",
+      "bic": "ALSRMYKL",
+      "routingId": null,
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [15] },
+      "savings": { "lengths": [15] },
+      "creditCard": null,
+      "loan": { "lengths": [15] },
+      "hirePurchase": { "lengths": [15] }
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "ambank",
+    "name": "AmBank (M) Berhad",
+    "shortName": "AmBank",
+    "type": "conventional",
+    "category": "commercial",
+    "islamicArm": "amislamic",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0208",
+      "bic": "ARBKMYKL",
+      "routingId": "100002089",
+      "acquirerId": "588706",
+      "fpx": { "retail": "AMBB0209", "corporate": "AMBB0208" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [13] },
+      "savings": { "lengths": [13] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [13, 14] },
+      "hirePurchase": { "lengths": [14] }
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "amislamic",
+    "name": "AmBank Islamic Berhad",
+    "shortName": "AmIslamic",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": "ambank",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0208",
+      "bic": "AISLMYKL",
+      "routingId": null,
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [13] },
+      "savings": { "lengths": [13] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [13, 14] },
+      "hirePurchase": { "lengths": [14] }
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "bangkok-bank",
+    "name": "Bangkok Bank Berhad",
+    "shortName": "Bangkok Bank",
+    "type": "conventional",
+    "category": "foreign",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0204",
+      "bic": "BKKBMYKL",
+      "routingId": "100002047",
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [13] },
+      "savings": { "lengths": [13] },
+      "creditCard": null,
+      "loan": null,
+      "hirePurchase": null
+    },
+    "channels": ["OTC"]
+  },
+  {
+    "id": "bank-islam",
+    "name": "Bank Islam Malaysia Berhad",
+    "shortName": "Bank Islam",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0245",
+      "bic": "BIMBMYKL",
+      "routingId": "100002458",
+      "acquirerId": null,
+      "fpx": { "retail": "BIMB0340", "corporate": "BIMB0340" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [14] },
+      "savings": { "lengths": [14] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [14] },
+      "hirePurchase": { "lengths": [14] }
+    },
+    "channels": ["OTC", "Internet", "Desktop Banking", "Mobile Banking", "ATM"]
+  },
+  {
+    "id": "bank-rakyat",
+    "name": "Bank Kerjasama Rakyat Malaysia Berhad",
+    "shortName": "Bank Rakyat",
+    "type": "conventional",
+    "category": "cooperative",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": false,
+    "codes": {
+      "ibg": "1602",
+      "bic": "BKRMMYKL",
+      "routingId": "100016020",
+      "acquirerId": null,
+      "fpx": { "retail": "BKRM0602", "corporate": "BKRM0602" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [10, 12] },
+      "savings": { "lengths": [10, 12] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [10, 12] },
+      "hirePurchase": { "lengths": [10, 12] }
+    },
+    "channels": ["OTC", "Internet", "ATM", "Desktop Banking"]
+  },
+  {
+    "id": "bank-muamalat",
+    "name": "Bank Muamalat Malaysia Berhad",
+    "shortName": "Bank Muamalat",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0341",
+      "bic": "BMMBMYKL",
+      "routingId": "100003415",
+      "acquirerId": null,
+      "fpx": { "retail": "BMMB0341", "corporate": "BMMB0342" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [14] },
+      "savings": { "lengths": [14] },
+      "creditCard": null,
+      "loan": { "lengths": [14, 17] },
+      "hirePurchase": { "lengths": [14, 17] }
+    },
+    "channels": ["OTC", "Internet", "Desktop Banking"]
+  },
+  {
+    "id": "bank-of-america",
+    "name": "Bank of America Malaysia Berhad",
+    "shortName": "Bank of America",
+    "type": "conventional",
+    "category": "foreign",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0207",
+      "bic": "BOFAMY2X",
+      "routingId": "100002076",
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], "notes": "5-17 digits" },
+      "savings": { "lengths": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], "notes": "5-17 digits" },
+      "creditCard": null,
+      "loan": null,
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "bank-of-china",
+    "name": "Bank of China (Malaysia) Berhad",
+    "shortName": "Bank of China",
+    "type": "conventional",
+    "category": "foreign",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0242",
+      "bic": "BKCHMYKL",
+      "routingId": "100002429",
+      "acquirerId": null,
+      "fpx": { "retail": "BOCM01", "corporate": null }
+    },
+    "accountFormats": {
+      "current": { "lengths": [13, 15] },
+      "savings": { "lengths": [13, 15] },
+      "creditCard": { "lengths": [16] },
+      "loan": null,
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "bnp-paribas",
+    "name": "BNP Paribas Malaysia Berhad",
+    "shortName": "BNP Paribas",
+    "type": "conventional",
+    "category": "foreign",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0263",
+      "bic": "BNPAMYKL",
+      "routingId": "100002636",
+      "acquirerId": null,
+      "fpx": { "retail": null, "corporate": "BNP003" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], "notes": "6-16 digits, corporate only" },
+      "savings": null,
+      "creditCard": null,
+      "loan": { "lengths": [16] },
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "bsn",
+    "name": "Bank Simpanan Nasional",
+    "shortName": "BSN",
+    "type": "conventional",
+    "category": "government",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": false,
+    "codes": {
+      "ibg": "1601",
+      "bic": "BSNAMYK1",
+      "routingId": "100016017",
+      "acquirerId": null,
+      "fpx": { "retail": "BSN0601", "corporate": null }
+    },
+    "accountFormats": {
+      "current": null,
+      "savings": { "lengths": [16] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [15] },
+      "hirePurchase": { "lengths": [15] }
+    },
+    "channels": ["OTC", "Internet", "ATM", "Corporate Systems"]
+  },
+  {
+    "id": "ccb-malaysia",
+    "name": "China Construction Bank (Malaysia) Berhad",
+    "shortName": "CCB Malaysia",
+    "type": "conventional",
+    "category": "foreign",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0265",
+      "bic": "PCBCMYKL",
+      "routingId": "100002652",
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [12] },
+      "savings": { "lengths": [12] },
+      "creditCard": null,
+      "loan": null,
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "cimb-bank",
+    "name": "CIMB Bank Berhad",
+    "shortName": "CIMB Bank",
+    "type": "conventional",
+    "category": "commercial",
+    "islamicArm": "cimb-islamic",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0205",
+      "bic": "CIBBMYKL",
+      "routingId": "100002050",
+      "acquirerId": "588702",
+      "fpx": { "retail": "BCBB0235", "corporate": "BCBB0235" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [10, 14] },
+      "savings": { "lengths": [10, 14] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [10, 14, 17] },
+      "hirePurchase": { "lengths": [10, 12, 17] }
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "cimb-islamic",
+    "name": "CIMB Islamic Bank Berhad",
+    "shortName": "CIMB Islamic",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": "cimb-bank",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0205",
+      "bic": "CTBBMYKL",
+      "routingId": null,
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [10, 14] },
+      "savings": { "lengths": [10, 14] },
+      "creditCard": null,
+      "loan": { "lengths": [10, 14, 17] },
+      "hirePurchase": { "lengths": [10, 12, 17] }
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "citibank",
+    "name": "Citibank Berhad",
+    "shortName": "Citibank",
+    "type": "conventional",
+    "category": "foreign",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0217",
+      "bic": "CITIMYKL",
+      "routingId": "100002173",
+      "acquirerId": null,
+      "fpx": { "retail": "CIT0219", "corporate": "CIT0218" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [10], "notes": "Personal: 10 digits. Corporate: 9-16 digits." },
+      "savings": { "lengths": [10] },
+      "creditCard": { "lengths": [15, 16] },
+      "loan": { "lengths": [10, 11, 12, 13, 14] },
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "deutsche-bank",
+    "name": "Deutsche Bank (Malaysia) Berhad",
+    "shortName": "Deutsche Bank",
+    "type": "conventional",
+    "category": "foreign",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0219",
+      "bic": "DEUTMYKL",
+      "routingId": "100002199",
+      "acquirerId": null,
+      "fpx": { "retail": null, "corporate": "DBB0199" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [10, 11, 12, 13, 14, 15, 16, 17], "notes": "10-17 digits" },
+      "savings": { "lengths": [10, 11, 12, 13, 14, 15, 16, 17], "notes": "10-17 digits" },
+      "creditCard": null,
+      "loan": { "lengths": [10, 11, 12, 13, 14, 15, 16, 17], "notes": "10-17 digits" },
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Corporate Internet"]
+  },
+  {
+    "id": "hong-leong-bank",
+    "name": "Hong Leong Bank Berhad",
+    "shortName": "Hong Leong Bank",
+    "type": "conventional",
+    "category": "commercial",
+    "islamicArm": "hong-leong-islamic",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0224",
+      "bic": "HLBBMYKL",
+      "routingId": "100002241",
+      "acquirerId": "588712",
+      "fpx": { "retail": "HLB0224", "corporate": "HLB0224" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [11, 13] },
+      "savings": { "lengths": [11, 13] },
+      "creditCard": { "lengths": [15, 16], "notes": "15 digits Amex, 16 digits Visa/MC" },
+      "loan": { "lengths": [11, 13] },
+      "hirePurchase": { "lengths": [11, 13] }
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "hong-leong-islamic",
+    "name": "Hong Leong Islamic Bank Berhad",
+    "shortName": "HL Islamic",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": "hong-leong-bank",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0224",
+      "bic": "HLIBMYKL",
+      "routingId": null,
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [11, 13] },
+      "savings": { "lengths": [11, 13] },
+      "creditCard": null,
+      "loan": { "lengths": [11, 13] },
+      "hirePurchase": { "lengths": [11, 13] }
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "hsbc-bank",
+    "name": "HSBC Bank Malaysia Berhad",
+    "shortName": "HSBC Bank",
+    "type": "conventional",
+    "category": "commercial",
+    "islamicArm": "hsbc-amanah",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0222",
+      "bic": "HBMBMYKL",
+      "routingId": "100002225",
+      "acquirerId": "588716",
+      "fpx": { "retail": "HSBC0223", "corporate": "HSBC0223" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [12, 13, 14, 15, 17] },
+      "savings": { "lengths": [12] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [12, 13, 14] },
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet", "Cash Mgmt", "Desktop Banking", "Call Center"]
+  },
+  {
+    "id": "hsbc-amanah",
+    "name": "HSBC Amanah Malaysia Berhad",
+    "shortName": "HSBC Amanah",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": "hsbc-bank",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0222",
+      "bic": "HMABMYKL",
+      "routingId": null,
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [12, 13, 14, 15, 17] },
+      "savings": { "lengths": [12] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [12, 13, 14] },
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "icbc",
+    "name": "Industrial and Commercial Bank of China (Malaysia) Berhad",
+    "shortName": "ICBC",
+    "type": "conventional",
+    "category": "foreign",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0259",
+      "bic": "ICBKMYKL",
+      "routingId": "100002597",
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [17], "notes": "Actual 19 digits with prefix '01'. For IBG, omit '01' prefix, enter 17 digits." },
+      "savings": { "lengths": [17], "notes": "Actual 19 digits with prefix '01'. For IBG, omit '01' prefix." },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [17], "notes": "Actual 19 digits with prefix '01'. For IBG, omit '01' prefix." },
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "jp-morgan",
+    "name": "J.P. Morgan Chase Bank Berhad",
+    "shortName": "JP Morgan",
+    "type": "conventional",
+    "category": "foreign",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0215",
+      "bic": "CHASMYKX",
+      "routingId": "100002157",
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [10, 11, 12, 13, 14, 15, 16, 17], "notes": "10-17 digits" },
+      "savings": { "lengths": [10, 11, 12, 13, 14, 15, 16, 17], "notes": "10-17 digits" },
+      "creditCard": null,
+      "loan": { "lengths": [10, 11, 12, 13, 14, 15, 16, 17], "notes": "10-17 digits" },
+      "hirePurchase": null
+    },
+    "channels": ["Internet"]
+  },
+  {
+    "id": "kwf",
+    "name": "Kuwait Finance House (Malaysia) Berhad",
+    "shortName": "KFH Malaysia",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0346",
+      "bic": "KFHOMYKL",
+      "routingId": "100003460",
+      "acquirerId": null,
+      "fpx": { "retail": "KFH0346", "corporate": "KFH0346" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [12] },
+      "savings": { "lengths": [12] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [12] },
+      "hirePurchase": { "lengths": [12] }
+    },
+    "channels": ["OTC", "Internet", "ATM"]
+  },
+  {
+    "id": "maybank",
+    "name": "Malayan Banking Berhad",
+    "shortName": "Maybank",
+    "type": "conventional",
+    "category": "commercial",
+    "islamicArm": "maybank-islamic",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0227",
+      "bic": "MBBEMYKL",
+      "routingId": "100002270",
+      "acquirerId": "588700",
+      "fpx": { "retail": "MB2U0227", "corporate": "MBB0228" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [12] },
+      "savings": { "lengths": [12] },
+      "creditCard": { "lengths": [15, 16], "notes": "15 digits Amex, 16 digits Visa/MC" },
+      "loan": { "lengths": [12] },
+      "hirePurchase": { "lengths": [12] }
+    },
+    "channels": ["OTC", "Internet", "Mobile Banking"]
+  },
+  {
+    "id": "maybank-islamic",
+    "name": "Maybank Islamic Berhad",
+    "shortName": "Maybank Islamic",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": "maybank",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0227",
+      "bic": "MBISMYKL",
+      "routingId": null,
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [12] },
+      "savings": { "lengths": [12] },
+      "creditCard": { "lengths": [15, 16] },
+      "loan": { "lengths": [12] },
+      "hirePurchase": { "lengths": [12] }
+    },
+    "channels": ["OTC", "Internet", "Mobile Banking"]
+  },
+  {
+    "id": "mbsb-bank",
+    "name": "MBSB Bank Berhad",
+    "shortName": "MBSB Bank",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0352",
+      "bic": "AFBQMYKL",
+      "routingId": "100003525",
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [16] },
+      "savings": { "lengths": [16] },
+      "creditCard": null,
+      "loan": { "lengths": [17] },
+      "hirePurchase": { "lengths": [17] }
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "mizuho-bank",
+    "name": "Mizuho Bank (Malaysia) Berhad",
+    "shortName": "Mizuho Bank",
+    "type": "conventional",
+    "category": "foreign",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0261",
+      "bic": "MHCBMYKA",
+      "routingId": "100002610",
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [10] },
+      "savings": null,
+      "creditCard": null,
+      "loan": null,
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "mufg-bank",
+    "name": "MUFG Bank (Malaysia) Berhad",
+    "shortName": "MUFG Bank",
+    "type": "conventional",
+    "category": "foreign",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0210",
+      "bic": "BOTKMYKX",
+      "routingId": "100002102",
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [6] },
+      "savings": { "lengths": [6] },
+      "creditCard": null,
+      "loan": { "lengths": [6] },
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "ocbc-bank",
+    "name": "OCBC Bank (Malaysia) Berhad",
+    "shortName": "OCBC Bank",
+    "type": "conventional",
+    "category": "commercial",
+    "islamicArm": "ocbc-al-amin",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0229",
+      "bic": "OCBCMYKL",
+      "routingId": "100002296",
+      "acquirerId": "588720",
+      "fpx": { "retail": "OCBC0229", "corporate": "OCBC0229" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [9, 10, 11, 12, 13, 14, 15, 16, 17], "notes": "9-17 digits" },
+      "savings": { "lengths": [10] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [15] },
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet", "Corporate Desktop"]
+  },
+  {
+    "id": "ocbc-al-amin",
+    "name": "OCBC Al-Amin Bank Berhad",
+    "shortName": "OCBC Al-Amin",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": "ocbc-bank",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0229",
+      "bic": "OABBMYKL",
+      "routingId": null,
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [9, 10, 11, 12, 13, 14, 15, 16, 17], "notes": "9-17 digits" },
+      "savings": { "lengths": [10] },
+      "creditCard": null,
+      "loan": { "lengths": [15] },
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "public-bank",
+    "name": "Public Bank Berhad",
+    "shortName": "Public Bank",
+    "type": "conventional",
+    "category": "commercial",
+    "islamicArm": "public-islamic",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0233",
+      "bic": "PBBEMYKL",
+      "routingId": "100002335",
+      "acquirerId": "588714",
+      "fpx": { "retail": "PBB0233", "corporate": "PBB0233" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [10] },
+      "savings": { "lengths": [10] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [15] },
+      "hirePurchase": { "lengths": [15] }
+    },
+    "channels": ["OTC", "Internet", "ATM"]
+  },
+  {
+    "id": "public-islamic",
+    "name": "Public Islamic Bank Berhad",
+    "shortName": "Public Islamic",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": "public-bank",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0233",
+      "bic": "PIBEMYK1",
+      "routingId": null,
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [10] },
+      "savings": { "lengths": [10] },
+      "creditCard": null,
+      "loan": { "lengths": [15] },
+      "hirePurchase": { "lengths": [15] }
+    },
+    "channels": ["OTC", "Internet", "ATM"]
+  },
+  {
+    "id": "rhb-bank",
+    "name": "RHB Bank Berhad",
+    "shortName": "RHB Bank",
+    "type": "conventional",
+    "category": "commercial",
+    "islamicArm": "rhb-islamic",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0218",
+      "bic": "RHBBMYKL",
+      "routingId": "100002186",
+      "acquirerId": "588718",
+      "fpx": { "retail": "RHB0218", "corporate": "RHB0218" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [14] },
+      "savings": { "lengths": [14] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [14] },
+      "hirePurchase": { "lengths": [12] }
+    },
+    "channels": ["OTC", "Internet", "Mobile Banking"]
+  },
+  {
+    "id": "rhb-islamic",
+    "name": "RHB Islamic Bank Berhad",
+    "shortName": "RHB Islamic",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": "rhb-bank",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0218",
+      "bic": "RHBAMYKL",
+      "routingId": null,
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [14] },
+      "savings": { "lengths": [14] },
+      "creditCard": null,
+      "loan": { "lengths": [14] },
+      "hirePurchase": { "lengths": [12] }
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "standard-chartered",
+    "name": "Standard Chartered Bank Malaysia Berhad",
+    "shortName": "Standard Chartered",
+    "type": "conventional",
+    "category": "commercial",
+    "islamicArm": "sc-saadiq",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0214",
+      "bic": "SCBLMYKX",
+      "routingId": "100002144",
+      "acquirerId": "588726",
+      "fpx": { "retail": "SCB0216", "corporate": "SCB0215" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [12], "notes": "Personal: 12 digits. Corporate: 5-17 digits." },
+      "savings": { "lengths": [12] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [8] },
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet", "Phone Banking"]
+  },
+  {
+    "id": "sc-saadiq",
+    "name": "Standard Chartered Saadiq Berhad",
+    "shortName": "SC Saadiq",
+    "type": "islamic",
+    "category": "commercial",
+    "parentBank": "standard-chartered",
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0214",
+      "bic": "SCSRMYKK",
+      "routingId": null,
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [12] },
+      "savings": { "lengths": [12] },
+      "creditCard": null,
+      "loan": { "lengths": [8] },
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "smbc",
+    "name": "Sumitomo Mitsui Banking Corporation Malaysia Berhad",
+    "shortName": "SMBC",
+    "type": "conventional",
+    "category": "foreign",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0262",
+      "bic": "SMBCMYKL",
+      "routingId": "100002623",
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": { "lengths": [8] },
+      "savings": null,
+      "creditCard": null,
+      "loan": null,
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "uob-bank",
+    "name": "United Overseas Bank (Malaysia) Berhad",
+    "shortName": "UOB Bank",
+    "type": "conventional",
+    "category": "commercial",
+    "islamicArm": null,
+    "digitalBank": false,
+    "pidmMember": true,
+    "codes": {
+      "ibg": "0226",
+      "bic": "UOVBMYKL",
+      "routingId": "100002267",
+      "acquirerId": "588722",
+      "fpx": { "retail": "UOB0226", "corporate": "UOB0227" }
+    },
+    "accountFormats": {
+      "current": { "lengths": [7, 9, 10, 11, 12, 13, 14, 17] },
+      "savings": { "lengths": [10, 11] },
+      "creditCard": { "lengths": [16] },
+      "loan": { "lengths": [10, 15] },
+      "hirePurchase": null
+    },
+    "channels": ["OTC", "Internet"]
+  },
+  {
+    "id": "gx-bank",
+    "name": "GX Bank Berhad",
+    "shortName": "GX Bank",
+    "type": "conventional",
+    "category": "digital",
+    "islamicArm": null,
+    "digitalBank": true,
+    "pidmMember": true,
+    "codes": {
+      "ibg": null,
+      "bic": "GXSPMYKL",
+      "routingId": null,
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": null,
+      "savings": { "lengths": [13] },
+      "creditCard": null,
+      "loan": null,
+      "hirePurchase": null
+    },
+    "channels": ["Mobile App"],
+    "duitnow": { "proxyPay": true, "accountPay": true }
+  },
+  {
+    "id": "boost-bank",
+    "name": "Boost Bank Berhad",
+    "shortName": "Boost Bank",
+    "type": "conventional",
+    "category": "digital",
+    "islamicArm": null,
+    "digitalBank": true,
+    "pidmMember": true,
+    "codes": {
+      "ibg": null,
+      "bic": "BOBEMYK2",
+      "routingId": null,
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": null,
+      "savings": { "lengths": [12] },
+      "creditCard": null,
+      "loan": null,
+      "hirePurchase": null
+    },
+    "channels": ["Mobile App"],
+    "duitnow": { "proxyPay": true, "accountPay": true }
+  },
+  {
+    "id": "aeon-bank",
+    "name": "AEON Bank (M) Berhad",
+    "shortName": "AEON Bank",
+    "type": "islamic",
+    "category": "digital",
+    "parentBank": null,
+    "digitalBank": true,
+    "pidmMember": true,
+    "codes": {
+      "ibg": null,
+      "bic": "ACDBMYK2",
+      "routingId": null,
+      "acquirerId": null,
+      "fpx": null
+    },
+    "accountFormats": {
+      "current": null,
+      "savings": { "lengths": [13] },
+      "creditCard": null,
+      "loan": { "lengths": [13] },
+      "hirePurchase": null
+    },
+    "channels": ["Mobile App"],
+    "duitnow": { "proxyPay": true, "accountPay": true }
+  }
+]

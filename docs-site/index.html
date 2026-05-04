@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malaysia Payment Dev Kit</title>
+<meta name="description" content="Everything a developer needs for Malaysian payment integration — bank data, validators, QR specs, icons, and documentation.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0f1c;
+    --surface: #111827;
+    --surface2: #1a2236;
+    --border: #1e293b;
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+    --accent: #38bdf8;
+    --accent2: #818cf8;
+    --green: #34d399;
+    --amber: #fbbf24;
+    --red: #f87171;
+    --code-bg: #0f1729;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 80%, rgba(56,189,248,0.06) 0%, transparent 50%),
+                radial-gradient(circle at 30% 20%, rgba(129,140,248,0.04) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .flag { font-size: 48px; margin-bottom: 16px; display: block; }
+
+  h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .tagline {
+    font-size: 18px;
+    color: var(--text-dim);
+    max-width: 600px;
+    margin: 0 auto 32px;
+  }
+
+  .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .btn-primary:hover { background: #7dd3fc; transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--text);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── Install bar ── */
+  .install-bar {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--green);
+    max-width: 400px;
+    margin: 24px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .install-bar span { color: var(--text-dim); }
+
+  /* ── Stats ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    padding: 48px 0;
+  }
+
+  .stat {
+    text-align: center;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .stat-num {
+    font-size: 32px;
+    font-weight: 700;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--accent);
+  }
+
+  .stat-label { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+
+  /* ── Sections ── */
+  section { padding: 48px 0; }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .section-desc { color: var(--text-dim); margin-bottom: 32px; font-size: 16px; }
+
+  /* ── Cards ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s;
+  }
+
+  .card:hover { border-color: var(--accent); }
+
+  .card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card p { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+  .card-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  /* ── Code block ── */
+  .code-section {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .code-header {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .code-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .code-dot.r { background: var(--red); opacity: 0.6; }
+  .code-dot.y { background: var(--amber); opacity: 0.6; }
+  .code-dot.g { background: var(--green); opacity: 0.6; }
+
+  .code-body {
+    padding: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .code-body .comment { color: #475569; }
+  .code-body .keyword { color: var(--accent2); }
+  .code-body .string { color: var(--green); }
+  .code-body .fn { color: var(--amber); }
+  .code-body .prop { color: var(--accent); }
+
+  /* ── Table ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .data-table th {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .data-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table tr:hover td { background: var(--surface); }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .badge-blue { background: rgba(56,189,248,0.1); color: var(--accent); }
+  .badge-green { background: rgba(52,211,153,0.1); color: var(--green); }
+  .badge-purple { background: rgba(129,140,248,0.1); color: var(--accent2); }
+
+  /* ── Credits ── */
+  .credits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .credit {
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .credit a { color: var(--accent); text-decoration: none; font-weight: 500; }
+  .credit a:hover { text-decoration: underline; }
+  .credit-desc { color: var(--text-dim); font-size: 12px; margin-top: 4px; }
+
+  /* ── Footer ── */
+  footer {
+    padding: 48px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 48px 0 32px; }
+    .stats { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="hero">
+    <span class="flag">🇲🇾</span>
+    <h1>Malaysia Payment Dev Kit</h1>
+    <p class="tagline">Bank data, validators, QR specs, icons, and documentation — everything you need for Malaysian payment integration in one package.</p>
+    <div class="hero-actions">
+      <a href="https://github.com/deadboy18/malaysia-pay-kit" class="btn btn-primary">⬡ GitHub</a>
+      <a href="https://www.npmjs.com/package/malaysia-pay-kit" class="btn btn-outline">npm</a>
+      <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/docs" class="btn btn-outline">Docs</a>
+    </div>
+    <div class="install-bar">
+      <span>$</span> npm install malaysia-pay-kit
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">46</div><div class="stat-label">Banks</div></div>
+    <div class="stat"><div class="stat-num">52</div><div class="stat-label">FPX IDs</div></div>
+    <div class="stat"><div class="stat-num">62</div><div class="stat-label">Acquirers</div></div>
+    <div class="stat"><div class="stat-num">88</div><div class="stat-label">IC Codes</div></div>
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Response Codes</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Validators</div></div>
+  </div>
+
+  <section>
+    <h2>What's Inside</h2>
+    <p class="section-desc">One package, zero research time.</p>
+    <div class="card-grid">
+      <div class="card">
+        <h3><span class="card-icon">🏦</span> Bank Data</h3>
+        <p>46 banks with IBG, BIC, routing ID, acquirer ID, FPX IDs, and account number formats per type. Conventional, Islamic, and digital banks.</p>
+      </div>
+      <div class="card">
+        <h3><span class="card-icon">📱</span> E-Wallets</h3>
+        <p>TNG, GrabPay, Boost, ShopeePay, BigPay, and more. Proxy vs account pay flags, DuitNow BIC codes, app store links.</p>
+      </div>
+      <div class="card">
+        <h3><span class="card-icon">✅</span> Validators</h3>
+        <p>Account numbers, phone numbers (+60 normalization + carrier detection), MyKad/NRIC (birth date + state + gender), postcodes, SSM registration.</p>
+      </div>
+      <div class="card">
+        <h3><span class="card-icon">📊</span> QR Decoder</h3>
+        <p>Decode DuitNow QR strings into structured data. EMV TLV parser, CRC16 validation, static QR generator. Based on natsu90's research.</p>
+      </div>
+      <div class="card">
+        <h3><span class="card-icon">🔢</span> Response Codes</h3>
+        <p>500+ codes across FPX, Visa/MC, DuitNow, GrabPay, TNG, ShopeePay, Riipay, e-Mandate, and batch processing.</p>
+      </div>
+      <div class="card">
+        <h3><span class="card-icon">📄</span> Documentation</h3>
+        <p>Complete PayNet docs in markdown, community QR research, bank code cross-reference, account formats, FPX reference, and curated resource links.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Quick Example</h2>
+    <p class="section-desc">Works with require() or import.</p>
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-dot r"></span>
+        <span class="code-dot y"></span>
+        <span class="code-dot g"></span>
+        example.js
+      </div>
+      <div class="code-body"><span class="keyword">const</span> MY = <span class="fn">require</span>(<span class="string">'malaysia-pay-kit'</span>);
+
+<span class="comment">// Look up any bank</span>
+MY.<span class="fn">getBankByBic</span>(<span class="string">'MBBEMYKL'</span>);  <span class="comment">// → Maybank</span>
+MY.<span class="fn">getBankByFpx</span>(<span class="string">'MB2U0227'</span>);  <span class="comment">// → Maybank</span>
+
+<span class="comment">// Validate account number</span>
+MY.<span class="fn">validateAccount</span>(<span class="string">'maybank'</span>, <span class="string">'512345678901'</span>);
+<span class="comment">// → { valid: true, bank: 'Maybank', possibleTypes: ['current','savings','loan','hirePurchase'] }</span>
+
+<span class="comment">// Validate phone + detect carrier</span>
+MY.<span class="fn">validatePhone</span>(<span class="string">'0123456789'</span>);
+<span class="comment">// → { valid: true, normalized: '+60123456789', carrier: 'Maxis', type: 'mobile' }</span>
+
+<span class="comment">// Validate MyKad</span>
+MY.<span class="fn">validateIC</span>(<span class="string">'900101-14-5678'</span>);
+<span class="comment">// → { valid: true, birthDate: '1990-01-01', state: 'Kuala Lumpur', gender: 'female' }</span>
+
+<span class="comment">// Decode DuitNow QR</span>
+MY.<span class="fn">decodeDuitNowQR</span>(qrString);
+<span class="comment">// → { type: 'static', isDuitNow: true, merchant: {...}, amount: 10.50, crcValid: true }</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Data Files</h2>
+    <p class="section-desc">All JSON files in <code>/data/</code> — use directly or via the npm package.</p>
+    <div style="overflow-x: auto;">
+      <table class="data-table">
+        <thead>
+          <tr><th>File</th><th>Records</th><th>Category</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>banks.json</td><td>46</td><td><span class="badge badge-blue">core</span></td></tr>
+          <tr><td>ewallets.json</td><td>9</td><td><span class="badge badge-blue">core</span></td></tr>
+          <tr><td>acquirers.json</td><td>62</td><td><span class="badge badge-blue">core</span></td></tr>
+          <tr><td>fpx-banks.json</td><td>52</td><td><span class="badge badge-purple">payment</span></td></tr>
+          <tr><td>states.json</td><td>16</td><td><span class="badge badge-green">geo</span></td></tr>
+          <tr><td>phone-prefixes.json</td><td>10 prefixes</td><td><span class="badge badge-green">telecom</span></td></tr>
+          <tr><td>ic-state-codes.json</td><td>88</td><td><span class="badge badge-green">identity</span></td></tr>
+          <tr><td>transaction-codes.json</td><td>89</td><td><span class="badge badge-purple">payment</span></td></tr>
+          <tr><td>response-codes/fpx.json</td><td>77</td><td><span class="badge badge-purple">payment</span></td></tr>
+          <tr><td>response-codes/card.json</td><td>71</td><td><span class="badge badge-purple">payment</span></td></tr>
+          <tr><td>response-codes/duitnow.json</td><td>—</td><td><span class="badge badge-purple">payment</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Credits</h2>
+    <p class="section-desc">Built on the work of the Malaysian developer community.</p>
+    <div class="credits-grid">
+      <div class="credit"><a href="https://github.com/natsu90">natsu90</a><div class="credit-desc">DuitNow QR reverse engineering</div></div>
+      <div class="credit"><a href="https://github.com/SnorSnor9998">SnorSnor9998</a><div class="credit-desc">Payment icon SVG collection</div></div>
+      <div class="credit"><a href="https://github.com/AsyrafHussin">AsyrafHussin</a><div class="credit-desc">Malaysia postcodes dataset</div></div>
+      <div class="credit"><a href="https://chengkiang.com">chengkiang</a><div class="credit-desc">CRC16 implementation</div></div>
+      <div class="credit"><a href="https://gist.github.com/shah253kt">shah253kt</a><div class="credit-desc">SWIFT/BIC codes (146)</div></div>
+      <div class="credit"><a href="https://gist.github.com/xanda">xanda</a><div class="credit-desc">Card BIN numbers (230)</div></div>
+      <div class="credit"><a href="https://github.com/lomotech">lomotech</a><div class="credit-desc">States/districts/postcodes</div></div>
+      <div class="credit"><a href="https://github.com/farhan-syah">farhan-syah</a><div class="credit-desc">States JSON with coordinates</div></div>
+      <div class="credit"><a href="https://developer.paynet.my">PayNet</a><div class="credit-desc">Official developer docs</div></div>
+      <div class="credit"><a href="https://www.pidm.gov.my">PIDM</a><div class="credit-desc">Member banks list</div></div>
+      <div class="credit"><a href="https://github.com/deadboy18">deadboy18</a><div class="credit-desc">qr-studio + this repo</div></div>
+      <div class="credit"><a href="https://www.payex.io">PayEx/Xendit</a><div class="credit-desc">Response codes, FPX IDs</div></div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="container">
+    <p>MIT License · <a href="https://github.com/deadboy18/malaysia-pay-kit">GitHub</a> · Made for the Malaysian developer community</p>
+  </div>
+</footer>
+
+</body>
+</html>

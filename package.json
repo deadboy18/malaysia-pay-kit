@@ -1,0 +1,53 @@
+{
+  "name": "malaysia-pay-kit",
+  "version": "0.1.0",
+  "description": "Everything a developer needs for Malaysian payment integration — bank data, validators, icons, QR specs, and documentation.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "data/",
+    "validators/",
+    "icons/",
+    "docs/",
+    "schemas/"
+  ],
+  "scripts": {
+    "test": "node test.js",
+    "validate": "node -e \"const MY = require('.'); console.log('Banks:', MY.banks.length); console.log('E-wallets:', MY.ewallets.length); console.log('FPX Banks:', MY.fpxBanks.length); console.log('States:', MY.states.length);\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deadboy18/malaysia-pay-kit"
+  },
+  "keywords": [
+    "malaysia",
+    "payment",
+    "duitnow",
+    "fpx",
+    "bank",
+    "fintech",
+    "qr",
+    "emv",
+    "paynet",
+    "maybank",
+    "cimb",
+    "ewallet",
+    "tng",
+    "grabpay",
+    "validation",
+    "mykad",
+    "nric",
+    "postcode"
+  ],
+  "author": "deadboy18",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deadboy18/malaysia-pay-kit/issues"
+  },
+  "homepage": "https://github.com/deadboy18/malaysia-pay-kit#readme",
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
