@@ -103,6 +103,7 @@ malaysia-pay-kit/
 │   ├── paynet-developer-docs.md    # Full PayNet docs in markdown
 │   ├── resources.md                # Curated links to community repos
 │   ├── icon-inventory.md           # Icon audit: available vs needed
+│   ├── index.html                  # GitHub Pages interactive site
 │   └── reference-pdfs/             # Source PDFs
 │       ├── IBG & DuitNow Participating Bank_V1.8.pdf
 │       └── payex-reference-codes.pdf
@@ -115,9 +116,6 @@ malaysia-pay-kit/
 │       ├── Card/                   # Visa, Mastercard, UnionPay, etc.
 │       ├── Mobile/                 # Apple Pay, Google Pay, Samsung Pay
 │       └── Other/                  # DuitNow, FPX, MaybankQR, NetsPay
-│
-├── docs-site/
-│   └── index.html                  # GitHub Pages landing page
 │
 ├── index.js                        # Package entry point
 ├── package.json

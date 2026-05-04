@@ -4,561 +4,401 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Malaysia Payment Dev Kit</title>
-<meta name="description" content="Everything a developer needs for Malaysian payment integration — bank data, validators, QR specs, icons, and documentation.">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="Search Malaysian banks, validate accounts, decode QR codes — an interactive toolkit for Malaysian payment integration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0f1c;
-    --surface: #111827;
-    --surface2: #1a2236;
-    --border: #1e293b;
-    --text: #e2e8f0;
-    --text-dim: #94a3b8;
-    --accent: #38bdf8;
-    --accent2: #818cf8;
-    --green: #34d399;
-    --amber: #fbbf24;
-    --red: #f87171;
-    --code-bg: #0f1729;
-  }
+:root {
+  --bg: #06080d;
+  --surface: #0d1117;
+  --surface2: #141a24;
+  --border: #1c2333;
+  --border-hover: #2d3a4f;
+  --text: #e6edf3;
+  --text-dim: #7d8590;
+  --accent: #58a6ff;
+  --accent-glow: rgba(88,166,255,0.15);
+  --green: #3fb950;
+  --green-dim: rgba(63,185,80,0.15);
+  --amber: #d29922;
+  --amber-dim: rgba(210,153,34,0.15);
+  --red: #f85149;
+  --red-dim: rgba(248,81,73,0.15);
+  --purple: #bc8cff;
+  --purple-dim: rgba(188,140,255,0.15);
+  --radius: 8px;
+  --font: 'Outfit', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+code{font-family:var(--mono);font-size:0.85em;background:var(--surface2);padding:2px 6px;border-radius:4px}
+.container{max-width:900px;margin:0 auto;padding:0 20px}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+nav{position:sticky;top:0;z-index:100;background:rgba(6,8,13,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:12px 0}
+nav .container{display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-weight:700;font-size:15px;display:flex;align-items:center;gap:8px}
+.nav-links{display:flex;gap:16px;font-size:13px}
+.nav-links a{color:var(--text-dim);font-weight:500}
+.nav-links a:hover{color:var(--text);text-decoration:none}
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
+.hero{padding:64px 0 48px;text-align:center;position:relative}
+.hero-badge{display:inline-block;font-size:12px;font-family:var(--mono);color:var(--green);background:var(--green-dim);border:1px solid rgba(63,185,80,0.3);padding:4px 12px;border-radius:20px;margin-bottom:20px;letter-spacing:0.03em}
+h1{font-size:clamp(28px,6vw,48px);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:14px}
+h1 .hl{color:var(--accent)}
+.tagline{font-size:clamp(15px,2.5vw,17px);color:var(--text-dim);max-width:540px;margin:0 auto 28px}
+.hero-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:var(--radius);font-family:var(--mono);font-size:13px;font-weight:500;text-decoration:none;transition:all 0.15s;border:1px solid transparent;cursor:pointer}
+.btn:hover{text-decoration:none;transform:translateY(-1px)}
+.btn-primary{background:var(--accent);color:var(--bg)}
+.btn-primary:hover{background:#79c0ff}
+.btn-ghost{background:transparent;border-color:var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+.search-wrap{max-width:600px;margin:32px auto 0;position:relative}
+.search-wrap input{width:100%;padding:14px 16px 14px 44px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-family:var(--mono);font-size:14px;outline:none;transition:border-color 0.2s}
+.search-wrap input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.search-wrap input::placeholder{color:var(--text-dim)}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-dim);font-size:16px;pointer-events:none}
+.search-results{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);max-height:360px;overflow-y:auto;display:none;z-index:50;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+.search-results.show{display:block}
+.sr-item{padding:10px 16px;cursor:pointer;display:flex;align-items:center;gap:10px;font-size:13px;border-bottom:1px solid var(--border);transition:background 0.1s}
+.sr-item:last-child{border-bottom:none}
+.sr-item:hover{background:var(--surface2)}
+.sr-tag{font-family:var(--mono);font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600;flex-shrink:0;text-transform:uppercase}
+.sr-tag.bank{background:var(--accent-glow);color:var(--accent)}
+.sr-tag.wallet{background:var(--green-dim);color:var(--green)}
+.sr-tag.acq{background:var(--purple-dim);color:var(--purple)}
+.sr-name{font-weight:500}
+.sr-meta{margin-left:auto;color:var(--text-dim);font-family:var(--mono);font-size:11px}
+.sr-empty{padding:20px;text-align:center;color:var(--text-dim);font-size:13px}
 
-  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;padding:40px 0}
+.stat{text-align:center;padding:16px 8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+.stat-num{font-size:24px;font-weight:700;font-family:var(--mono);color:var(--accent)}
+.stat-label{font-size:11px;color:var(--text-dim);margin-top:2px;text-transform:uppercase;letter-spacing:0.05em}
 
-  /* ── Hero ── */
-  .hero {
-    padding: 80px 0 60px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
+section{padding:40px 0}
+h2{font-size:22px;font-weight:700;margin-bottom:6px;letter-spacing:-0.02em}
+.section-desc{color:var(--text-dim);margin-bottom:24px;font-size:14px}
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 50% 80%, rgba(56,189,248,0.06) 0%, transparent 50%),
-                radial-gradient(circle at 30% 20%, rgba(129,140,248,0.04) 0%, transparent 40%);
-    pointer-events: none;
-  }
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
+.tool{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:border-color 0.15s}
+.tool:hover{border-color:var(--border-hover)}
+.tool h3{font-size:14px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.tool-input{display:flex;gap:8px;margin-bottom:8px}
+.tool-input input{flex:1;padding:8px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--mono);font-size:13px;outline:none}
+.tool-input input:focus{border-color:var(--accent)}
+.tool-input button{padding:8px 14px;background:var(--accent);color:var(--bg);border:none;border-radius:6px;font-family:var(--mono);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}
+.tool-input button:hover{background:#79c0ff}
+.tool-output{font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--text-dim);min-height:40px;padding:8px 10px;background:var(--bg);border-radius:6px;white-space:pre-wrap;word-break:break-all}
+.tool-output .ok{color:var(--green)}
+.tool-output .err{color:var(--red)}
+.tool-output .lbl{color:var(--text-dim)}
+.tool-output .val{color:var(--text)}
 
-  .flag { font-size: 48px; margin-bottom: 16px; display: block; }
+.file-tree{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.ft-head{padding:10px 16px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:12px;color:var(--text-dim);display:flex;align-items:center;gap:8px}
+.ft-body{padding:4px 0}
+.ft-item{display:flex;align-items:center;gap:6px;padding:5px 16px;font-family:var(--mono);font-size:12px;color:var(--text-dim);text-decoration:none;transition:background 0.1s}
+.ft-item:hover{background:var(--surface2);color:var(--text);text-decoration:none}
+.ft-item.dir{color:var(--accent);font-weight:500}
+.ft-item .i{width:14px;text-align:center;flex-shrink:0;font-size:11px}
+.ft-item .m{margin-left:auto;font-size:10px;color:#384050}
+.d1{padding-left:32px}.d2{padding-left:48px}
 
-  h1 {
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 16px;
-    background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;display:block;color:var(--text);text-decoration:none;transition:border-color 0.15s}
+.card:hover{border-color:var(--accent);text-decoration:none}
+.card h3{font-size:14px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.card p{font-size:13px;color:var(--text-dim);line-height:1.5}
 
-  .tagline {
-    font-size: 18px;
-    color: var(--text-dim);
-    max-width: 600px;
-    margin: 0 auto 32px;
-  }
+.credits{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.cred{padding:12px;background:var(--surface);border:1px solid var(--border);border-radius:6px;font-size:13px}
+.cred a{font-weight:600;font-size:12px}
+.cred-d{color:var(--text-dim);font-size:11px;margin-top:2px}
 
-  .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+footer{padding:40px 0;border-top:1px solid var(--border);text-align:center;color:var(--text-dim);font-size:13px}
+footer .sig{margin-top:8px;font-size:11px;color:#2d3a4f;transition:color 0.3s;cursor:default}
+footer .sig:hover{color:var(--text-dim)}
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: 1px solid transparent;
-  }
-  .btn:hover { text-decoration: none; }
+.egg-overlay{position:fixed;inset:0;background:rgba(6,8,13,0.95);z-index:9999;display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;cursor:pointer}
+.egg-overlay.show{display:flex}
+.egg-skull{font-size:80px;animation:pulse 1.5s ease-in-out infinite}
+.egg-text{font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:0.1em;animation:flicker 2s infinite}
+.egg-sub{font-family:var(--mono);font-size:11px;color:var(--text-dim)}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:0.8}}
+@keyframes flicker{0%,100%{opacity:1}50%{opacity:0.7}75%{opacity:1}85%{opacity:0.5}}
 
-  .btn-primary { background: var(--accent); color: var(--bg); }
-  .btn-primary:hover { background: #7dd3fc; transform: translateY(-1px); }
-
-  .btn-outline { background: transparent; border-color: var(--border); color: var(--text); }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* ── Install bar ── */
-  .install-bar {
-    background: var(--code-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 14px 20px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
-    color: var(--green);
-    max-width: 400px;
-    margin: 24px auto 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    cursor: pointer;
-    transition: border-color 0.2s;
-  }
-  .install-bar:hover { border-color: var(--green); }
-  .install-bar span { color: var(--text-dim); }
-  .install-bar .copied { color: var(--amber); display: none; margin-left: 8px; font-size: 12px; }
-
-  /* ── Stats ── */
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 16px;
-    padding: 48px 0;
-  }
-
-  .stat {
-    text-align: center;
-    padding: 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-  }
-
-  .stat-num {
-    font-size: 32px;
-    font-weight: 700;
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--accent);
-  }
-
-  .stat-label { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
-
-  /* ── Sections ── */
-  section { padding: 48px 0; }
-
-  h2 {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
-  }
-
-  .section-desc { color: var(--text-dim); margin-bottom: 32px; font-size: 16px; }
-
-  /* ── Cards ── */
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-  }
-
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-    transition: border-color 0.2s;
-    text-decoration: none;
-    color: var(--text);
-    display: block;
-  }
-
-  .card:hover { border-color: var(--accent); text-decoration: none; }
-
-  .card h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .card p { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
-
-  .card-icon {
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    flex-shrink: 0;
-  }
-
-  /* ── File Explorer ── */
-  .file-tree {
-    background: var(--code-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .file-tree-header {
-    padding: 12px 20px;
-    border-bottom: 1px solid var(--border);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    color: var(--text-dim);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .file-tree-body {
-    padding: 8px 0;
-    max-height: 500px;
-    overflow-y: auto;
-  }
-
-  .tree-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 20px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    color: var(--text-dim);
-    text-decoration: none;
-    transition: background 0.1s;
-    cursor: pointer;
-  }
-
-  .tree-item:hover { background: var(--surface); color: var(--text); text-decoration: none; }
-  .tree-item.folder { color: var(--accent); font-weight: 500; }
-  .tree-item .icon { width: 16px; text-align: center; flex-shrink: 0; }
-  .tree-item .size { margin-left: auto; font-size: 11px; color: #475569; }
-  .tree-indent { display: inline-block; }
-  .tree-indent-1 { padding-left: 20px; }
-  .tree-indent-2 { padding-left: 40px; }
-
-  /* ── Code block ── */
-  .code-section {
-    background: var(--code-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .code-header {
-    padding: 12px 20px;
-    border-bottom: 1px solid var(--border);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    color: var(--text-dim);
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .code-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .code-dot.r { background: var(--red); opacity: 0.6; }
-  .code-dot.y { background: var(--amber); opacity: 0.6; }
-  .code-dot.g { background: var(--green); opacity: 0.6; }
-
-  .code-body {
-    padding: 20px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    line-height: 1.8;
-    overflow-x: auto;
-    white-space: pre;
-  }
-
-  .code-body .comment { color: #475569; }
-  .code-body .keyword { color: var(--accent2); }
-  .code-body .string { color: var(--green); }
-  .code-body .fn { color: var(--amber); }
-  .code-body .prop { color: var(--accent); }
-
-  /* ── Table ── */
-  .table-wrap { overflow-x: auto; }
-
-  .data-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-  }
-
-  .data-table th {
-    text-align: left;
-    padding: 12px 16px;
-    border-bottom: 2px solid var(--border);
-    font-weight: 600;
-    font-size: 13px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .data-table td {
-    padding: 10px 16px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .data-table tr:hover td { background: var(--surface); }
-
-  .data-table a { font-family: 'IBM Plex Mono', monospace; font-size: 13px; }
-
-  .badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    font-weight: 500;
-  }
-
-  .badge-blue { background: rgba(56,189,248,0.1); color: var(--accent); }
-  .badge-green { background: rgba(52,211,153,0.1); color: var(--green); }
-  .badge-purple { background: rgba(129,140,248,0.1); color: var(--accent2); }
-
-  /* ── Credits ── */
-  .credits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 12px;
-  }
-
-  .credit {
-    padding: 16px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 14px;
-  }
-
-  .credit a { color: var(--accent); text-decoration: none; font-weight: 500; }
-  .credit a:hover { text-decoration: underline; }
-  .credit-desc { color: var(--text-dim); font-size: 12px; margin-top: 4px; }
-
-  /* ── Footer ── */
-  footer {
-    padding: 48px 0;
-    border-top: 1px solid var(--border);
-    text-align: center;
-    color: var(--text-dim);
-    font-size: 14px;
-  }
-
-  footer a { color: var(--accent); text-decoration: none; }
-
-  @media (max-width: 640px) {
-    .hero { padding: 48px 0 32px; }
-    .stats { grid-template-columns: repeat(3, 1fr); }
-  }
+@media(max-width:640px){
+  .hero{padding:40px 0 32px}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .nav-links{gap:10px}
+  .nav-links a{font-size:12px}
+  .tools-grid{grid-template-columns:1fr}
+  .card-grid{grid-template-columns:1fr}
+  .credits{grid-template-columns:repeat(2,1fr)}
+  .ft-body{max-height:400px;overflow-y:auto}
+}
+@media(max-width:360px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .credits{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="hero">
-    <span class="flag">🇲🇾</span>
-    <h1>Malaysia Payment Dev Kit</h1>
-    <p class="tagline">Bank data, validators, QR specs, icons, and documentation — everything you need for Malaysian payment integration in one package.</p>
-    <div class="hero-actions">
-      <a href="https://github.com/deadboy18/malaysia-pay-kit" class="btn btn-primary">⬡ GitHub</a>
-      <a href="https://www.npmjs.com/package/malaysia-pay-kit" class="btn btn-outline">npm</a>
-      <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/docs" class="btn btn-outline">Docs</a>
+<div class="egg-overlay" id="eggOverlay" onclick="this.classList.remove('show')">
+  <div class="egg-skull">💀</div>
+  <div class="egg-text">deadboy18 was here</div>
+  <div class="egg-sub">press any key or tap to dismiss</div>
+</div>
+
+<nav>
+  <div class="container">
+    <div class="nav-brand">🇲🇾 <span>MY Pay Kit</span></div>
+    <div class="nav-links">
+      <a href="#tools">Tools</a>
+      <a href="#data">Data</a>
+      <a href="#docs">Docs</a>
+      <a href="https://github.com/deadboy18/malaysia-pay-kit">GitHub</a>
     </div>
-    <div class="install-bar" onclick="copyInstall(this)">
-      <span>$</span> npm install malaysia-pay-kit
-      <span class="copied">copied!</span>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-badge">v1.0 · open source · MIT</div>
+    <h1>Malaysia <span class="hl">Payment</span> Dev Kit</h1>
+    <p class="tagline">Search banks, validate accounts, decode QR — an interactive toolkit for Malaysian payment integration.</p>
+    <div class="hero-actions">
+      <a href="https://github.com/deadboy18/malaysia-pay-kit" class="btn btn-primary">★ Star on GitHub</a>
+      <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/docs" class="btn btn-ghost">Read the Docs</a>
+    </div>
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="searchInput" placeholder="Search banks, e-wallets, BIC, IBG, FPX ID..." autocomplete="off">
+      <div class="search-results" id="searchResults"></div>
     </div>
   </div>
 
   <div class="stats">
     <div class="stat"><div class="stat-num">46</div><div class="stat-label">Banks</div></div>
-    <div class="stat"><div class="stat-num">52</div><div class="stat-label">FPX IDs</div></div>
+    <div class="stat"><div class="stat-num">9</div><div class="stat-label">E-Wallets</div></div>
     <div class="stat"><div class="stat-num">62</div><div class="stat-label">Acquirers</div></div>
-    <div class="stat"><div class="stat-num">88</div><div class="stat-label">IC Codes</div></div>
-    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Response Codes</div></div>
-    <div class="stat"><div class="stat-num">479</div><div class="stat-label">SVG Icons</div></div>
+    <div class="stat"><div class="stat-num">479</div><div class="stat-label">Icons</div></div>
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Resp Codes</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Validators</div></div>
   </div>
 
-  <section>
-    <h2>What's Inside</h2>
-    <p class="section-desc">One package, zero research time. Click any card to browse the source.</p>
-    <div class="card-grid">
-      <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/banks.json" class="card">
-        <h3><span class="card-icon">🏦</span> Bank Data</h3>
-        <p>46 banks with IBG, BIC, routing ID, acquirer ID, FPX IDs, and account number formats per type. Conventional, Islamic, and digital banks.</p>
-      </a>
-      <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/ewallets.json" class="card">
-        <h3><span class="card-icon">📱</span> E-Wallets</h3>
-        <p>TNG, GrabPay, Boost, ShopeePay, BigPay, and more. Proxy vs account pay flags, DuitNow BIC codes, app store links.</p>
-      </a>
-      <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/validators" class="card">
-        <h3><span class="card-icon">✅</span> Validators</h3>
-        <p>Account numbers, phone numbers (+60 normalization + carrier detection), MyKad/NRIC (birth date + state + gender), postcodes, SSM registration.</p>
-      </a>
-      <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/duitnow-qr.js" class="card">
-        <h3><span class="card-icon">📊</span> QR Decoder</h3>
-        <p>Decode DuitNow QR strings into structured data. EMV TLV parser, CRC16 validation, static QR generator. Based on natsu90's research.</p>
-      </a>
-      <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/data/response-codes" class="card">
-        <h3><span class="card-icon">🔢</span> Response Codes</h3>
-        <p>500+ codes across FPX, Visa/MC, DuitNow, GrabPay, TNG, ShopeePay, Riipay, e-Mandate, and batch processing.</p>
-      </a>
-      <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/docs" class="card">
-        <h3><span class="card-icon">📄</span> Documentation</h3>
-        <p>Complete PayNet docs in markdown, community QR research, bank code cross-reference, account formats, FPX reference, and curated resource links.</p>
-      </a>
+  <section id="tools">
+    <h2>Try It Live</h2>
+    <p class="section-desc">Test the validators right here — no install needed.</p>
+    <div class="tools-grid">
+      <div class="tool">
+        <h3>📱 Phone Validator</h3>
+        <div class="tool-input">
+          <input type="text" id="phoneIn" placeholder="e.g. 0123456789">
+          <button onclick="validatePhone()">Check</button>
+        </div>
+        <div class="tool-output" id="phoneOut">Enter a Malaysian phone number</div>
+      </div>
+      <div class="tool">
+        <h3>🪪 MyKad Validator</h3>
+        <div class="tool-input">
+          <input type="text" id="icIn" placeholder="e.g. 900101145678">
+          <button onclick="validateIC()">Check</button>
+        </div>
+        <div class="tool-output" id="icOut">Enter a 12-digit IC number</div>
+      </div>
+      <div class="tool">
+        <h3>📮 Postcode Lookup</h3>
+        <div class="tool-input">
+          <input type="text" id="postcodeIn" placeholder="e.g. 50000">
+          <button onclick="validatePostcode()">Check</button>
+        </div>
+        <div class="tool-output" id="postcodeOut">Enter a 5-digit postcode</div>
+      </div>
     </div>
   </section>
 
-  <section>
-    <h2>Browse the Repo</h2>
-    <p class="section-desc">Jump directly to any file.</p>
+  <section id="data">
+    <h2>Browse the Data</h2>
+    <p class="section-desc">Every file links directly to the source on GitHub.</p>
     <div class="file-tree">
-      <div class="file-tree-header">📂 malaysia-pay-kit</div>
-      <div class="file-tree-body">
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/data" class="tree-item folder"><span class="icon">📁</span> data/</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/banks.json" class="tree-item tree-indent-1"><span class="icon">📄</span> banks.json <span class="size">46 banks</span></a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/ewallets.json" class="tree-item tree-indent-1"><span class="icon">📄</span> ewallets.json <span class="size">9 wallets</span></a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/acquirers.json" class="tree-item tree-indent-1"><span class="icon">📄</span> acquirers.json <span class="size">62 acquirers</span></a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/fpx-banks.json" class="tree-item tree-indent-1"><span class="icon">📄</span> fpx-banks.json <span class="size">52 IDs</span></a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/states.json" class="tree-item tree-indent-1"><span class="icon">📄</span> states.json <span class="size">16 states</span></a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/phone-prefixes.json" class="tree-item tree-indent-1"><span class="icon">📄</span> phone-prefixes.json <span class="size">10 prefixes</span></a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/ic-state-codes.json" class="tree-item tree-indent-1"><span class="icon">📄</span> ic-state-codes.json <span class="size">88 codes</span></a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/transaction-codes.json" class="tree-item tree-indent-1"><span class="icon">📄</span> transaction-codes.json <span class="size">89 types</span></a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/response-codes/fpx.json" class="tree-item tree-indent-1"><span class="icon">📄</span> response-codes/fpx.json <span class="size">77 codes</span></a>
-
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/validators" class="tree-item folder"><span class="icon">📁</span> validators/</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/account-number.js" class="tree-item tree-indent-1"><span class="icon">⚡</span> account-number.js</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/phone-number.js" class="tree-item tree-indent-1"><span class="icon">⚡</span> phone-number.js</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/ic-number.js" class="tree-item tree-indent-1"><span class="icon">⚡</span> ic-number.js</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/duitnow-qr.js" class="tree-item tree-indent-1"><span class="icon">⚡</span> duitnow-qr.js</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/postcode.js" class="tree-item tree-indent-1"><span class="icon">⚡</span> postcode.js</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/business-reg.js" class="tree-item tree-indent-1"><span class="icon">⚡</span> business-reg.js</a>
-
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/docs" class="tree-item folder"><span class="icon">📁</span> docs/</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/bank-codes.md" class="tree-item tree-indent-1"><span class="icon">📝</span> bank-codes.md</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/account-formats.md" class="tree-item tree-indent-1"><span class="icon">📝</span> account-formats.md</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/fpx-reference.md" class="tree-item tree-indent-1"><span class="icon">📝</span> fpx-reference.md</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/response-codes.md" class="tree-item tree-indent-1"><span class="icon">📝</span> response-codes.md</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/duitnow-qr-research.md" class="tree-item tree-indent-1"><span class="icon">📝</span> duitnow-qr-research.md</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/paynet-developer-docs.md" class="tree-item tree-indent-1"><span class="icon">📝</span> paynet-developer-docs.md</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/resources.md" class="tree-item tree-indent-1"><span class="icon">📝</span> resources.md</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/icon-inventory.md" class="tree-item tree-indent-1"><span class="icon">📝</span> icon-inventory.md</a>
-
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/icons" class="tree-item folder"><span class="icon">📁</span> icons/ <span class="size">479 SVGs</span></a>
-
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/index.js" class="tree-item"><span class="icon">📄</span> index.js</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/package.json" class="tree-item"><span class="icon">📄</span> package.json</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/README.md" class="tree-item"><span class="icon">📄</span> README.md</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/CONTRIBUTING.md" class="tree-item"><span class="icon">📄</span> CONTRIBUTING.md</a>
-        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/LICENSE" class="tree-item"><span class="icon">📄</span> LICENSE</a>
+      <div class="ft-head">📂 malaysia-pay-kit/</div>
+      <div class="ft-body">
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/data" class="ft-item dir"><span class="i">📁</span>data/</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/banks.json" class="ft-item d1"><span class="i">📄</span>banks.json<span class="m">46 banks</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/ewallets.json" class="ft-item d1"><span class="i">📄</span>ewallets.json<span class="m">9 wallets</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/acquirers.json" class="ft-item d1"><span class="i">📄</span>acquirers.json<span class="m">62 acquirers</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/fpx-banks.json" class="ft-item d1"><span class="i">📄</span>fpx-banks.json<span class="m">52 IDs</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/states.json" class="ft-item d1"><span class="i">📄</span>states.json<span class="m">16 states</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/phone-prefixes.json" class="ft-item d1"><span class="i">📄</span>phone-prefixes.json<span class="m">10 prefixes</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/ic-state-codes.json" class="ft-item d1"><span class="i">📄</span>ic-state-codes.json<span class="m">88 codes</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/transaction-codes.json" class="ft-item d1"><span class="i">📄</span>transaction-codes.json<span class="m">89 types</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/response-codes/fpx.json" class="ft-item d1"><span class="i">📄</span>response-codes/fpx.json<span class="m">77 codes</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/validators" class="ft-item dir"><span class="i">📁</span>validators/</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/account-number.js" class="ft-item d1"><span class="i">⚡</span>account-number.js</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/phone-number.js" class="ft-item d1"><span class="i">⚡</span>phone-number.js</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/ic-number.js" class="ft-item d1"><span class="i">⚡</span>ic-number.js</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/duitnow-qr.js" class="ft-item d1"><span class="i">⚡</span>duitnow-qr.js</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/postcode.js" class="ft-item d1"><span class="i">⚡</span>postcode.js</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/business-reg.js" class="ft-item d1"><span class="i">⚡</span>business-reg.js</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/docs" class="ft-item dir"><span class="i">📁</span>docs/</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/bank-codes.md" class="ft-item d1"><span class="i">📝</span>bank-codes.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/account-formats.md" class="ft-item d1"><span class="i">📝</span>account-formats.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/fpx-reference.md" class="ft-item d1"><span class="i">📝</span>fpx-reference.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/response-codes.md" class="ft-item d1"><span class="i">📝</span>response-codes.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/duitnow-qr-research.md" class="ft-item d1"><span class="i">📝</span>duitnow-qr-research.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/paynet-developer-docs.md" class="ft-item d1"><span class="i">📝</span>paynet-developer-docs.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/resources.md" class="ft-item d1"><span class="i">📝</span>resources.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/icon-inventory.md" class="ft-item d1"><span class="i">📝</span>icon-inventory.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/icons" class="ft-item dir"><span class="i">📁</span>icons/<span class="m">479 SVGs</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/index.js" class="ft-item"><span class="i">📄</span>index.js</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/package.json" class="ft-item"><span class="i">📄</span>package.json</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/README.md" class="ft-item"><span class="i">📄</span>README.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/CONTRIBUTING.md" class="ft-item"><span class="i">📄</span>CONTRIBUTING.md</a>
       </div>
     </div>
   </section>
 
-  <section>
-    <h2>Quick Example</h2>
-    <p class="section-desc">Works with require() or import. <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/index.js">View entry point →</a></p>
-    <div class="code-section">
-      <div class="code-header">
-        <span class="code-dot r"></span>
-        <span class="code-dot y"></span>
-        <span class="code-dot g"></span>
-        example.js
-      </div>
-      <div class="code-body"><span class="keyword">const</span> MY = <span class="fn">require</span>(<span class="string">'malaysia-pay-kit'</span>);
-
-<span class="comment">// Look up any bank</span>
-MY.<span class="fn">getBankByBic</span>(<span class="string">'MBBEMYKL'</span>);  <span class="comment">// → Maybank</span>
-MY.<span class="fn">getBankByFpx</span>(<span class="string">'MB2U0227'</span>);  <span class="comment">// → Maybank</span>
-
-<span class="comment">// Validate account number</span>
-MY.<span class="fn">validateAccount</span>(<span class="string">'maybank'</span>, <span class="string">'512345678901'</span>);
-<span class="comment">// → { valid: true, bank: 'Maybank', possibleTypes: ['current','savings','loan','hirePurchase'] }</span>
-
-<span class="comment">// Validate phone + detect carrier</span>
-MY.<span class="fn">validatePhone</span>(<span class="string">'0123456789'</span>);
-<span class="comment">// → { valid: true, normalized: '+60123456789', carrier: 'Maxis', type: 'mobile' }</span>
-
-<span class="comment">// Validate MyKad</span>
-MY.<span class="fn">validateIC</span>(<span class="string">'900101-14-5678'</span>);
-<span class="comment">// → { valid: true, birthDate: '1990-01-01', state: 'Kuala Lumpur', gender: 'female' }</span>
-
-<span class="comment">// Decode DuitNow QR</span>
-MY.<span class="fn">decodeDuitNowQR</span>(qrString);
-<span class="comment">// → { type: 'static', isDuitNow: true, merchant: {...}, amount: 10.50, crcValid: true }</span></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Data Files</h2>
-    <p class="section-desc">All JSON files in <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/data"><code>/data/</code></a> — use directly or via the npm package.</p>
-    <div class="table-wrap">
-      <table class="data-table">
-        <thead>
-          <tr><th>File</th><th>Records</th><th>Category</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/banks.json">banks.json</a></td><td>46</td><td><span class="badge badge-blue">core</span></td></tr>
-          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/ewallets.json">ewallets.json</a></td><td>9</td><td><span class="badge badge-blue">core</span></td></tr>
-          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/acquirers.json">acquirers.json</a></td><td>62</td><td><span class="badge badge-blue">core</span></td></tr>
-          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/fpx-banks.json">fpx-banks.json</a></td><td>52</td><td><span class="badge badge-purple">payment</span></td></tr>
-          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/states.json">states.json</a></td><td>16</td><td><span class="badge badge-green">geo</span></td></tr>
-          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/phone-prefixes.json">phone-prefixes.json</a></td><td>10 prefixes</td><td><span class="badge badge-green">telecom</span></td></tr>
-          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/ic-state-codes.json">ic-state-codes.json</a></td><td>88</td><td><span class="badge badge-green">identity</span></td></tr>
-          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/transaction-codes.json">transaction-codes.json</a></td><td>89</td><td><span class="badge badge-purple">payment</span></td></tr>
-          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/response-codes/fpx.json">response-codes/fpx.json</a></td><td>77</td><td><span class="badge badge-purple">payment</span></td></tr>
-        </tbody>
-      </table>
+  <section id="docs">
+    <h2>Documentation</h2>
+    <p class="section-desc">Deep-dive guides for every topic.</p>
+    <div class="card-grid">
+      <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/bank-codes.md" class="card"><h3>🏦 Bank Codes</h3><p>IBG + BIC + FPX + acquirer cross-reference for all 46 banks.</p></a>
+      <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/account-formats.md" class="card"><h3>🔢 Account Formats</h3><p>Account number lengths per bank per type — savings, current, loan.</p></a>
+      <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/fpx-reference.md" class="card"><h3>💳 FPX Reference</h3><p>FPX bank IDs, response codes, ID types, and developer tips.</p></a>
+      <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/duitnow-qr-research.md" class="card"><h3>📊 DuitNow QR</h3><p>Community reverse engineering of EMV QR payloads, TLV format, CRC16.</p></a>
+      <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/paynet-developer-docs.md" class="card"><h3>📄 PayNet Docs</h3><p>Full PayNet developer documentation converted to markdown.</p></a>
+      <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/resources.md" class="card"><h3>🔗 Resources</h3><p>Curated links to 35+ community repos and official docs.</p></a>
     </div>
   </section>
 
   <section>
     <h2>Credits</h2>
-    <p class="section-desc">Built on the work of the Malaysian developer community.</p>
-    <div class="credits-grid">
-      <div class="credit"><a href="https://github.com/natsu90">natsu90</a><div class="credit-desc">DuitNow QR reverse engineering</div></div>
-      <div class="credit"><a href="https://github.com/SnorSnor9998">SnorSnor9998</a><div class="credit-desc">Payment icon SVG collection</div></div>
-      <div class="credit"><a href="https://github.com/AsyrafHussin">AsyrafHussin</a><div class="credit-desc">Malaysia postcodes dataset</div></div>
-      <div class="credit"><a href="https://chengkiang.com">chengkiang</a><div class="credit-desc">CRC16 implementation</div></div>
-      <div class="credit"><a href="https://gist.github.com/shah253kt">shah253kt</a><div class="credit-desc">SWIFT/BIC codes (146)</div></div>
-      <div class="credit"><a href="https://gist.github.com/xanda">xanda</a><div class="credit-desc">Card BIN numbers (230)</div></div>
-      <div class="credit"><a href="https://github.com/lomotech">lomotech</a><div class="credit-desc">States/districts/postcodes</div></div>
-      <div class="credit"><a href="https://github.com/farhan-syah">farhan-syah</a><div class="credit-desc">States JSON with coordinates</div></div>
-      <div class="credit"><a href="https://developer.paynet.my">PayNet</a><div class="credit-desc">Official developer docs</div></div>
-      <div class="credit"><a href="https://www.pidm.gov.my">PIDM</a><div class="credit-desc">Member banks list</div></div>
-      <div class="credit"><a href="https://github.com/deadboy18">deadboy18</a><div class="credit-desc">qr-studio + this repo</div></div>
-      <div class="credit"><a href="https://www.payex.io">PayEx/Xendit</a><div class="credit-desc">Response codes, FPX IDs</div></div>
+    <p class="section-desc">Community-built, community-maintained.</p>
+    <div class="credits">
+      <div class="cred"><a href="https://github.com/natsu90">natsu90</a><div class="cred-d">DuitNow QR reverse engineering</div></div>
+      <div class="cred"><a href="https://github.com/SnorSnor9998">SnorSnor9998</a><div class="cred-d">Payment icon SVGs</div></div>
+      <div class="cred"><a href="https://github.com/AsyrafHussin">AsyrafHussin</a><div class="cred-d">Postcodes dataset</div></div>
+      <div class="cred"><a href="https://chengkiang.com">chengkiang</a><div class="cred-d">CRC16 implementation</div></div>
+      <div class="cred"><a href="https://gist.github.com/shah253kt">shah253kt</a><div class="cred-d">SWIFT/BIC codes</div></div>
+      <div class="cred"><a href="https://gist.github.com/xanda">xanda</a><div class="cred-d">Card BIN numbers</div></div>
+      <div class="cred"><a href="https://github.com/lomotech">lomotech</a><div class="cred-d">States/districts</div></div>
+      <div class="cred"><a href="https://developer.paynet.my">PayNet</a><div class="cred-d">Official developer docs</div></div>
+      <div class="cred"><a href="https://www.pidm.gov.my">PIDM</a><div class="cred-d">Member banks list</div></div>
+      <div class="cred"><a href="https://github.com/deadboy18">deadboy18</a><div class="cred-d">qr-studio + this repo</div></div>
     </div>
   </section>
+
 </div>
 
 <footer>
   <div class="container">
-    <p>MIT License · <a href="https://github.com/deadboy18/malaysia-pay-kit">GitHub</a> · <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/CONTRIBUTING.md">Contributing</a> · Made for the Malaysian developer community</p>
+    <p>MIT License · <a href="https://github.com/deadboy18/malaysia-pay-kit">Source</a> · <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/CONTRIBUTING.md">Contribute</a></p>
+    <div class="sig" title="try ↑↑↓↓←→←→BA">built for 🇲🇾 devs</div>
   </div>
 </footer>
 
 <script>
-function copyInstall(el) {
-  navigator.clipboard.writeText('npm install malaysia-pay-kit').then(function() {
-    var copied = el.querySelector('.copied');
-    copied.style.display = 'inline';
-    setTimeout(function() { copied.style.display = 'none'; }, 1500);
-  });
-}
-</script>
+var DATA={banks:[],ewallets:[],acquirers:[]};
+var BASE='https://raw.githubusercontent.com/deadboy18/malaysia-pay-kit/main/data/';
+['banks','ewallets','acquirers'].forEach(function(k){
+  fetch(BASE+k+'.json').then(function(r){return r.json()}).then(function(d){
+    DATA[k]=Array.isArray(d)?d:Object.values(d);
+  }).catch(function(){});
+});
 
+var searchInput=document.getElementById('searchInput');
+var searchResults=document.getElementById('searchResults');
+
+searchInput.addEventListener('input',function(){
+  var q=this.value.trim().toLowerCase();
+  if(q.length<2){searchResults.classList.remove('show');return}
+  var results=[];
+  DATA.banks.forEach(function(b){
+    var fields=[b.name,b.fullName,b.bic,b.bicCode,b.ibg,b.ibgCode,b.id,b.fpxBankId,b.fpxId,b.acquirerId].map(function(v){return(v||'').toLowerCase()});
+    if(fields.some(function(f){return f.includes(q)})){
+      results.push({type:'bank',name:b.name||b.fullName||b.id,meta:[b.bic||b.bicCode,b.ibg||b.ibgCode].filter(Boolean).join(' · ')});
+    }
+  });
+  DATA.ewallets.forEach(function(w){
+    var fields=[w.name,w.id,w.bic,w.bicCode].map(function(v){return(v||'').toLowerCase()});
+    if(fields.some(function(f){return f.includes(q)})){
+      results.push({type:'wallet',name:w.name||w.id,meta:w.bic||w.bicCode||''});
+    }
+  });
+  DATA.acquirers.forEach(function(a){
+    var fields=[a.name,a.id,a.acquirerId].map(function(v){return(v||'').toLowerCase()});
+    if(fields.some(function(f){return f.includes(q)})){
+      results.push({type:'acq',name:a.name||a.id,meta:a.id||a.acquirerId||''});
+    }
+  });
+  searchResults.innerHTML=results.length===0?'<div class="sr-empty">No results for "'+q+'"</div>':results.slice(0,12).map(function(r){
+    return'<div class="sr-item"><span class="sr-tag '+r.type+'">'+r.type+'</span><span class="sr-name">'+r.name+'</span><span class="sr-meta">'+r.meta+'</span></div>';
+  }).join('');
+  searchResults.classList.add('show');
+});
+searchInput.addEventListener('blur',function(){setTimeout(function(){searchResults.classList.remove('show')},200)});
+searchInput.addEventListener('focus',function(){if(this.value.trim().length>=2)searchResults.classList.add('show')});
+
+var phonePrefixes={'010':'DiGi','011':'Various','012':'Maxis','013':'Celcom','014':'DiGi','016':'DiGi','017':'Maxis','018':'U Mobile','019':'Celcom'};
+function validatePhone(){
+  var raw=document.getElementById('phoneIn').value.trim(),out=document.getElementById('phoneOut');
+  if(!raw){out.innerHTML='Enter a phone number';return}
+  var num=raw.replace(/[\s\-\(\)]/g,'');
+  if(num.startsWith('+60'))num='0'+num.slice(3);else if(num.startsWith('60'))num='0'+num.slice(2);
+  if(!/^0\d{9,10}$/.test(num)){out.innerHTML='<span class="err">✗ Invalid format</span>\nExpected: 01X-XXXXXXX or +601X-XXXXXXX';return}
+  var prefix=num.slice(0,3),carrier=phonePrefixes[prefix]||'Unknown',normalized='+60'+num.slice(1);
+  out.innerHTML='<span class="ok">✓ Valid</span>\n<span class="lbl">Normalized:</span> <span class="val">'+normalized+'</span>\n<span class="lbl">Carrier:</span>    <span class="val">'+carrier+'</span>\n<span class="lbl">Type:</span>       <span class="val">mobile</span>';
+}
+document.getElementById('phoneIn').addEventListener('keydown',function(e){if(e.key==='Enter')validatePhone()});
+
+var icStates={'01':'Johor','02':'Kedah','03':'Kelantan','04':'Melaka','05':'N. Sembilan','06':'Pahang','07':'Penang','08':'Perak','09':'Perlis','10':'Selangor','11':'Terengganu','12':'Sabah','13':'Sarawak','14':'KL','15':'Labuan','16':'Putrajaya','21':'Johor','22':'Johor','23':'Kedah','24':'Kedah','25':'Kelantan','26':'Kelantan','27':'Melaka','28':'N. Sembilan','29':'Pahang','30':'Pahang','31':'Penang','32':'Penang','33':'Perak','34':'Perak','35':'Perlis','36':'Selangor','37':'Selangor','38':'Terengganu','39':'Terengganu','40':'Sabah','41':'Sabah','42':'Sarawak','43':'Sarawak','44':'Sarawak','45':'Sarawak','46':'Sarawak','47':'Sarawak','48':'Sarawak','49':'Sarawak','50':'Sarawak','51':'KL','52':'KL','53':'KL','54':'KL','55':'Labuan','56':'Labuan','57':'Labuan','58':'Putrajaya','59':'Putrajaya'};
+function validateIC(){
+  var raw=document.getElementById('icIn').value.trim().replace(/[\-\s]/g,''),out=document.getElementById('icOut');
+  if(!raw){out.innerHTML='Enter a 12-digit IC number';return}
+  if(!/^\d{12}$/.test(raw)){out.innerHTML='<span class="err">✗ Must be exactly 12 digits</span>';return}
+  var yy=parseInt(raw.slice(0,2)),mm=parseInt(raw.slice(2,4)),dd=parseInt(raw.slice(4,6)),stCode=raw.slice(6,8),last=parseInt(raw.slice(11));
+  if(mm<1||mm>12||dd<1||dd>31){out.innerHTML='<span class="err">✗ Invalid birth date in IC</span>';return}
+  var year=yy<=30?2000+yy:1900+yy,dob=year+'-'+String(mm).padStart(2,'0')+'-'+String(dd).padStart(2,'0');
+  var state=icStates[stCode]||'Foreign/Unknown ('+stCode+')';
+  var gender=last%2===0?'Female':'Male';
+  var today=new Date(),age=today.getFullYear()-year;
+  if(today<new Date(today.getFullYear(),mm-1,dd))age--;
+  out.innerHTML='<span class="ok">✓ Valid</span>\n<span class="lbl">DOB:</span>    <span class="val">'+dob+'</span> (age '+age+')\n<span class="lbl">State:</span>  <span class="val">'+state+'</span>\n<span class="lbl">Gender:</span> <span class="val">'+gender+'</span>';
+}
+document.getElementById('icIn').addEventListener('keydown',function(e){if(e.key==='Enter')validateIC()});
+
+var postcodeRanges=[[1000,2800,'Perlis'],[5000,9810,'Kedah'],[10000,14400,'Penang'],[15000,18500,'Kelantan'],[20000,24300,'Terengganu'],[25000,28800,'Pahang'],[30000,36810,'Perak'],[39000,39200,'Perak'],[40000,48300,'Selangor'],[49000,49100,'Selangor'],[50000,60000,'KL'],[62000,62988,'Putrajaya'],[63000,68100,'Selangor'],[69000,71900,'N. Sembilan'],[73000,73500,'N. Sembilan'],[75000,78000,'Melaka'],[79000,86900,'Johor'],[87000,91309,'Sabah'],[93000,98859,'Sarawak'],[86000,87000,'Labuan']];
+function validatePostcode(){
+  var raw=document.getElementById('postcodeIn').value.trim(),out=document.getElementById('postcodeOut');
+  if(!raw){out.innerHTML='Enter a 5-digit postcode';return}
+  if(!/^\d{5}$/.test(raw)){out.innerHTML='<span class="err">✗ Must be exactly 5 digits</span>';return}
+  var num=parseInt(raw),state=null;
+  for(var i=0;i<postcodeRanges.length;i++){if(num>=postcodeRanges[i][0]&&num<=postcodeRanges[i][1]){state=postcodeRanges[i][2];break}}
+  out.innerHTML=state?'<span class="ok">✓ Valid</span>\n<span class="lbl">Postcode:</span> <span class="val">'+raw+'</span>\n<span class="lbl">State:</span>    <span class="val">'+state+'</span>':'<span class="err">✗ Unknown postcode range</span>';
+}
+document.getElementById('postcodeIn').addEventListener('keydown',function(e){if(e.key==='Enter')validatePostcode()});
+
+// Konami Code: ↑↑↓↓←→←→BA
+var konamiSeq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'],konamiPos=0;
+document.addEventListener('keydown',function(e){
+  var ov=document.getElementById('eggOverlay');
+  if(ov.classList.contains('show')){ov.classList.remove('show');return}
+  if(e.key===konamiSeq[konamiPos]){konamiPos++;if(konamiPos===konamiSeq.length){ov.classList.add('show');konamiPos=0}}else{konamiPos=0}
+});
+// Mobile: tap footer sig 5 times
+var sigTaps=0,sigTimer;
+document.querySelector('.sig').addEventListener('click',function(){
+  sigTaps++;clearTimeout(sigTimer);sigTimer=setTimeout(function(){sigTaps=0},2000);
+  if(sigTaps>=5){document.getElementById('eggOverlay').classList.add('show');sigTaps=0}
+});
+</script>
 </body>
 </html>
