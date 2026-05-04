@@ -32,6 +32,9 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
   .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 
   /* ── Hero ── */
@@ -88,18 +91,12 @@
     transition: all 0.2s;
     border: 1px solid transparent;
   }
+  .btn:hover { text-decoration: none; }
 
-  .btn-primary {
-    background: var(--accent);
-    color: var(--bg);
-  }
+  .btn-primary { background: var(--accent); color: var(--bg); }
   .btn-primary:hover { background: #7dd3fc; transform: translateY(-1px); }
 
-  .btn-outline {
-    background: transparent;
-    border-color: var(--border);
-    color: var(--text);
-  }
+  .btn-outline { background: transparent; border-color: var(--border); color: var(--text); }
   .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
   /* ── Install bar ── */
@@ -117,9 +114,12 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s;
   }
-
+  .install-bar:hover { border-color: var(--green); }
   .install-bar span { color: var(--text-dim); }
+  .install-bar .copied { color: var(--amber); display: none; margin-left: 8px; font-size: 12px; }
 
   /* ── Stats ── */
   .stats {
@@ -171,9 +171,12 @@
     border-radius: 12px;
     padding: 24px;
     transition: border-color 0.2s;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
   }
 
-  .card:hover { border-color: var(--accent); }
+  .card:hover { border-color: var(--accent); text-decoration: none; }
 
   .card h3 {
     font-size: 16px;
@@ -196,6 +199,52 @@
     font-size: 14px;
     flex-shrink: 0;
   }
+
+  /* ── File Explorer ── */
+  .file-tree {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .file-tree-header {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .file-tree-body {
+    padding: 8px 0;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  .tree-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: background 0.1s;
+    cursor: pointer;
+  }
+
+  .tree-item:hover { background: var(--surface); color: var(--text); text-decoration: none; }
+  .tree-item.folder { color: var(--accent); font-weight: 500; }
+  .tree-item .icon { width: 16px; text-align: center; flex-shrink: 0; }
+  .tree-item .size { margin-left: auto; font-size: 11px; color: #475569; }
+  .tree-indent { display: inline-block; }
+  .tree-indent-1 { padding-left: 20px; }
+  .tree-indent-2 { padding-left: 40px; }
 
   /* ── Code block ── */
   .code-section {
@@ -237,6 +286,8 @@
   .code-body .prop { color: var(--accent); }
 
   /* ── Table ── */
+  .table-wrap { overflow-x: auto; }
+
   .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -260,6 +311,8 @@
   }
 
   .data-table tr:hover td { background: var(--surface); }
+
+  .data-table a { font-family: 'IBM Plex Mono', monospace; font-size: 13px; }
 
   .badge {
     display: inline-block;
@@ -322,8 +375,9 @@
       <a href="https://www.npmjs.com/package/malaysia-pay-kit" class="btn btn-outline">npm</a>
       <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/docs" class="btn btn-outline">Docs</a>
     </div>
-    <div class="install-bar">
+    <div class="install-bar" onclick="copyInstall(this)">
       <span>$</span> npm install malaysia-pay-kit
+      <span class="copied">copied!</span>
     </div>
   </div>
 
@@ -333,43 +387,89 @@
     <div class="stat"><div class="stat-num">62</div><div class="stat-label">Acquirers</div></div>
     <div class="stat"><div class="stat-num">88</div><div class="stat-label">IC Codes</div></div>
     <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Response Codes</div></div>
-    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Validators</div></div>
+    <div class="stat"><div class="stat-num">479</div><div class="stat-label">SVG Icons</div></div>
   </div>
 
   <section>
     <h2>What's Inside</h2>
-    <p class="section-desc">One package, zero research time.</p>
+    <p class="section-desc">One package, zero research time. Click any card to browse the source.</p>
     <div class="card-grid">
-      <div class="card">
+      <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/banks.json" class="card">
         <h3><span class="card-icon">🏦</span> Bank Data</h3>
         <p>46 banks with IBG, BIC, routing ID, acquirer ID, FPX IDs, and account number formats per type. Conventional, Islamic, and digital banks.</p>
-      </div>
-      <div class="card">
+      </a>
+      <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/ewallets.json" class="card">
         <h3><span class="card-icon">📱</span> E-Wallets</h3>
         <p>TNG, GrabPay, Boost, ShopeePay, BigPay, and more. Proxy vs account pay flags, DuitNow BIC codes, app store links.</p>
-      </div>
-      <div class="card">
+      </a>
+      <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/validators" class="card">
         <h3><span class="card-icon">✅</span> Validators</h3>
         <p>Account numbers, phone numbers (+60 normalization + carrier detection), MyKad/NRIC (birth date + state + gender), postcodes, SSM registration.</p>
-      </div>
-      <div class="card">
+      </a>
+      <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/duitnow-qr.js" class="card">
         <h3><span class="card-icon">📊</span> QR Decoder</h3>
         <p>Decode DuitNow QR strings into structured data. EMV TLV parser, CRC16 validation, static QR generator. Based on natsu90's research.</p>
-      </div>
-      <div class="card">
+      </a>
+      <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/data/response-codes" class="card">
         <h3><span class="card-icon">🔢</span> Response Codes</h3>
         <p>500+ codes across FPX, Visa/MC, DuitNow, GrabPay, TNG, ShopeePay, Riipay, e-Mandate, and batch processing.</p>
-      </div>
-      <div class="card">
+      </a>
+      <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/docs" class="card">
         <h3><span class="card-icon">📄</span> Documentation</h3>
         <p>Complete PayNet docs in markdown, community QR research, bank code cross-reference, account formats, FPX reference, and curated resource links.</p>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Browse the Repo</h2>
+    <p class="section-desc">Jump directly to any file.</p>
+    <div class="file-tree">
+      <div class="file-tree-header">📂 malaysia-pay-kit</div>
+      <div class="file-tree-body">
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/data" class="tree-item folder"><span class="icon">📁</span> data/</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/banks.json" class="tree-item tree-indent-1"><span class="icon">📄</span> banks.json <span class="size">46 banks</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/ewallets.json" class="tree-item tree-indent-1"><span class="icon">📄</span> ewallets.json <span class="size">9 wallets</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/acquirers.json" class="tree-item tree-indent-1"><span class="icon">📄</span> acquirers.json <span class="size">62 acquirers</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/fpx-banks.json" class="tree-item tree-indent-1"><span class="icon">📄</span> fpx-banks.json <span class="size">52 IDs</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/states.json" class="tree-item tree-indent-1"><span class="icon">📄</span> states.json <span class="size">16 states</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/phone-prefixes.json" class="tree-item tree-indent-1"><span class="icon">📄</span> phone-prefixes.json <span class="size">10 prefixes</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/ic-state-codes.json" class="tree-item tree-indent-1"><span class="icon">📄</span> ic-state-codes.json <span class="size">88 codes</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/transaction-codes.json" class="tree-item tree-indent-1"><span class="icon">📄</span> transaction-codes.json <span class="size">89 types</span></a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/response-codes/fpx.json" class="tree-item tree-indent-1"><span class="icon">📄</span> response-codes/fpx.json <span class="size">77 codes</span></a>
+
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/validators" class="tree-item folder"><span class="icon">📁</span> validators/</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/account-number.js" class="tree-item tree-indent-1"><span class="icon">⚡</span> account-number.js</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/phone-number.js" class="tree-item tree-indent-1"><span class="icon">⚡</span> phone-number.js</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/ic-number.js" class="tree-item tree-indent-1"><span class="icon">⚡</span> ic-number.js</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/duitnow-qr.js" class="tree-item tree-indent-1"><span class="icon">⚡</span> duitnow-qr.js</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/postcode.js" class="tree-item tree-indent-1"><span class="icon">⚡</span> postcode.js</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/business-reg.js" class="tree-item tree-indent-1"><span class="icon">⚡</span> business-reg.js</a>
+
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/docs" class="tree-item folder"><span class="icon">📁</span> docs/</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/bank-codes.md" class="tree-item tree-indent-1"><span class="icon">📝</span> bank-codes.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/account-formats.md" class="tree-item tree-indent-1"><span class="icon">📝</span> account-formats.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/fpx-reference.md" class="tree-item tree-indent-1"><span class="icon">📝</span> fpx-reference.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/response-codes.md" class="tree-item tree-indent-1"><span class="icon">📝</span> response-codes.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/duitnow-qr-research.md" class="tree-item tree-indent-1"><span class="icon">📝</span> duitnow-qr-research.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/paynet-developer-docs.md" class="tree-item tree-indent-1"><span class="icon">📝</span> paynet-developer-docs.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/resources.md" class="tree-item tree-indent-1"><span class="icon">📝</span> resources.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/icon-inventory.md" class="tree-item tree-indent-1"><span class="icon">📝</span> icon-inventory.md</a>
+
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/icons" class="tree-item folder"><span class="icon">📁</span> icons/ <span class="size">479 SVGs</span></a>
+
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/index.js" class="tree-item"><span class="icon">📄</span> index.js</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/package.json" class="tree-item"><span class="icon">📄</span> package.json</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/README.md" class="tree-item"><span class="icon">📄</span> README.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/CONTRIBUTING.md" class="tree-item"><span class="icon">📄</span> CONTRIBUTING.md</a>
+        <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/LICENSE" class="tree-item"><span class="icon">📄</span> LICENSE</a>
       </div>
     </div>
   </section>
 
   <section>
     <h2>Quick Example</h2>
-    <p class="section-desc">Works with require() or import.</p>
+    <p class="section-desc">Works with require() or import. <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/index.js">View entry point →</a></p>
     <div class="code-section">
       <div class="code-header">
         <span class="code-dot r"></span>
@@ -403,24 +503,22 @@ MY.<span class="fn">decodeDuitNowQR</span>(qrString);
 
   <section>
     <h2>Data Files</h2>
-    <p class="section-desc">All JSON files in <code>/data/</code> — use directly or via the npm package.</p>
-    <div style="overflow-x: auto;">
+    <p class="section-desc">All JSON files in <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/data"><code>/data/</code></a> — use directly or via the npm package.</p>
+    <div class="table-wrap">
       <table class="data-table">
         <thead>
           <tr><th>File</th><th>Records</th><th>Category</th></tr>
         </thead>
         <tbody>
-          <tr><td>banks.json</td><td>46</td><td><span class="badge badge-blue">core</span></td></tr>
-          <tr><td>ewallets.json</td><td>9</td><td><span class="badge badge-blue">core</span></td></tr>
-          <tr><td>acquirers.json</td><td>62</td><td><span class="badge badge-blue">core</span></td></tr>
-          <tr><td>fpx-banks.json</td><td>52</td><td><span class="badge badge-purple">payment</span></td></tr>
-          <tr><td>states.json</td><td>16</td><td><span class="badge badge-green">geo</span></td></tr>
-          <tr><td>phone-prefixes.json</td><td>10 prefixes</td><td><span class="badge badge-green">telecom</span></td></tr>
-          <tr><td>ic-state-codes.json</td><td>88</td><td><span class="badge badge-green">identity</span></td></tr>
-          <tr><td>transaction-codes.json</td><td>89</td><td><span class="badge badge-purple">payment</span></td></tr>
-          <tr><td>response-codes/fpx.json</td><td>77</td><td><span class="badge badge-purple">payment</span></td></tr>
-          <tr><td>response-codes/card.json</td><td>71</td><td><span class="badge badge-purple">payment</span></td></tr>
-          <tr><td>response-codes/duitnow.json</td><td>—</td><td><span class="badge badge-purple">payment</span></td></tr>
+          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/banks.json">banks.json</a></td><td>46</td><td><span class="badge badge-blue">core</span></td></tr>
+          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/ewallets.json">ewallets.json</a></td><td>9</td><td><span class="badge badge-blue">core</span></td></tr>
+          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/acquirers.json">acquirers.json</a></td><td>62</td><td><span class="badge badge-blue">core</span></td></tr>
+          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/fpx-banks.json">fpx-banks.json</a></td><td>52</td><td><span class="badge badge-purple">payment</span></td></tr>
+          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/states.json">states.json</a></td><td>16</td><td><span class="badge badge-green">geo</span></td></tr>
+          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/phone-prefixes.json">phone-prefixes.json</a></td><td>10 prefixes</td><td><span class="badge badge-green">telecom</span></td></tr>
+          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/ic-state-codes.json">ic-state-codes.json</a></td><td>88</td><td><span class="badge badge-green">identity</span></td></tr>
+          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/transaction-codes.json">transaction-codes.json</a></td><td>89</td><td><span class="badge badge-purple">payment</span></td></tr>
+          <tr><td><a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/response-codes/fpx.json">response-codes/fpx.json</a></td><td>77</td><td><span class="badge badge-purple">payment</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -448,9 +546,19 @@ MY.<span class="fn">decodeDuitNowQR</span>(qrString);
 
 <footer>
   <div class="container">
-    <p>MIT License · <a href="https://github.com/deadboy18/malaysia-pay-kit">GitHub</a> · Made for the Malaysian developer community</p>
+    <p>MIT License · <a href="https://github.com/deadboy18/malaysia-pay-kit">GitHub</a> · <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/CONTRIBUTING.md">Contributing</a> · Made for the Malaysian developer community</p>
   </div>
 </footer>
+
+<script>
+function copyInstall(el) {
+  navigator.clipboard.writeText('npm install malaysia-pay-kit').then(function() {
+    var copied = el.querySelector('.copied');
+    copied.style.display = 'inline';
+    setTimeout(function() { copied.style.display = 'none'; }, 1500);
+  });
+}
+</script>
 
 </body>
 </html>
