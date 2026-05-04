@@ -1,891 +1,228 @@
-# 💸 Payment-Icon 💸
-
-An repository contains a comprehensive collection of icons for various payment methods, banks, and wallets in
-Malaysia. <br>
-These icons can be easily accessed and used by developers and designers to enhance the visual representation of their
-payment-related projects. <br>
-Anyone who has access to the repository is welcome to add, modify, or improve the existing collection of icons. <br>
-
-### 📏 Format 📐
-
-- Size: (WxH)
-    - 180 x 180
-    - 800 x 180
-    - 500 x 350
-- Corner Radius: 15
-- Type:
-    - SQU (Square)
-    - ROU (Round)
-    - TRSP (Transparent)
-    - LG (Long)
-    - BSQU (Big Square)
+# 🇲🇾 Malaysia Payment Dev Kit
 
-### Directory
+> Everything a developer needs for Malaysian payment integration — bank data, validators, QR specs, icons, and documentation. All in one repo.
 
-| [E-Wallet](#e-wallet)     | [BNPL](#bnpl)                 | [Card](#card)         | [Mobile](#mobile)          | [Banks](#banks)                               | [Other](#other)         |
-|---------------------------|-------------------------      |-----------------------|----------------------------|-----------------------------------------------|-------------------------|
-| [Alipay](#alipay)         | [Ablr](#ablr)                 | [Visa](#visa)         | [Apple Pay](#applepay)     | [AEON Bank](#aeon-bank)                       | [DuitNow](#duitnow)     |
-| [Alipay+](#alipay-plus)   | [Atome](#atome)               | [Master](#master)     | [Google Pay](#googlepay)   | [Affin Bank](#affin-bank)                     | [FPX](#fpx)             |
-| [Binfinite](#binfinite)   | [GrabPayLater](#grabpaylater) | [UnionPay](#unionpay) | [Samsung Pay](#samsungpay) | [Alliance Bank](#alliance-bank)               | [MaybankQR](#maybankqr) |
-| [Boost](#boost)           | [IOUPay](#ioupay)             | [Gobiz](#gobiz)       |                            | [Ambank](#ambank)                             | [Netspay](#netspay)     |
-| [FavePay](#favepay)       | [ShopBack](#shopback)         | [Paydee](#paydee)     |                            | [Argo Bank](#argo-bank)                       |                         |
-| [GoPayz](#gopayz)         | [SPayLater](#spaylater)       |                       |                            | [Bank Islam](#bank-islam)                     |                         |
-| [Grab Pay](#grabpay)      | [Split](#split)               |                       |                            | [Bank Muamalat](#bank-muamalat)               |                         |
-| [Lazada](#lazada)         |                               |                       |                            | [Bank Rakyat](#bank-rakyat)                   |                         |
-| [MAE](#mae)               |                               |                       |                            | [BNP Paribas](#bnp-paribas)                   |                         |
-| [MCash](#mcash)           |                               |                       |                            | [Boost Bank](#boost-bank)                     |                         |
-| [Presto](#presto)         |                               |                       |                            | [BSN](#bsn)                                   |                         |
-| [Razer](#razer)           |                               |                       |                            | [CIMB](#cimb)                                 |                         |
-| [SarawakPay](#sarawakpay) |                               |                       |                            | [Citibank](#citibank)                         |                         |
-| [Senheng](#senheng)       |                               |                       |                            | [Deutsche Bank](#deutsche-bank)               |                         |
-| [Setel](#setel)           |                               |                       |                            | [GXBank](#gxbank)                             |                         |
-| [Shopee Pay](#shopeepay)  |                               |                       |                            | [HongLeong Bank](#hongleong-bank)             |                         |
-| [TaPay](#tapay)           |                               |                       |                            | [HSBC](#hsbc)                                 |                         |
-| [TNG](#tng)               |                               |                       |                            | [Kuwait Finance House](#kuwait-finance-house) |                         |
-| [Truemoney](#truemoney)   |                               |                       |                            | [Maybank](#maybank)                           |                         |
-| [WechatPay](#wechatpay)   |                               |                       |                            | [MBSB](#mbsb)                                 |                         |
-| [Zapp](#zapp)             |                               |                       |                            | [OCBC](#ocbc)                                 |                         |
-|                           |                               |                       |                            | [Public Bank](#public-bank)                   |                         |
-|                           |                               |                       |                            | [RHB](#rhb)                                   |                         |
-|                           |                               |                       |                            | [Ryt Bank](#ryt-bank)                         |                         |
-|                           |                               |                       |                            | [Standard Chartered](#standard-chartered)     |                         |
-|                           |                               |                       |                            | [UOB](#uob)                                   |                         |
+## Why This Exists
 
+If you've built payment features for the Malaysian market, you know the pain: bank codes scattered across PDFs, account formats buried in bank websites, FPX IDs that don't match DuitNow BIC codes, no single source of truth for any of it.
 
-<br>
+This repo fixes that. One `npm install` gives you validated, cross-referenced data for every bank, e-wallet, and payment method in Malaysia.
 
-# E-Wallet
+---
 
-### Alipay
+## Install
+
+```bash
+npm install malaysia-pay-kit
+```
 
-Source:
+Or just grab the JSON files directly from `/data/`.
 
-<img width="150" height="150" alt="image" src="./Wallet/Alipay/Alipay_SVG.svg">
+---
 
-| Version | Square                                                                           | Round                                                                            |
-|---------|----------------------------------------------------------------------------------|----------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/Alipay/Alipay_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Alipay/Alipay_V1_ROU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/Alipay/Alipay_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Alipay/Alipay_V2_ROU.svg"> |
+## Quick Start
 
-### Alipay Plus
+```javascript
+const MY = require('malaysia-pay-kit');
 
-Source:
+// Look up any bank by ID, BIC, IBG code, or FPX ID
+MY.getBank('maybank');              // Full bank object
+MY.getBankByBic('MBBEMYKL');        // By DuitNow BIC
+MY.getBankByIbg('0227');            // By IBG code  
+MY.getBankByFpx('MB2U0227');        // By FPX bank ID
+MY.getBankByAcquirer('588700');     // By acquirer ID
+
+// Validate a bank account number
+MY.validateAccount('maybank', '512345678901');
+// { valid: true, possibleTypes: ['current','savings','loan','hirePurchase'], bank: 'Maybank' }
+
+MY.validateAccount('cimb-bank', '12345');
+// { valid: false, error: 'INVALID_LENGTH', message: 'CIMB Bank account numbers should be 10, 12, 14, 16, 17 digits, got 5' }
 
-<img width="150" height="150" alt="image" src="./Wallet/AlipayPlus/AlipayPlus_SVG.svg">
+// Validate & normalize phone numbers
+MY.validatePhone('0123456789');
+// { valid: true, normalized: '+60123456789', carrier: 'Maxis', type: 'mobile' }
+
+MY.validatePhone('+60162345678');
+// { valid: true, normalized: '+60162345678', carrier: 'DiGi', type: 'mobile' }
+
+// Validate MyKad / NRIC
+MY.validateIC('900101-14-5678');
+// { valid: true, birthDate: '1990-01-01', age: 36, state: 'Kuala Lumpur', gender: 'female' }
 
-| Version | Square                                                                                   | Round                                                                                    |
-|---------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/AlipayPlus/AlipayPlus_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/AlipayPlus/AlipayPlus_V1_ROU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/AlipayPlus/AlipayPlus_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/AlipayPlus/AlipayPlus_V2_ROU.svg"> |
+// Validate postcodes
+MY.validatePostcode('50000');
+// { valid: true, state: 'Kuala Lumpur', stateId: 'kuala-lumpur' }
 
-### Binfinite
+// Decode DuitNow QR codes
+MY.decodeDuitNowQR('00020101021126...');
+// { valid: true, type: 'static', isDuitNow: true, merchant: {...}, amount: 10.50, currency: 'MYR', crcValid: true }
 
-Source:
+// Generate static DuitNow QR strings
+MY.generateStaticQR({
+  acquirerId: '588700',
+  merchantId: '0123456789',
+  merchantName: 'ALI SHOP',
+  amount: 10.50
+});
+// Returns EMV-compliant QR payload string with valid CRC16
+```
 
-<img width="150" height="150" alt="image" src="./Wallet/Binfinite/Binfinite_SVG.svg">
+---
 
-| Version | Square                                                                                 | Round                                                                                  |
-|---------|----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/Binfinite/Binfinite_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Binfinite/Binfinite_V1_ROU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/Binfinite/Binfinite_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Binfinite/Binfinite_V2_ROU.svg"> |
-| V3      | <img width="90" height="90" alt="image" src="./Wallet/Binfinite/Binfinite_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Binfinite/Binfinite_V3_ROU.svg"> |
+## What's Inside
+
+### `/data/` — Machine-readable JSON
+
+| File | Records | Description |
+|------|---------|-------------|
+| `banks.json` | 46 | All Malaysian banks — conventional, Islamic arms, digital banks. IBG, BIC, routing ID, acquirer ID, FPX IDs, account formats per type. |
+| `ewallets.json` | 9 | TNG, GrabPay, Boost, ShopeePay, BigPay, Merchantrade, etc. Proxy vs account pay flags, app store links. |
+| `acquirers.json` | 62 | PayNet DuitNow QR acquirers — banks, e-wallets, processors. |
+| `fpx-banks.json` | 52 | FPX bank IDs with retail/corporate mode flags. |
+| `states.json` | 16 | All states/FT with IC codes, lat/lng, area codes, postcode ranges. |
+| `phone-prefixes.json` | 10 prefixes | Complete mobile prefix-to-carrier mapping including 011 sub-ranges. |
+| `ic-state-codes.json` | 88 | All MyKad birth state/country codes. |
+| `transaction-codes.json` | 89 | Payment types: FPX, card, DuitNow QR, e-wallets, BNPL, instalment plans per bank. |
+| `response-codes/fpx.json` | 77 | FPX response codes with descriptions. |
+| `response-codes/card.json` | 71 | Visa/MC/Amex card response codes. |
+| `response-codes/duitnow.json` | — | DuitNow + GrabPay + TNG + ShopeePay + Riipay codes. |
 
-### Boost
+### `/validators/` — Ready-to-use validation
 
-Source:
+| Validator | What It Does |
+|-----------|-------------|
+| `account-number.js` | Validates account number by bank (46 banks × 5 account types). Handles CIMB dual lengths, ICBC prefix rules, UOB variable formats. |
+| `phone-number.js` | Malaysian phone validation, +60 normalization, carrier detection from prefix, mobile/landline/VoIP classification. |
+| `ic-number.js` | MyKad/NRIC: birth date, state, gender extraction from 12-digit IC. |
+| `duitnow-qr.js` | EMV QR TLV decoder, CRC16 validation, static QR generator. |
+| `postcode.js` | 5-digit postcode validation, state lookup. |
+| `business-reg.js` | SSM registration number (old + new format). |
 
-<img width="150" height="150" alt="image" src="./Wallet/Boost/Boost_SVG.svg">
+### `/docs/` — Comprehensive documentation
 
-| Version | Square                                                                         | Round                                                                          |
-|---------|--------------------------------------------------------------------------------|--------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/Boost/Boost_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Boost/Boost_V1_ROU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/Boost/Boost_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Boost/Boost_V2_ROU.svg"> |
-| V3      | <img width="90" height="90" alt="image" src="./Wallet/Boost/Boost_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Boost/Boost_V3_ROU.svg"> |
+| File | Description |
+|------|-------------|
+| `bank-codes.md` | Cross-reference table: IBG + BIC + FPX + acquirer + routing per bank |
+| `account-formats.md` | Account number lengths per bank per type, special cases |
+| `fpx-reference.md` | FPX bank IDs, response codes, ID types, developer tips |
+| `response-codes.md` | 500+ response codes across all payment types |
+| `duitnow-qr-research.md` | Community QR reverse engineering (natsu90 + contributors) |
+| `paynet-developer-docs.md` | Full PayNet docs scraped to markdown |
+| `resources.md` | Curated links to all community repos and official docs |
+| `icon-inventory.md` | Icon audit: what's available vs what needs creating |
+
+---
 
-### FavePay
+## Data Sources
 
-Source:
+This repo cross-references data from **35+ sources**:
 
-<img width="150" height="150" alt="image" src="./Wallet/FavePay/FavePay_SVG.svg">
+| Source | What |
+|--------|------|
+| [PayNet Developer Docs](https://docs.developer.paynet.my) | QR spec, 70 acquirers, FPX banks, response codes |
+| UOB IBG PDF (Mar 2024) | 41 banks: IBG codes, BIC, account formats |
+| OCBC IBG PDF (Oct 2023) | 44 banks incl. Islamic arms, delivery channels |
+| [RHB BIC Listing](https://www.rhbgroup.com/myreflex/premium/articles/article/bic_code_listing/) | 84 FIs: BIC, RENTAS, routing numbers |
+| [PIDM Member Banks](https://www.pidm.gov.my/general/how-we-protect-you/member-banks) | Definitive list of deposit-insured banks |
+| [PayEx/Xendit](https://www.payex.io/docs/) | Response codes, FPX buyer bank IDs, transaction types |
+| [Wikipedia: MY Telephone Numbers](https://en.wikipedia.org/wiki/Telephone_numbers_in_Malaysia) | Prefix-to-carrier mapping |
+| [SnorSnor9998/Payment-Icon](https://github.com/SnorSnor9998/Payment-Icon) | SVG icons (66 payment methods) |
+| [AsyrafHussin/malaysia-postcodes](https://github.com/AsyrafHussin/malaysia-postcodes) | Postcode dataset |
+| [natsu90](https://github.com/natsu90) | DuitNow QR reverse engineering |
+| Full list in [`docs/resources.md`](docs/resources.md) | |
 
-| Version | Square                                                                             | Round                                                                               |
-|---------|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/FavePay/FavePay_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/FavePay/FavePay_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/FavePay/FavePay_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/FavePay/FavePay_V2_ROU.svg">  |
+---
 
-### GoPayz
+## Phone Number Carrier Detection
 
-Source:
+```javascript
+MY.validatePhone('0123456789');  // → Maxis
+MY.validatePhone('0162345678');  // → DiGi (CelcomDigi)
+MY.validatePhone('0191234567');  // → Celcom (CelcomDigi)
+MY.validatePhone('01112345678'); // → Maxis (011-12x range)
+MY.validatePhone('0181234567');  // → U Mobile
+```
 
-<img width="150" height="150" alt="image" src="./Wallet/GoPayz/GoPayz_SVG.svg">
+> **Note:** Due to Mobile Number Portability (MNP), carrier detection indicates the *original* assigned operator. The current operator may differ if the user has ported their number.
 
-| Version | Square                                                                           | Round                                                                             |
-|---------|----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/GoPayz/GoPayz_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/GoPayz/GoPayz_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/GoPayz/GoPayz_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/GoPayz/GoPayz_V2_ROU.svg">  |
+---
 
-### GrabPay
+## DuitNow QR
 
-Source:
+Decode any DuitNow QR string into structured data:
 
-<img width="150" height="150" alt="image" src="./Wallet/GrabPay/GrabPay_SVG.svg">
+```javascript
+const decoded = MY.decodeDuitNowQR(qrString);
 
-| Version | Square                                                                             | Round                                                                               |
-|---------|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/GrabPay/GrabPay_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/GrabPay/GrabPay_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/GrabPay/GrabPay_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/GrabPay/GrabPay_V2_ROU.svg">  |
-| V3      | <img width="90" height="90" alt="image" src="./Wallet/GrabPay/GrabPay_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/GrabPay/GrabPay_V3_ROU.svg">  |
-| V4      | <img width="90" height="90" alt="image" src="./Wallet/GrabPay/GrabPay_V4_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/GrabPay/GrabPay_V4_ROU.svg">  |
+console.log(decoded.type);        // 'static' or 'dynamic'
+console.log(decoded.isDuitNow);   // true (Malaysia AID detected)
+console.log(decoded.merchant);    // { guid, acquirerId, merchantId }
+console.log(decoded.amount);      // 10.50
+console.log(decoded.currency);    // 'MYR'
+console.log(decoded.crcValid);    // true/false
+```
 
-### Lazada
+Generate static QR strings (P2P):
 
-Source:
+```javascript
+const qr = MY.generateStaticQR({
+  acquirerId: '588700',      // Maybank
+  merchantId: '60123456789', // Phone number
+  merchantName: 'ALI',
+  amount: 25.00
+});
+// Returns: '00020101021226...' with valid CRC16
+```
 
-<img width="150" height="150" alt="image" src="./Wallet/Lazada/Lazada_SVG.svg">
+> **Important:** Dynamic QR codes require PayNet acquirer integration. Only static QR can be generated client-side. See `docs/duitnow-qr-research.md` for details.
 
-| Version | Square                                                                           | Round                                                                             |
-|---------|----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/Lazada/Lazada_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Lazada/Lazada_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/Lazada/Lazada_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Lazada/Lazada_V2_ROU.svg">  |
+---
 
-### MAE
+## Contributing
 
-Source:
+Found outdated info? New bank launched? Account format changed? PRs welcome.
 
-<img width="150" height="150" alt="image" src="./Wallet/MAE/MAE_SVG.svg">
+1. Fork this repo
+2. Update the relevant JSON file in `/data/`
+3. Update the corresponding doc in `/docs/` if needed
+4. Submit a PR with your source (link to official bank page, PDF, etc.)
 
-| Version | Square                                                                     | Round                                                                       |
-|---------|----------------------------------------------------------------------------|-----------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/MAE/MAE_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/MAE/MAE_V1_ROU.svg" > |
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for guidelines.
 
-### MCash
+---
 
-Source:
+## Credits
 
-<img width="150" height="150" alt="image" src="./Wallet/MCash/MCash_SVG.svg">
+This project wouldn't exist without the Malaysian developer community:
 
-| Version | Square                                                                         | Round                                                                           |
-|---------|--------------------------------------------------------------------------------|---------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/MCash/MCash_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/MCash/MCash_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/MCash/MCash_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/MCash/MCash_V2_ROU.svg">  |
+| Contributor | Contribution |
+|-------------|-------------|
+| [natsu90](https://github.com/natsu90) (Sulaiman Sudirman) | DuitNow QR reverse engineering, duitnow-js generator |
+| [kidino](https://github.com/kidino) | Original DuitNow QR use case discovery |
+| [chengkiang](https://chengkiang.com) | CRC16 implementation (PayNow/SGQR reference) |
+| [SnorSnor9998](https://github.com/SnorSnor9998) | Payment-Icon SVG collection (66 icons) |
+| [AsyrafHussin](https://github.com/AsyrafHussin) | malaysia-postcodes dataset |
+| [shah253kt](https://gist.github.com/shah253kt) | Malaysian SWIFT/BIC codes (146 entries) |
+| [zulhfreelancer](https://gist.github.com/zulhfreelancer) | Malaysian banks JSON with FPX codes |
+| [xanda](https://gist.github.com/xanda) | Malaysian card BIN numbers (~230 entries) |
+| [farhan-syah](https://github.com/farhan-syah) | Malaysia states JSON with coordinates |
+| [lomotech](https://github.com/lomotech) | jajahan — states/districts/postcodes |
+| [nurfaizfoat](https://github.com/nurfaizfoat) | bankMY payment webfont |
+| [deadboy18](https://github.com/deadboy18) | qr-studio — DuitNow QR decode tool |
 
-### Presto
+**Official sources:** [PayNet](https://developer.paynet.my), [BNM](https://www.bnm.gov.my), [PIDM](https://www.pidm.gov.my), [MCMC](https://www.mcmc.gov.my), [PayEx/Xendit](https://www.payex.io), [senangPay](https://guide.senangpay.com)
 
-Source:
+---
 
-<img width="150" height="150" alt="image" src="./Wallet/Presto/Presto_SVG.svg">
+## License
 
-| Version | Square                                                                           | Round                                                                             |
-|---------|----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/Presto/Presto_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Presto/Presto_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/Presto/Presto_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Presto/Presto_V2_ROU.svg" > |
-| V3      | <img width="90" height="90" alt="image" src="./Wallet/Presto/Presto_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Presto/Presto_V3_ROU.svg" > |
-| V4      | <img width="90" height="90" alt="image" src="./Wallet/Presto/Presto_V4_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Presto/Presto_V4_ROU.svg" > |
-| V5      | <img width="90" height="90" alt="image" src="./Wallet/Presto/Presto_V5_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Presto/Presto_V5_ROU.svg" > |
+MIT — use it however you want. Attribution appreciated but not required.
 
-### Razer
+Data sourced from publicly available official documents and community contributions. Bank logos/icons are trademarks of their respective owners.
 
-Source:
+---
 
-<img width="150" height="150" alt="image" src="Wallet/Razer/RazerPay_SVG.svg">
+## Disclaimer
 
-| Version | Square                                                                            | Round                                                                              |
-|---------|-----------------------------------------------------------------------------------|------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/Razer/RazerPay_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Razer/RazerPay_V1_ROU.svg" > |
-
-### SarawakPay
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Wallet/SarawakPay/SarawakPay_SVG.svg">
-
-| Version | Square                                                                                   | Round                                                                                     |
-|---------|------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/SarawakPay/SarawakPay_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/SarawakPay/SarawakPay_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/SarawakPay/SarawakPay_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/SarawakPay/SarawakPay_V2_ROU.svg" > |
-
-### Senheng
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Wallet/Senheng/Senheng_SVG.svg">
-
-| Version | Square                                                                             | Round                                                                               |
-|---------|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/Senheng/Senheng_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Senheng/Senheng_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/Senheng/Senheng_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Senheng/Senheng_V2_ROU.svg" > |
-
-### Setel
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Wallet/Setel/Setel_SVG.svg">
-
-| Version | Square                                                                         | Round                                                                           |
-|---------|--------------------------------------------------------------------------------|---------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/Setel/Setel_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Setel/Setel_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/Setel/Setel_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Setel/Setel_V2_ROU.svg" > |
-| V3      | <img width="90" height="90" alt="image" src="./Wallet/Setel/Setel_V3_SQU.svg"> | N/A|
-
-### ShopeePay
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Wallet/ShopeePay/ShopeePay_SVG.svg">
-
-| Version | Square                                                                                 | Round                                                                                   |
-|---------|----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/ShopeePay/ShopeePay_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/ShopeePay/ShopeePay_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/ShopeePay/ShopeePay_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/ShopeePay/ShopeePay_V2_ROU.svg" > |
-| V3      | <img width="90" height="90" alt="image" src="./Wallet/ShopeePay/ShopeePay_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/ShopeePay/ShopeePay_V3_ROU.svg" > |
-| V4      | <img width="90" height="90" alt="image" src="./Wallet/ShopeePay/ShopeePay_V4_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/ShopeePay/ShopeePay_V4_ROU.svg" > |
-| V5      | <img width="90" height="90" alt="image" src="./Wallet/ShopeePay/ShopeePay_V5_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/ShopeePay/ShopeePay_V5_ROU.svg" > |
-| V6      | <img width="90" height="90" alt="image" src="./Wallet/ShopeePay/ShopeePay_V6_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/ShopeePay/ShopeePay_V6_ROU.svg" > |
-
-### TNG
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Wallet/TNG/TNG_SVG.svg">
-<img width="150" height="150" alt="image" src="./Wallet/TNG/TNG_V2_SVG.svg">
-
-| Version | Square                                                                     | Round                                                                       |
-|---------|----------------------------------------------------------------------------|-----------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/TNG/TNG_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/TNG/TNG_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/TNG/TNG_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/TNG/TNG_V2_ROU.svg" > |
-
-### TaPay
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Wallet/TaPay/TaPay_SVG.svg">
-
-| Version | Square                                                                         | Round                                                                           |
-|---------|--------------------------------------------------------------------------------|---------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/TaPay/TaPay_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/TaPay/TaPay_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/TaPay/TaPay_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/TaPay/TaPay_V2_ROU.svg" > |
-
-### Truemoney
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Wallet/Truemoney/Truemoney_SVG.svg">
-
-| Version | Square                                                                                 | Round                                                                                   |
-|---------|----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/Truemoney/Truemoney_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Truemoney/Truemoney_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/Truemoney/Truemoney_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Truemoney/Truemoney_V2_ROU.svg" > |
-
-### WechatPay
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Wallet/WechatPay/WeChat_SVG.svg">
-
-| Version | Square                                                                              | Round                                                                                |
-|---------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/WechatPay/WeChat_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/WechatPay/WeChat_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Wallet/WechatPay/WeChat_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/WechatPay/WeChat_V2_ROU.svg" > |
-| V3      | <img width="90" height="90" alt="image" src="./Wallet/WechatPay/WeChat_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/WechatPay/WeChat_V3_ROU.svg" > |
-
-### Zapp
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Wallet/Zapp/Zapp_SVG.svg">
-
-| Version | Square                                                                       | Round                                                                         |
-|---------|------------------------------------------------------------------------------|-------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Wallet/Zapp/Zapp_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Wallet/Zapp/Zapp_V1_ROU.svg" > |
-
-<br>
-
-# BNPL
-
-### Ablr
-
-Source:
-
-<img width="150" height="150" alt="image" src="./BNPL/Ablr/Ablr_SVG.svg">
-
-| Version | Square                                                                     | Round                                                                       |
-|---------|----------------------------------------------------------------------------|-----------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./BNPL/Ablr/Ablr_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/Ablr/Ablr_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./BNPL/Ablr/Ablr_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/Ablr/Ablr_V2_ROU.svg" > |
-
-<br>
-
-### Atome
-
-Source:
-
-<img width="150" height="150" alt="image" src="./BNPL/Atome/Atome_SVG.svg">
-
-| Version | Square | Round | Long |
-|---------|---------|---------|---------|
-| V1      | <img width="90" height="90" alt="image" src="./BNPL/Atome/Atome_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/Atome/Atome_V1_ROU.svg" > | N/A |
-| V2      | <img width="90" height="90" alt="image" src="./BNPL/Atome/Atome_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/Atome/Atome_V2_ROU.svg" > | N/A |
-| V3      | <img width="90" height="90" alt="image" src="./BNPL/Atome/Atome_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/Atome/Atome_V3_ROU.svg" > | <img width="200" height="120" alt="image" src="./BNPL/Atome/Atome_V3_LG.svg"> |
-| V4      | <img width="90" height="90" alt="image" src="./BNPL/Atome/Atome_V4_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/Atome/Atome_V4_ROU.svg" > | <img width="200" height="120" alt="image" src="./BNPL/Atome/Atome_V4_LG.svg"> |
-
-<br>
-
-### GrabPayLater
-
-Source:
-
-<img width="150" height="150" alt="image" src="./BNPL/GrabPayLater/GrabPayLater_SVG.svg">
-
-| Version | Square | Round | Long |
-|---------|---------|---------|---------|
-| V1      | N/A | N/A | <img width="200" height="120" alt="image" src="./BNPL/GrabPayLater/GrabPayLater_V1_LG.svg"> |
-| V2      | N/A | N/A | <img width="200" height="120" alt="image" src="./BNPL/GrabPayLater/GrabPayLater_V2_LG.svg"> |
-
-<br>
-
-### IOUPay
-
-Source:
-
-<img width="150" height="150" alt="image" src="./BNPL/IOUPay/IOUPay_SVG.svg">
-
-| Version | Square                                                                         | Round                                                                           |
-|---------|--------------------------------------------------------------------------------|---------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./BNPL/IOUPay/IOUPay_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/IOUPay/IOUPay_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./BNPL/IOUPay/IOUPay_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/IOUPay/IOUPay_V2_ROU.svg" > |
-
-<br>
-
-### ShopBack
-
-Source:
-
-<img width="150" height="150" alt="image" src="./BNPL/ShopBack/ShopBack_SVG.svg">
-
-| Version | Square                                                                             | Round                                                                               |
-|---------|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./BNPL/ShopBack/ShopBack_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/ShopBack/ShopBack_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./BNPL/ShopBack/ShopBack_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/ShopBack/ShopBack_V2_ROU.svg" > |
-
-<br>
-
-### SPayLater
-
-Source:
-
-<img width="150" height="150" alt="image" src="./BNPL/SPayLater/SPayLater_SVG.svg">
-
-| Version | Square | Round | Long |
-|---------|---------|---------|---------|
-| V1      | <img width="90" height="90" alt="image" src="./BNPL/SPayLater/SPayLater_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/SPayLater/SPayLater_V1_ROU.svg" > | <img width="200" height="120" alt="image" src="./BNPL/SPayLater/SPayLater_V1_LG.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./BNPL/SPayLater/SPayLater_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/SPayLater/SPayLater_V2_ROU.svg" > | <img width="200" height="120" alt="image" src="./BNPL/SPayLater/SPayLater_V2_LG.svg"> |
-
-<br>
-
-### Split
-
-Source:
-
-<img width="150" height="150" alt="image" src="./BNPL/Split/Split_SVG.svg">
-
-| Version | Square                                                                       | Round                                                                         |
-|---------|------------------------------------------------------------------------------|-------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./BNPL/Split/Split_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/Split/Split_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./BNPL/Split/Split_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/Split/Split_V2_ROU.svg" > |
-| V3      | <img width="90" height="90" alt="image" src="./BNPL/Split/Split_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/Split/Split_V3_ROU.svg" > |
-| V4      | <img width="90" height="90" alt="image" src="./BNPL/Split/Split_V4_SQU.svg"> | <img width="90" height="90" alt="image" src="./BNPL/Split/Split_V4_ROU.svg" > |
-
-<br>
-
-# Card
-
-### Visa
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Card/Visa/VISA_SVG.svg">
-
-| Version | Square                                                                     | Round                                                                       | Transparent                                                                  |
-|---------|----------------------------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Card/Visa/VISA_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Card/Visa/VISA_V1_ROU.svg" > | <img width="90" height="90" alt="image" src="./Card/Visa/VISA_V1_TRSP.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Card/Visa/VISA_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Card/Visa/VISA_V2_ROU.svg" > | <img width="90" height="90" alt="image" src="./Card/Visa/VISA_V2_TRSP.svg" > |
-
-### Master
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Card/Master/MASTER_SVG.svg">
-
-| Version | Square                                                                         | Round                                                                           | Transparent                                                                      |
-|---------|--------------------------------------------------------------------------------|---------------------------------------------------------------------------------|----------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Card/Master/MASTER_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Card/Master/MASTER_V1_ROU.svg" > | <img width="90" height="90" alt="image" src="./Card/Master/MASTER_V1_TRSP.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Card/Master/MASTER_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Card/Master/MASTER_V2_ROU.svg" > | N/A                                                                              |
-| V3      | <img width="90" height="90" alt="image" src="./Card/Master/MASTER_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Card/Master/MASTER_V3_ROU.svg" > | N/A                                                                              |
-| V4      | <img width="90" height="90" alt="image" src="./Card/Master/MASTER_V4_SQU.svg"> | <img width="90" height="90" alt="image" src="./Card/Master/MASTER_V4_ROU.svg" > | N/A                                                                              |
-
-### UnionPay
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Card/UnionPay/UNIONPAY_SVG.svg">
-
-| Version | Square                                                                             | Round                                                                               | Transparent                                                                          |
-|---------|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Card/UnionPay/UNIONPAY_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Card/UnionPay/UNIONPAY_V1_ROU.svg" > | <img width="90" height="90" alt="image" src="./Card/UnionPay/UNIONPAY_V1_TRSP.svg" > |
-
-### Gobiz
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Card/Gobiz/Gobiz_SVG.svg">
-
-| Version | Square                                                                       | Round                                                                         |
-|---------|------------------------------------------------------------------------------|-------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Card/Gobiz/Gobiz_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Card/Gobiz/Gobiz_V1_ROU.svg" > | 
-| V2      | <img width="90" height="90" alt="image" src="./Card/Gobiz/Gobiz_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Card/Gobiz/Gobiz_V2_ROU.svg" > | 
-
-### Paydee
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Card/Paydee/Paydee_SVG.svg">
-
-| Version | Square                                                                         | Round                                                                           |
-|---------|--------------------------------------------------------------------------------|---------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Card/Paydee/Paydee_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Card/Paydee/Paydee_V1_ROU.svg" > | 
-| V2      | <img width="90" height="90" alt="image" src="./Card/Paydee/Paydee_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Card/Paydee/Paydee_V2_ROU.svg" > | 
-
-<br>
-
-# Mobile
-
-### ApplePay
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Mobile/ApplePay/ApplePay_SVG.svg">
-
-| Version | Square                                                                               | Round                                                                                 | Transparent                                                                            |
-|---------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Mobile/ApplePay/ApplePay_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Mobile/ApplePay/ApplePay_V1_ROU.svg" > | <img width="90" height="90" alt="image" src="./Mobile/ApplePay/ApplePay_V1_TRSP.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Mobile/ApplePay/ApplePay_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Mobile/ApplePay/ApplePay_V2_ROU.svg" > | <img width="90" height="90" alt="image" src="./Mobile/ApplePay/ApplePay_V2_TRSP.svg" > |
-
-### GooglePay
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Mobile/GooglePay/GooglePay_SVG.svg">
-
-| Version | Square                                                                                 | Round                                                                                   | Transparent                                                                              |
-|---------|----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Mobile/GooglePay/GooglePay_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Mobile/GooglePay/GooglePay_V1_ROU.svg" > | <img width="90" height="90" alt="image" src="./Mobile/GooglePay/GooglePay_V1_TRSP.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Mobile/GooglePay/GooglePay_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Mobile/GooglePay/GooglePay_V2_ROU.svg" > | <img width="90" height="90" alt="image" src="./Mobile/GooglePay/GooglePay_V2_TRSP.svg" > |
-| V3      | <img width="90" height="90" alt="image" src="./Mobile/GooglePay/GooglePay_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Mobile/GooglePay/GooglePay_V3_ROU.svg" > | <img width="90" height="90" alt="image" src="./Mobile/GooglePay/GooglePay_V3_TRSP.svg" > |
-
-### SamsungPay
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Mobile/SamsungPay/SamsungPay_SVG.svg">
-
-| Version | Square                                                                                   | Round                                                                                     |
-|---------|------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Mobile/SamsungPay/SamsungPay_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Mobile/SamsungPay/SamsungPay_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Mobile/SamsungPay/SamsungPay_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Mobile/SamsungPay/SamsungPay_V2_ROU.svg" > | 
-| V3      | <img width="90" height="90" alt="image" src="./Mobile/SamsungPay/SamsungPay_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Mobile/SamsungPay/SamsungPay_V3_ROU.svg" > | 
-
-<br>
-
-# Banks
-
-### AEON Bank
-
-Source:
-
-<img width="250" height="100" alt="image" src="Banks/AEONBank/AEONBank_SVG.svg">
-
-| Version | Square                                                                                | Round                                                                                  | Long                                                                                   | Big Square                                                                               |
-|---------|---------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/AEONBank/AEONBank_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/AEONBank/AEONBank_V1_ROU.svg" > | <img width="200" height="120" alt="image" src="./Banks/AEONBank/AEONBank_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/AEONBank/AEONBank_V1_BSQU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Banks/AEONBank/AEONBank_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/AEONBank/AEONBank_V2_ROU.svg" > | <img width="200" height="120" alt="image" src="./Banks/AEONBank/AEONBank_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/AEONBank/AEONBank_V2_BSQU.svg"> |
-
-<br>
-
-### Affin Bank
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/AffinBank/AffinBank_SVG.svg">
-
-| Version | Square                                                                                | Round                                                                                  | Long                                                                                   | Big Square                                                                               |
-|---------|---------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/AffinBank/AffinBank_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/AffinBank/AffinBank_V1_ROU.svg" > | <img width="200" height="120" alt="image" src="./Banks/AffinBank/AffinBank_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/AffinBank/AffinBank_V1_BSQU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Banks/AffinBank/AffinBank_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/AffinBank/AffinBank_V2_ROU.svg" > | <img width="200" height="120" alt="image" src="./Banks/AffinBank/AffinBank_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/AffinBank/AffinBank_V2_BSQU.svg"> |
-
-<br>
-
-### Alliance Bank
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/AllianceBank/AllianceBank_SVG.svg">
-
-| Version | Square                                                                                      | Round                                                                                       | Long                                                                                         | Big Square                                                                                     |
-|---------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/AllianceBank/AllianceBank_V1_ROU.svg"> | <img width="90" height="90" alt="image" src="./Banks/AllianceBank/AllianceBank_V1_SQU.svg"> | <img width="200" height="120" alt="image" src="./Banks/AllianceBank/AllianceBank_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/AllianceBank/AllianceBank_V1_BSQU.svg"> |
-
-<br>
-
-### AmBank
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/AmBank/AmBank_SVG.svg">
-
-| Version | Square                                                                          | Round                                                                           | Long                                                                             | Big Square                                                                         |
-|---------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------|----------------------------------------------------------------------------------|------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/AmBank/AmBank_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/AmBank/AmBank_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/AmBank/AmBank_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/AmBank/AmBank_V1_BSQU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Banks/AmBank/AmBank_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/AmBank/AmBank_V2_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/AmBank/AmBank_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/AmBank/AmBank_V2_BSQU.svg"> |
-| V3      | <img width="90" height="90" alt="image" src="./Banks/AmBank/AmBank_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/AmBank/AmBank_V3_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/AmBank/AmBank_V3_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/AmBank/AmBank_V3_BSQU.svg"> |
-| V4      | N/A                                                                             | N/A                                                                             | <img width="200" height="120" alt="image" src="./Banks/AmBank/AmBank_V4_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/AmBank/AmBank_V4_BSQU.svg"> |
-| V5      | N/A                                                                             | N/A                                                                             | <img width="200" height="120" alt="image" src="./Banks/AmBank/AmBank_V5_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/AmBank/AmBank_V5_BSQU.svg"> |
-
-<br>
-
-### Argo Bank
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/ArgoBank/ArgoBank_SVG.svg">
-
-| Version | Square                                                                              | Round                                                                               | Long                                                                                 | Big Square                                                                             |
-|---------|-------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/ArgoBank/ArgoBank_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/ArgoBank/ArgoBank_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/ArgoBank/ArgoBank_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/ArgoBank/ArgoBank_V1_BSQU.svg"> |
-
-<br>
-
-### Bank Islam
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/BankIslam/BankIslam_SVG.svg">
-
-| Version | Square                                                                                | Round                                                                                 | Long                                                                                   | Big Square                                                                               |
-|---------|---------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/BankIslam/BankIslam_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/BankIslam/BankIslam_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/BankIslam/BankIslam_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/BankIslam/BankIslam_V1_BSQU.svg"> |
-
-<br>
-
-### Bank Muamalat
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/BankMuamalat/BankMuamalat_SVG.svg">
-
-| Version | Square                                                                                      | Round                                                                                       | Long                                                                                         | Big Square                                                                                     |
-|---------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/BankMuamalat/BankMuamalat_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/BankMuamalat/BankMuamalat_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/BankMuamalat/BankMuamalat_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/BankMuamalat/BankMuamalat_V1_BSQU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Banks/BankMuamalat/BankMuamalat_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/BankMuamalat/BankMuamalat_V2_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/BankMuamalat/BankMuamalat_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/BankMuamalat/BankMuamalat_V2_BSQU.svg"> |
-| V3      | <img width="90" height="90" alt="image" src="./Banks/BankMuamalat/BankMuamalat_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/BankMuamalat/BankMuamalat_V3_ROU.svg"> | N/A                                                                                          | N/A                                                                                            |
-| V4      | <img width="90" height="90" alt="image" src="./Banks/BankMuamalat/BankMuamalat_V4_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/BankMuamalat/BankMuamalat_V4_ROU.svg"> | N/A                                                                                          | N/A                                                                                            |
-
-<br>
-
-### Bank Rakyat
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/BankRakyat/BankRakyat_SVG.svg">
-
-| Version | Square                                                                                  | Round                                                                                   | Long                                                                                     | Big Square                                                                                 |
-|---------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/BankRakyat/BankRakyat_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/BankRakyat/BankRakyat_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/BankRakyat/BankRakyat_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/BankRakyat/BankRakyat_V1_BSQU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Banks/BankRakyat/BankRakyat_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/BankRakyat/BankRakyat_V2_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/BankRakyat/BankRakyat_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/BankRakyat/BankRakyat_V2_BSQU.svg"> |
-
-<br>
-
-### BNP Paribas
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/BNPParibasBank/BNPParibasBank_SVG.svg">
-
-| Version | Square                                                                                  | Round                                                                                   | Long                                                                                     | Big Square                                                                                 |
-|---------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/BNPParibasBank/BNPParibasBank_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/BNPParibasBank/BNPParibasBank_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/BNPParibasBank/BNPParibasBank_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/BNPParibasBank/BNPParibasBank_V1_BSQU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Banks/BNPParibasBank/BNPParibasBank_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/BNPParibasBank/BNPParibasBank_V2_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/BNPParibasBank/BNPParibasBank_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/BNPParibasBank/BNPParibasBank_V2_BSQU.svg"> |
-
-<br>
-
-### Boost Bank
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/BoostBank/BoostBank_SVG.svg">
-
-| Version | Square                                                                                  | Round                                                                                   | Long                                                                                     | Big Square                                                                                 |
-|---------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/BoostBank/BoostBank_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/BoostBank/BoostBank_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/BoostBank/BoostBank_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/BoostBank/BoostBank_V1_BSQU.svg"> |
-
-
-<br>
-
-
-### BSN
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/BSN/BSN_SVG.svg">
-
-| Version | Square                                                                    | Round                                                                     | Long                                                                       | Big Square                                                                   |
-|---------|---------------------------------------------------------------------------|---------------------------------------------------------------------------|----------------------------------------------------------------------------|------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/BSN/BSN_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/BSN/BSN_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/BSN/BSN_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/BSN/BSN_V1_BSQU.svg"> |
-
-<br>
-
-### CIMB
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/Cimb/Cimb_SVG.svg">
-
-| Version | Square                                                                      | Round                                                                       | Long                                                                         | Big Square                                                                     |
-|---------|-----------------------------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------|--------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/Cimb/Cimb_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/Cimb/Cimb_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/Cimb/Cimb_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/Cimb/Cimb_V1_BSQU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Banks/Cimb/Cimb_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/Cimb/Cimb_V2_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/Cimb/Cimb_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/Cimb/Cimb_V2_BSQU.svg"> |
-| V3      | <img width="90" height="90" alt="image" src="./Banks/Cimb/Cimb_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/Cimb/Cimb_V3_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/Cimb/Cimb_V3_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/Cimb/Cimb_V3_BSQU.svg"> |
-| V4      | N/A                                                                         | N/A                                                                         | <img width="200" height="120" alt="image" src="./Banks/Cimb/Cimb_V4_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/Cimb/Cimb_V4_BSQU.svg"> |
-| V5      | N/A                                                                         | N/A                                                                         | <img width="200" height="120" alt="image" src="./Banks/Cimb/Cimb_V5_LG.svg"> | N/A                                                                            |
-
-<br>
-
-### Citibank
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/CitiBank/CitiBank_SVG.svg">
-
-| Version | Square                                                                              | Round                                                                               | Long                                                                                 | Big Square                                                                             |
-|---------|-------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/CitiBank/CitiBank_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/CitiBank/CitiBank_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/CitiBank/CitiBank_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/CitiBank/CitiBank_V1_BSQU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Banks/CitiBank/CitiBank_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/CitiBank/CitiBank_V2_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/CitiBank/CitiBank_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/CitiBank/CitiBank_V2_BSQU.svg"> |
-
-<br>
-
-### Deutsche Bank
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/DeutscheBank/DeutscheBank_SVG.svg">
-
-| Version | Square                                                                              | Round                                                                               | Long                                                                                 | Big Square                                                                             |
-|---------|-------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/DeutscheBank/DeutscheBank_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/DeutscheBank/DeutscheBank_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/DeutscheBank/DeutscheBank_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/DeutscheBank/DeutscheBank_V1_BSQU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Banks/DeutscheBank/DeutscheBank_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/DeutscheBank/DeutscheBank_V2_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/DeutscheBank/DeutscheBank_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/DeutscheBank/DeutscheBank_V2_BSQU.svg"> |
-
-<br>
-
-### GXBank
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/GXBank/GXBank_SVG.svg">
-
-| Version | Square                                                                              | Round                                                                               | Long                                                                                 | Big Square                                                                             |
-|---------|-------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/GXBank/GXBank_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/GXBank/GXBank_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/GXBank/GXBank_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/GXBank/GXBank_V1_BSQU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Banks/GXBank/GXBank_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/GXBank/GXBank_V2_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/GXBank/GXBank_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/GXBank/GXBank_V2_BSQU.svg"> |
-| V3      | <img width="90" height="90" alt="image" src="./Banks/GXBank/GXBank_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/GXBank/GXBank_V3_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/GXBank/GXBank_V3_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/GXBank/GXBank_V3_BSQU.svg"> |
-| V4      | <img width="90" height="90" alt="image" src="./Banks/GXBank/GXBank_V4_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/GXBank/GXBank_V4_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/GXBank/GXBank_V4_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/GXBank/GXBank_V4_BSQU.svg"> |
-| V5      | <img width="90" height="90" alt="image" src="./Banks/GXBank/GXBank_V5_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/GXBank/GXBank_V5_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/GXBank/GXBank_V5_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/GXBank/GXBank_V5_BSQU.svg"> |
-
-<br>
-
-### HongLeong Bank
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/HongLeongBank/HongLeongBank_SVG.svg">
-
-| Version | Square                                                                                        | Round                                                                                         | Long                                                                                           | Big Square                                                                                       |
-|---------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/HongLeongBank/HongLeongBank_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/HongLeongBank/HongLeongBank_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/HongLeongBank/HongLeongBank_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/HongLeongBank/HongLeongBank_V1_BSQU.svg"> |
-| V2      | N/A                                                                                           | N/A                                                                                           | <img width="200" height="120" alt="image" src="./Banks/HongLeongBank/HongLeongBank_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/HongLeongBank/HongLeongBank_V2_BSQU.svg"> |
-
-<br>
-
-### HSBC
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/HSBC/HSBC_SVG.svg">
-
-| Version | Square                                                                      | Round                                                                       | Long                                                                         | Big Square                                                                     |
-|---------|-----------------------------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------|--------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/HSBC/HSBC_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/HSBC/HSBC_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/HSBC/HSBC_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/HSBC/HSBC_V1_BSQU.svg"> |
-
-<br>
-
-### Kuwait Finance House
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/KuwaitFinanceHouse/KuwaitFinanceHouse_SVG.svg">
-
-| Version | Square                                                                                                  | Round                                                                                                   | Long                                                                                                     | Big Square                                                                                                 |
-|---------|---------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/KuwaitFinanceHouse/KuwaitFinanceHouse_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/KuwaitFinanceHouse/KuwaitFinanceHouse_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/KuwaitFinanceHouse/KuwaitFinanceHouse_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/KuwaitFinanceHouse/KuwaitFinanceHouse_V1_BSQU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Banks/KuwaitFinanceHouse/KuwaitFinanceHouse_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/KuwaitFinanceHouse/KuwaitFinanceHouse_V2_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/KuwaitFinanceHouse/KuwaitFinanceHouse_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/KuwaitFinanceHouse/KuwaitFinanceHouse_V2_BSQU.svg"> |
-
-<br>
-
-### Maybank
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/Maybank/MayBank_SVG.svg">
-
-| Version | Square                                                                            | Round                                                                             | Long                                                                               | Big Square                                                                           |
-|---------|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/Maybank/MayBank_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/Maybank/MayBank_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/Maybank/MayBank_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/Maybank/MayBank_V1_BSQU.svg"> |
-
-<br>
-
-### MBSB
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/MBSB/MBSB_SVG.svg">
-
-| Version | Square                                                                            | Round                                                                             | Long                                                                               | Big Square                                                                           |
-|---------|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/MBSB/MBSB_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/MBSB/MBSB_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/MBSB/MBSB_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/MBSB/MBSB_V1_BSQU.svg"> |
-
-<br>
-
-### OCBC
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/OCBC/OCBC_SVG.svg">
-
-| Version | Square                                                                      | Round                                                                       | Long                                                                         | Big Square                                                                     |
-|---------|-----------------------------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------|--------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/OCBC/OCBC_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/OCBC/OCBC_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/OCBC/OCBC_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/OCBC/OCBC_V1_BSQU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Banks/OCBC/OCBC_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/OCBC/OCBC_V2_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/OCBC/OCBC_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/OCBC/OCBC_V2_BSQU.svg"> |
-
-<br>
-
-### Public Bank
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/PublicBank/PublicBank_SVG.svg">
-
-| Version | Square                                                                                  | Round                                                                                   | Long                                                                                     | Big Square                                                                                 |
-|---------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/PublicBank/PublicBank_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/PublicBank/PublicBank_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/PublicBank/PublicBank_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/PublicBank/PublicBank_V1_BSQU.svg"> |
-
-<br>
-
-### RHB
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/RHB/RHB_SVG.svg">
-
-| Version | Square                                                                    | Round                                                                     | Long                                                                       | Big Square                                                                   |
-|---------|---------------------------------------------------------------------------|---------------------------------------------------------------------------|----------------------------------------------------------------------------|------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/RHB/RHB_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/RHB/RHB_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/RHB/RHB_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/RHB/RHB_V1_BSQU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Banks/RHB/RHB_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/RHB/RHB_V2_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/RHB/RHB_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/RHB/RHB_V2_BSQU.svg"> |
-
-<br>
-
-### Ryt Bank
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/RytBank/RytBank_SVG.svg">
-
-| Version | Square                                                                    | Round                                                                     | Long                                                                       | Big Square                                                                   |
-|---------|---------------------------------------------------------------------------|---------------------------------------------------------------------------|----------------------------------------------------------------------------|------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/RytBank/RytBank_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/RytBank/RytBank_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/RytBank/RytBank_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/RytBank/RytBank_V1_BSQU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Banks/RytBank/RytBank_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/RytBank/RytBank_V2_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/RytBank/RytBank_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/RytBank/RytBank_V2_BSQU.svg"> |
-
-<br>
-
-### Standard Chartered
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/StandardChartered/StandardChartered_SVG.svg">
-
-| Version | Square                                                                                                | Round                                                                                                 | Long                                                                                                   | Big Square                                                                                               |
-|---------|-------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/StandardChartered/StandardChartered_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/StandardChartered/StandardChartered_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/StandardChartered/StandardChartered_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/StandardChartered/StandardChartered_V1_BSQU.svg"> |
-
-<br>
-
-### UOB
-
-Source:
-
-<img width="250" height="100" alt="image" src="./Banks/UOB/UOB_SVG.svg">
-
-| Version | Square                                                                    | Round                                                                     | Long                                                                       | Big Square                                                                   |
-|---------|---------------------------------------------------------------------------|---------------------------------------------------------------------------|----------------------------------------------------------------------------|------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Banks/UOB/UOB_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/UOB/UOB_V1_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/UOB/UOB_V1_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/UOB/UOB_V1_BSQU.svg"> |
-| V2      | <img width="90" height="90" alt="image" src="./Banks/UOB/UOB_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/UOB/UOB_V2_ROU.svg"> | <img width="200" height="120" alt="image" src="./Banks/UOB/UOB_V2_LG.svg"> | <img width="200" height="120" alt="image" src="./Banks/UOB/UOB_V2_BSQU.svg"> |
-| V3      | <img width="90" height="90" alt="image" src="./Banks/UOB/UOB_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/UOB/UOB_V3_ROU.svg"> | N/A                                                                        | N/A                                                                          |
-| V4      | <img width="90" height="90" alt="image" src="./Banks/UOB/UOB_V4_SQU.svg"> | <img width="90" height="90" alt="image" src="./Banks/UOB/UOB_V4_ROU.svg"> | N/A                                                                        | N/A                                                                          |
-
-<br>
-
-# Other
-
-### DuitNow
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Other/DuitNow/DuitNow_SVG.svg">
-
-| Version | Square                                                                            | Round                                                                              |
-|---------|-----------------------------------------------------------------------------------|------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Other/DuitNow/DuitNow_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Other/DuitNow/DuitNow_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Other/DuitNow/DuitNow_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Other/DuitNow/DuitNow_V2_ROU.svg" > | 
-| V3      | <img width="90" height="90" alt="image" src="./Other/DuitNow/DuitNow_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Other/DuitNow/DuitNow_V3_ROU.svg" > | 
-| V4      | <img width="90" height="90" alt="image" src="./Other/DuitNow/DuitNow_V4_SQU.svg"> | <img width="90" height="90" alt="image" src="./Other/DuitNow/DuitNow_V4_ROU.svg" > | 
-
-### FPX
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Other/FPX/FPX_SVG.svg">
-
-| Version | Square                                                                    | Round                                                                      |
-|---------|---------------------------------------------------------------------------|----------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Other/FPX/FPX_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Other/FPX/FPX_V1_ROU.svg" > |
-| V2      | <img width="90" height="90" alt="image" src="./Other/FPX/FPX_V2_SQU.svg"> | <img width="90" height="90" alt="image" src="./Other/FPX/FPX_V2_ROU.svg" > | 
-| V3      | <img width="90" height="90" alt="image" src="./Other/FPX/FPX_V3_SQU.svg"> | <img width="90" height="90" alt="image" src="./Other/FPX/FPX_V3_ROU.svg" > | 
-
-### MaybankQR
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Other/MaybankQR/Maybank_SVG.svg">
-
-| Version | Square                                                                                | Round                                                                                  |
-|---------|---------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Other/MaybankQR/MaybankQR_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Other/MaybankQR/MaybankQR_V1_ROU.svg" > |
-
-### NetsPay
-
-Source:
-
-<img width="150" height="150" alt="image" src="./Other/NetsPay/NetsPay_SVG.svg">
-
-| Version | Square                                                                            | Round                                                                              |
-|---------|-----------------------------------------------------------------------------------|------------------------------------------------------------------------------------| 
-| V1      | <img width="90" height="90" alt="image" src="./Other/NetsPay/NetsPay_V1_SQU.svg"> | <img width="90" height="90" alt="image" src="./Other/NetsPay/NetsPay_V1_ROU.svg" > |
-
-
+This is a community project. Data is compiled from public sources and may not always be current. Always verify critical payment details with the relevant bank or institution before production use. This project is not affiliated with PayNet, BNM, or any financial institution.
