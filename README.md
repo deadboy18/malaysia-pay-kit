@@ -77,7 +77,7 @@ malaysia-pay-kit/
 ├── data/                           # Machine-readable JSON datasets
 │   ├── banks.json                  # 46 banks — IBG, BIC, FPX, account formats
 │   ├── ewallets.json               # 9 e-wallets — TNG, GrabPay, Boost, etc.
-│   ├── acquirers.json              # 71 DuitNow QR acquirers (real PayNet IDs)
+│   ├── acquirers.json              # 70 DuitNow QR acquirers (real PayNet IDs)
 │   ├── fpx-banks.json              # 52 FPX bank IDs
 │   ├── states.json                 # 16 states/FT with IC codes, coordinates
 │   ├── phone-prefixes.json         # Mobile prefix → carrier mapping
@@ -97,7 +97,7 @@ malaysia-pay-kit/
 ├── docs/                           # Comprehensive documentation
 │   ├── bank-codes.md               # IBG + BIC + FPX + acquirer cross-reference
 │   ├── account-formats.md          # Account lengths per bank per type
-│   ├── duitnow-acquirer-codes.md   # 71 acquirer IDs — full EMV QR reference
+│   ├── duitnow-acquirer-codes.md   # 70 acquirer IDs — full EMV QR reference
 │   ├── duitnow-qr-research.md     # Community QR reverse engineering
 │   ├── fpx-reference.md            # FPX bank IDs, response codes, tips
 │   ├── response-codes.md           # 500+ codes across all payment types
@@ -136,7 +136,7 @@ malaysia-pay-kit/
 |------|---------|-------------|
 | [`banks.json`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/banks.json) | 46 | All Malaysian banks — conventional, Islamic arms, digital banks. IBG, BIC, routing ID, acquirer ID, FPX IDs, account formats per type. |
 | [`ewallets.json`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/ewallets.json) | 9 | TNG, GrabPay, Boost, ShopeePay, BigPay, Merchantrade, etc. Proxy vs account pay flags, app store links. |
-| [`acquirers.json`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/acquirers.json) | 71 | PayNet DuitNow QR acquirers with real 6-digit IDs — banks, e-wallets, digital banks, processors, foreign banks. |
+| [`acquirers.json`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/acquirers.json) | 70 | PayNet DuitNow QR acquirers with real 6-digit IDs — banks, e-wallets, digital banks, processors, foreign banks. |
 | [`fpx-banks.json`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/fpx-banks.json) | 52 | FPX bank IDs with retail/corporate mode flags. |
 | [`states.json`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/states.json) | 16 | All states/FT with IC codes, lat/lng, area codes, postcode ranges. |
 | [`phone-prefixes.json`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/phone-prefixes.json) | 10 prefixes | Complete mobile prefix-to-carrier mapping including 011 sub-ranges. |
@@ -161,7 +161,7 @@ malaysia-pay-kit/
 |------|-------------|
 | [`bank-codes.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/bank-codes.md) | Cross-reference table: IBG + BIC + FPX + acquirer + routing per bank |
 | [`account-formats.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/account-formats.md) | Account number lengths per bank per type, special cases |
-| [`duitnow-acquirer-codes.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/duitnow-acquirer-codes.md) | **71 DuitNow QR acquirer IDs** — banks, e-wallets, processors. Full EMV QR structure, MCC codes, CRC16, QR ID prefixes |
+| [`duitnow-acquirer-codes.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/duitnow-acquirer-codes.md) | **70 DuitNow QR acquirer IDs** — banks, e-wallets, processors. Full EMV QR structure, MCC codes, CRC16, QR ID prefixes |
 | [`duitnow-qr-research.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/duitnow-qr-research.md) | Community QR reverse engineering (natsu90 + contributors) |
 | [`fpx-reference.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/fpx-reference.md) | FPX bank IDs, response codes, ID types, developer tips |
 | [`response-codes.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/response-codes.md) | 500+ response codes across all payment types |
@@ -234,7 +234,7 @@ The most common acquirer IDs you'll encounter in DuitNow QR codes:
 | `890103` | GHL | 💳 Processor |
 | `898989` | JomPAY | 🧾 Bill Pay |
 
-Full list of all 71 acquirers with EMV QR structure, MCC codes, and CRC16 reference: [`docs/duitnow-acquirer-codes.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/duitnow-acquirer-codes.md)
+Full list of all 70 acquirers with EMV QR structure, MCC codes, and CRC16 reference: [`docs/duitnow-acquirer-codes.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/duitnow-acquirer-codes.md)
 
 ---
 
@@ -244,7 +244,7 @@ This repo cross-references data from **35+ sources**:
 
 | Source | What |
 |--------|------|
-| [PayNet Developer Docs](https://docs.developer.paynet.my) | QR spec, 71 acquirers, FPX banks, response codes |
+| [PayNet Developer Docs](https://docs.developer.paynet.my) | QR spec, 70 acquirers, FPX banks, response codes |
 | UOB IBG PDF (Mar 2024) | 41 banks: IBG codes, BIC, account formats |
 | OCBC IBG PDF (Oct 2023) | 44 banks incl. Islamic arms, delivery channels |
 | [RHB BIC Listing](https://www.rhbgroup.com/myreflex/premium/articles/article/bic_code_listing/) | 84 FIs: BIC, RENTAS, routing numbers |

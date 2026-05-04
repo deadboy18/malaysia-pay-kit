@@ -5,7 +5,7 @@
 >
 > Source: [PayNet QR Spec v1.5](https://docs.developer.paynet.my/docs/duitNow-QR/integration/QR-generation-specification/merchant-presented-mode/qr-data-object) · [QR Studio](https://github.com/deadboy18/qr-studio) · [natsu90 research](https://github.com/natsu90/duitnowqr-test)
 >
-> Last updated: **May 2026** · **71 acquirers**
+> Last updated: **May 2026** · **70 acquirers**
 
 ---
 
