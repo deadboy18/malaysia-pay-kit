@@ -1,0 +1,1011 @@
+{
+  "_meta": {
+    "description": "Malaysian card BIN (Bank Identification Number) / IIN registry",
+    "country": "MY",
+    "currency": "MYR",
+    "totalBins": 142,
+    "sources": [
+      "CreditCardValidator.org",
+      "BINTable.com",
+      "BINCheck.org"
+    ],
+    "lastUpdated": "2026-05-05",
+    "notes": "BIN = first 6 digits of card number. MyDebit domestic debit cards are co-branded on Visa/Mastercard networks and share these BINs."
+  },
+  "bins": [
+    {
+      "bin": "402506",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "MBF Cards",
+      "issuerNormalized": "MBF Cards (Maybank)"
+    },
+    {
+      "bin": "402814",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Hong Leong Bank",
+      "issuerNormalized": "Hong Leong Bank"
+    },
+    {
+      "bin": "402988",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "RHB Bank",
+      "issuerNormalized": "RHB Bank"
+    },
+    {
+      "bin": "403149",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Visa (Issued)",
+      "issuerNormalized": "Visa (Malaysia)"
+    },
+    {
+      "bin": "403265",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Standard Chartered",
+      "issuerNormalized": "Standard Chartered Bank"
+    },
+    {
+      "bin": "405771",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Citibank",
+      "issuerNormalized": "Citibank"
+    },
+    {
+      "bin": "407284",
+      "network": "visa",
+      "type": "debit",
+      "issuer": "Hong Leong Bank",
+      "issuerNormalized": "Hong Leong Bank"
+    },
+    {
+      "bin": "414170",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Visa (Issued)",
+      "issuerNormalized": "Visa (Malaysia)"
+    },
+    {
+      "bin": "418134",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "AEON Credit",
+      "issuerNormalized": "AEON Credit Service"
+    },
+    {
+      "bin": "420709",
+      "network": "visa",
+      "type": "debit",
+      "issuer": "Bank Simpanan Nasional",
+      "issuerNormalized": "BSN"
+    },
+    {
+      "bin": "428332",
+      "network": "visa",
+      "type": "debit",
+      "issuer": "Maybank",
+      "issuerNormalized": "Maybank"
+    },
+    {
+      "bin": "428474",
+      "network": "visa",
+      "type": "debit",
+      "issuer": "RHB Bank",
+      "issuerNormalized": "RHB Bank"
+    },
+    {
+      "bin": "429312",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "AmBank",
+      "issuerNormalized": "AmBank"
+    },
+    {
+      "bin": "429313",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "AmBank",
+      "issuerNormalized": "AmBank"
+    },
+    {
+      "bin": "429319",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Hong Leong Bank",
+      "issuerNormalized": "Hong Leong Bank"
+    },
+    {
+      "bin": "429320",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Hong Leong Bank",
+      "issuerNormalized": "Hong Leong Bank"
+    },
+    {
+      "bin": "429754",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Standard Chartered",
+      "issuerNormalized": "Standard Chartered Bank"
+    },
+    {
+      "bin": "429755",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Standard Chartered",
+      "issuerNormalized": "Standard Chartered Bank"
+    },
+    {
+      "bin": "432132",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Al Rajhi Bank",
+      "issuerNormalized": "Al Rajhi Bank"
+    },
+    {
+      "bin": "432134",
+      "network": "visa",
+      "type": "debit",
+      "issuer": "Al Rajhi Bank",
+      "issuerNormalized": "Al Rajhi Bank"
+    },
+    {
+      "bin": "432204",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Citibank",
+      "issuerNormalized": "Citibank"
+    },
+    {
+      "bin": "432206",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Citibank",
+      "issuerNormalized": "Citibank"
+    },
+    {
+      "bin": "432207",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Citibank",
+      "issuerNormalized": "Citibank"
+    },
+    {
+      "bin": "436345",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "RHB Islamic",
+      "issuerNormalized": "RHB Islamic Bank"
+    },
+    {
+      "bin": "436346",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "RHB Islamic",
+      "issuerNormalized": "RHB Islamic Bank"
+    },
+    {
+      "bin": "436542",
+      "network": "visa",
+      "type": "debit",
+      "issuer": "Bank Islam",
+      "issuerNormalized": "Bank Islam"
+    },
+    {
+      "bin": "436688",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Public Bank",
+      "issuerNormalized": "Public Bank"
+    },
+    {
+      "bin": "437599",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "CIMB Bank",
+      "issuerNormalized": "CIMB Bank"
+    },
+    {
+      "bin": "437766",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Visa (Issued)",
+      "issuerNormalized": "Visa (Malaysia)"
+    },
+    {
+      "bin": "438289",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "United Overseas Bank",
+      "issuerNormalized": "UOB Malaysia"
+    },
+    {
+      "bin": "438421",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Citibank Berhad",
+      "issuerNormalized": "Citibank"
+    },
+    {
+      "bin": "438595",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Citibank Berhad",
+      "issuerNormalized": "Citibank"
+    },
+    {
+      "bin": "438598",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Citibank Berhad",
+      "issuerNormalized": "Citibank"
+    },
+    {
+      "bin": "438675",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "HSBC Bank Malaysia",
+      "issuerNormalized": "HSBC Malaysia"
+    },
+    {
+      "bin": "440461",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Alliance Bank",
+      "issuerNormalized": "Alliance Bank"
+    },
+    {
+      "bin": "443159",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Hong Leong Bank",
+      "issuerNormalized": "Hong Leong Bank"
+    },
+    {
+      "bin": "446031",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Maybank",
+      "issuerNormalized": "Maybank"
+    },
+    {
+      "bin": "446032",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Maybank Islamic",
+      "issuerNormalized": "Maybank Islamic"
+    },
+    {
+      "bin": "447764",
+      "network": "visa",
+      "type": "debit",
+      "issuer": "Public Bank",
+      "issuerNormalized": "Public Bank"
+    },
+    {
+      "bin": "450618",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Maybank",
+      "issuerNormalized": "Maybank"
+    },
+    {
+      "bin": "450935",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Standard Chartered Bank Malaysia",
+      "issuerNormalized": "Standard Chartered Bank"
+    },
+    {
+      "bin": "451421",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Alliance Bank Malaysia",
+      "issuerNormalized": "Alliance Bank"
+    },
+    {
+      "bin": "453229",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Bank Simpanan Nasional",
+      "issuerNormalized": "BSN"
+    },
+    {
+      "bin": "453966",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "HSBC",
+      "issuerNormalized": "HSBC Malaysia"
+    },
+    {
+      "bin": "455357",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Public Bank",
+      "issuerNormalized": "Public Bank"
+    },
+    {
+      "bin": "455358",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Public Bank",
+      "issuerNormalized": "Public Bank"
+    },
+    {
+      "bin": "455388",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Public Bank",
+      "issuerNormalized": "Public Bank"
+    },
+    {
+      "bin": "456306",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "AEON Credit Service (M) Berhad",
+      "issuerNormalized": "AEON Credit Service"
+    },
+    {
+      "bin": "456377",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Citibank Berhad",
+      "issuerNormalized": "Citibank"
+    },
+    {
+      "bin": "457066",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "RHB Bank",
+      "issuerNormalized": "RHB Bank"
+    },
+    {
+      "bin": "457070",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "RHB Bank",
+      "issuerNormalized": "RHB Bank"
+    },
+    {
+      "bin": "459914",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "United Overseas Bank Malaysia",
+      "issuerNormalized": "UOB Malaysia"
+    },
+    {
+      "bin": "461772",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "HSBC Amanah",
+      "issuerNormalized": "HSBC Amanah"
+    },
+    {
+      "bin": "462286",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "HSBC",
+      "issuerNormalized": "HSBC Malaysia"
+    },
+    {
+      "bin": "464532",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Citibank",
+      "issuerNormalized": "Citibank"
+    },
+    {
+      "bin": "465886",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Affin Bank",
+      "issuerNormalized": "Affin Bank"
+    },
+    {
+      "bin": "466250",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Hong Leong Bank",
+      "issuerNormalized": "Hong Leong Bank"
+    },
+    {
+      "bin": "467784",
+      "network": "visa",
+      "type": "debit",
+      "issuer": "RHB Bank",
+      "issuerNormalized": "RHB Bank"
+    },
+    {
+      "bin": "467785",
+      "network": "visa",
+      "type": "debit",
+      "issuer": "RHB Bank",
+      "issuerNormalized": "RHB Bank"
+    },
+    {
+      "bin": "467851",
+      "network": "visa",
+      "type": "debit",
+      "issuer": "Hong Leong Bank",
+      "issuerNormalized": "Hong Leong Bank"
+    },
+    {
+      "bin": "467893",
+      "network": "visa",
+      "type": "debit",
+      "issuer": "Public Bank",
+      "issuerNormalized": "Public Bank"
+    },
+    {
+      "bin": "467950",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Public Bank",
+      "issuerNormalized": "Public Bank"
+    },
+    {
+      "bin": "467951",
+      "network": "visa",
+      "type": "debit",
+      "issuer": "Public Bank",
+      "issuerNormalized": "Public Bank"
+    },
+    {
+      "bin": "469390",
+      "network": "visa",
+      "type": "debit",
+      "issuer": "Tune Money",
+      "issuerNormalized": "BigPay (Tune Money)"
+    },
+    {
+      "bin": "469554",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Bank Islam",
+      "issuerNormalized": "Bank Islam"
+    },
+    {
+      "bin": "469555",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Bank Islam",
+      "issuerNormalized": "Bank Islam"
+    },
+    {
+      "bin": "470543",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "AmIslamic Bank",
+      "issuerNormalized": "AmBank Islamic"
+    },
+    {
+      "bin": "472070",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "AEON Credit",
+      "issuerNormalized": "AEON Credit Service"
+    },
+    {
+      "bin": "473819",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Citibank",
+      "issuerNormalized": "Citibank"
+    },
+    {
+      "bin": "477395",
+      "network": "visa",
+      "type": "debit",
+      "issuer": "Bank Simpanan Nasional",
+      "issuerNormalized": "BSN"
+    },
+    {
+      "bin": "484281",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Maybank",
+      "issuerNormalized": "Maybank"
+    },
+    {
+      "bin": "484810",
+      "network": "visa",
+      "type": "debit",
+      "issuer": "Public Bank",
+      "issuerNormalized": "Public Bank"
+    },
+    {
+      "bin": "489308",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Public Bank",
+      "issuerNormalized": "Public Bank"
+    },
+    {
+      "bin": "489591",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "AEON Credit Service",
+      "issuerNormalized": "AEON Credit Service"
+    },
+    {
+      "bin": "490281",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Hong Leong Bank",
+      "issuerNormalized": "Hong Leong Bank"
+    },
+    {
+      "bin": "490282",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Hong Leong Bank",
+      "issuerNormalized": "Hong Leong Bank"
+    },
+    {
+      "bin": "491822",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "United Overseas Bank Malaysia",
+      "issuerNormalized": "UOB Malaysia"
+    },
+    {
+      "bin": "492138",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "CIMB Bank",
+      "issuerNormalized": "CIMB Bank"
+    },
+    {
+      "bin": "492159",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "HSBC",
+      "issuerNormalized": "HSBC Malaysia"
+    },
+    {
+      "bin": "496623",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Maybank",
+      "issuerNormalized": "Maybank"
+    },
+    {
+      "bin": "496669",
+      "network": "visa",
+      "type": "credit",
+      "issuer": "Standard Chartered Bank Malaysia",
+      "issuerNormalized": "Standard Chartered Bank"
+    },
+    {
+      "bin": "512089",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "HSBC Bank Malaysia",
+      "issuerNormalized": "HSBC Malaysia"
+    },
+    {
+      "bin": "514882",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "RHB Bank",
+      "issuerNormalized": "RHB Bank"
+    },
+    {
+      "bin": "514896",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Hong Leong Bank",
+      "issuerNormalized": "Hong Leong Bank"
+    },
+    {
+      "bin": "516056",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Citibank",
+      "issuerNormalized": "Citibank"
+    },
+    {
+      "bin": "517801",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Affin Bank",
+      "issuerNormalized": "Affin Bank"
+    },
+    {
+      "bin": "518303",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "CIMB Islamic",
+      "issuerNormalized": "CIMB Islamic Bank"
+    },
+    {
+      "bin": "519469",
+      "network": "mastercard",
+      "type": "debit",
+      "issuer": "Mastercard (Issued)",
+      "issuerNormalized": "Mastercard (Malaysia)"
+    },
+    {
+      "bin": "519603",
+      "network": "mastercard",
+      "type": "debit",
+      "issuer": "CIMB Bank",
+      "issuerNormalized": "CIMB Bank"
+    },
+    {
+      "bin": "520000",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Public Bank",
+      "issuerNormalized": "Public Bank"
+    },
+    {
+      "bin": "520095",
+      "network": "mastercard",
+      "type": "debit",
+      "issuer": "Alliance Bank",
+      "issuerNormalized": "Alliance Bank"
+    },
+    {
+      "bin": "520396",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Bank Islam",
+      "issuerNormalized": "Bank Islam"
+    },
+    {
+      "bin": "521059",
+      "network": "mastercard",
+      "type": "debit",
+      "issuer": "CIMB Bank",
+      "issuerNormalized": "CIMB Bank"
+    },
+    {
+      "bin": "521395",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "CIMB Islamic",
+      "issuerNormalized": "CIMB Islamic Bank"
+    },
+    {
+      "bin": "521887",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "OCBC Bank",
+      "issuerNormalized": "OCBC Bank"
+    },
+    {
+      "bin": "522222",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Mastercard (Issued)",
+      "issuerNormalized": "Mastercard (Malaysia)"
+    },
+    {
+      "bin": "522242",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Bank Rakyat",
+      "issuerNormalized": "Bank Rakyat"
+    },
+    {
+      "bin": "523935",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Citibank",
+      "issuerNormalized": "Citibank"
+    },
+    {
+      "bin": "523938",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Public Bank",
+      "issuerNormalized": "Public Bank"
+    },
+    {
+      "bin": "523945",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Maybank",
+      "issuerNormalized": "Maybank"
+    },
+    {
+      "bin": "523999",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Standard Chartered",
+      "issuerNormalized": "Standard Chartered Bank"
+    },
+    {
+      "bin": "524147",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "OCBC Bank",
+      "issuerNormalized": "OCBC Bank"
+    },
+    {
+      "bin": "525629",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "AEON Credit Service",
+      "issuerNormalized": "AEON Credit Service"
+    },
+    {
+      "bin": "526851",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Citibank",
+      "issuerNormalized": "Citibank"
+    },
+    {
+      "bin": "528925",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "MBF Cards",
+      "issuerNormalized": "MBF Cards (Maybank)"
+    },
+    {
+      "bin": "528932",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Hong Leong Bank",
+      "issuerNormalized": "Hong Leong Bank"
+    },
+    {
+      "bin": "532678",
+      "network": "mastercard",
+      "type": "debit",
+      "issuer": "Alliance Bank",
+      "issuerNormalized": "Alliance Bank"
+    },
+    {
+      "bin": "539974",
+      "network": "mastercard",
+      "type": "debit",
+      "issuer": "Hong Leong Bank",
+      "issuerNormalized": "Hong Leong Bank"
+    },
+    {
+      "bin": "539981",
+      "network": "mastercard",
+      "type": "debit",
+      "issuer": "Standard Chartered",
+      "issuerNormalized": "Standard Chartered Bank"
+    },
+    {
+      "bin": "540007",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "CIMB Bank",
+      "issuerNormalized": "CIMB Bank"
+    },
+    {
+      "bin": "540041",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "HSBC",
+      "issuerNormalized": "HSBC Malaysia"
+    },
+    {
+      "bin": "540067",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Maybank",
+      "issuerNormalized": "Maybank"
+    },
+    {
+      "bin": "540069",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "RHB Bank",
+      "issuerNormalized": "RHB Bank"
+    },
+    {
+      "bin": "540162",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "OCBC Bank",
+      "issuerNormalized": "OCBC Bank"
+    },
+    {
+      "bin": "540256",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Citibank Berhad",
+      "issuerNormalized": "Citibank"
+    },
+    {
+      "bin": "540478",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Standard Chartered Bank Malaysia",
+      "issuerNormalized": "Standard Chartered Bank"
+    },
+    {
+      "bin": "541228",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "AmBank",
+      "issuerNormalized": "AmBank"
+    },
+    {
+      "bin": "541288",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "HSBC",
+      "issuerNormalized": "HSBC Malaysia"
+    },
+    {
+      "bin": "541415",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Bank Islam",
+      "issuerNormalized": "Bank Islam"
+    },
+    {
+      "bin": "541726",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "CIMB Bank",
+      "issuerNormalized": "CIMB Bank"
+    },
+    {
+      "bin": "541912",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "MBF Card Services",
+      "issuerNormalized": "MBF Cards (Maybank)"
+    },
+    {
+      "bin": "541971",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "CIMB Bank",
+      "issuerNormalized": "CIMB Bank"
+    },
+    {
+      "bin": "542124",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Maybank",
+      "issuerNormalized": "Maybank"
+    },
+    {
+      "bin": "542261",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Bank Islam",
+      "issuerNormalized": "Bank Islam"
+    },
+    {
+      "bin": "542444",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Standard Chartered Bank Malaysia",
+      "issuerNormalized": "Standard Chartered Bank"
+    },
+    {
+      "bin": "542634",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Public Bank",
+      "issuerNormalized": "Public Bank"
+    },
+    {
+      "bin": "543047",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Hong Leong Bank",
+      "issuerNormalized": "Hong Leong Bank"
+    },
+    {
+      "bin": "543311",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Citibank Berhad",
+      "issuerNormalized": "Citibank"
+    },
+    {
+      "bin": "543623",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "United Overseas Bank Malaysia",
+      "issuerNormalized": "UOB Malaysia"
+    },
+    {
+      "bin": "544064",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "MBF Card Services",
+      "issuerNormalized": "MBF Cards (Maybank)"
+    },
+    {
+      "bin": "547071",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Mastercard (Issued)",
+      "issuerNormalized": "Mastercard (Malaysia)"
+    },
+    {
+      "bin": "547231",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Public Bank",
+      "issuerNormalized": "Public Bank"
+    },
+    {
+      "bin": "548787",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Hong Leong Bank",
+      "issuerNormalized": "Hong Leong Bank"
+    },
+    {
+      "bin": "549186",
+      "network": "mastercard",
+      "type": "debit",
+      "issuer": "Maybank",
+      "issuerNormalized": "Maybank"
+    },
+    {
+      "bin": "549781",
+      "network": "mastercard",
+      "type": "debit",
+      "issuer": "Affin Bank",
+      "issuerNormalized": "Affin Bank"
+    },
+    {
+      "bin": "549782",
+      "network": "mastercard",
+      "type": "debit",
+      "issuer": "RHB Bank",
+      "issuerNormalized": "RHB Bank"
+    },
+    {
+      "bin": "552013",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "CIMB Bank",
+      "issuerNormalized": "CIMB Bank"
+    },
+    {
+      "bin": "552040",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Standard Chartered Bank Malaysia",
+      "issuerNormalized": "Standard Chartered Bank"
+    },
+    {
+      "bin": "552115",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "CIMB Bank",
+      "issuerNormalized": "CIMB Bank"
+    },
+    {
+      "bin": "552302",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "Standard Chartered",
+      "issuerNormalized": "Standard Chartered Bank"
+    },
+    {
+      "bin": "552333",
+      "network": "mastercard",
+      "type": "credit",
+      "issuer": "CIMB Bank",
+      "issuerNormalized": "CIMB Bank"
+    },
+    {
+      "bin": "557756",
+      "network": "mastercard",
+      "type": "debit",
+      "issuer": "CIMB Bank",
+      "issuerNormalized": "CIMB Bank"
+    }
+  ]
+}
