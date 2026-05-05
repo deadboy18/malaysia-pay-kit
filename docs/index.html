@@ -44,7 +44,7 @@ h1 .hl{color:var(--accent)}
 .sr-item{padding:10px 16px;cursor:pointer;display:flex;align-items:center;gap:10px;font-size:13px;border-bottom:1px solid var(--border);transition:background .1s}
 .sr-item:last-child{border-bottom:none}.sr-item:hover{background:var(--surface2)}
 .sr-tag{font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600;flex-shrink:0;text-transform:uppercase}
-.sr-tag.bank{background:var(--accent-glow);color:var(--accent)}.sr-tag.wallet{background:var(--green-dim);color:var(--green)}.sr-tag.acq{background:var(--purple-dim);color:var(--purple)}
+.sr-tag.bank{background:var(--accent-glow);color:var(--accent)}.sr-tag.wallet{background:var(--green-dim);color:var(--green)}.sr-tag.acq{background:var(--purple-dim);color:var(--purple)}.sr-tag.bin{background:var(--pink-dim);color:var(--pink)}
 .sr-name{font-weight:500}.sr-meta{margin-left:auto;color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:11px}
 .sr-empty{padding:20px;text-align:center;color:var(--text-dim);font-size:13px}
 .detail-panel{margin-top:12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;display:none;transition:background .25s}
@@ -134,7 +134,7 @@ footer .sig:hover{color:var(--text-dim)}
 <nav><div class="container"><div class="nav-brand">🇲🇾 MY Pay Kit</div><div class="nav-right"><div class="nav-links"><a href="#tools" data-i18n="nav_tools">Tools</a><a href="#data" data-i18n="nav_data">Data</a><a href="#docs" data-i18n="nav_docs">Docs</a><a href="https://github.com/deadboy18/malaysia-pay-kit">GitHub</a></div><div class="toggles"><button class="toggle-btn" onclick="toggleLang()"><span>🌐</span> <span id="langLabel">BM</span></button><button class="toggle-btn" onclick="toggleTheme()"><span id="themeIcon">☀️</span></button></div></div></div></nav>
 <div class="container">
 <div class="hero">
-<div class="hero-badge">v1.1 · open source · MIT</div>
+<div class="hero-badge">v1.2 · open source · MIT</div>
 <h1>Malaysia <span class="hl">Payment</span> Dev Kit</h1>
 <p class="tagline" data-i18n="tagline">Search banks, validate accounts, decode QR — an interactive toolkit for Malaysian payment integration.</p>
 <div class="hero-actions"><a href="https://github.com/deadboy18/malaysia-pay-kit" class="btn btn-primary"><span data-i18n="btn_star">★ Star on GitHub</span></a><a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/docs" class="btn btn-ghost"><span data-i18n="btn_docs">Read the Docs</span></a></div>
@@ -145,6 +145,9 @@ footer .sig:hover{color:var(--text-dim)}
 <div class="stat"><div class="stat-num">46</div><div class="stat-label" data-i18n="stat_banks">Banks</div></div>
 <div class="stat"><div class="stat-num">9</div><div class="stat-label" data-i18n="stat_wallets">E-Wallets</div></div>
 <div class="stat"><div class="stat-num">70</div><div class="stat-label" data-i18n="stat_acq">Acquirers</div></div>
+<div class="stat"><div class="stat-num">21.6k</div><div class="stat-label">JomPAY Billers</div></div>
+<div class="stat"><div class="stat-num">142</div><div class="stat-label">Card BINs</div></div>
+<div class="stat"><div class="stat-num">6</div><div class="stat-label">QR Corridors</div></div>
 <div class="stat"><div class="stat-num">479</div><div class="stat-label" data-i18n="stat_icons">Icons</div></div>
 <div class="stat"><div class="stat-num">500+</div><div class="stat-label" data-i18n="stat_codes">Resp Codes</div></div>
 <div class="stat"><div class="stat-num">6</div><div class="stat-label" data-i18n="stat_validators">Validators</div></div>
@@ -160,6 +163,12 @@ footer .sig:hover{color:var(--text-dim)}
 <div class="tool"><h3>📱 <span data-i18n="tool_phone">Phone Validator</span></h3><div class="tool-input"><input type="text" id="phoneIn" placeholder="e.g. 0123456789"><button onclick="validatePhone()" data-i18n="btn_check">Check</button></div><div class="tool-output" id="phoneOut" data-i18n="phone_placeholder">Enter a Malaysian phone number</div></div>
 <div class="tool"><h3>🪪 <span data-i18n="tool_ic">MyKad Validator</span></h3><div class="tool-input"><input type="text" id="icIn" placeholder="e.g. 900101145678" maxlength="14"><button onclick="validateIC()" data-i18n="btn_check">Check</button></div><div class="tool-output" id="icOut" data-i18n="ic_placeholder">Enter a 12-digit IC number (with checksum)</div></div>
 <div class="tool"><h3>📮 <span data-i18n="tool_postcode">Postcode Lookup</span></h3><div class="tool-input"><input type="text" id="postcodeIn" placeholder="e.g. 50000" maxlength="5"><button onclick="validatePostcode()" data-i18n="btn_check">Check</button></div><div class="tool-output" id="postcodeOut" data-i18n="postcode_placeholder">Enter a 5-digit postcode</div></div>
+<div class="tool tool-wide"><h3>🧾 JomPAY Biller Search <span style="font-size:10px;color:var(--green);font-weight:600">NEW · 21,615 billers</span></h3>
+<div class="tool-input"><input type="text" id="billerIn" placeholder="Search by biller code or name... e.g. 50051, TENAGA, ASTRO" oninput="filterBillers()"><button onclick="filterBillers()">Search</button></div>
+<div class="acq-results" id="billerResults" style="max-height:220px"></div>
+<div class="acq-count" id="billerCount"></div>
+</div>
+<div class="tool"><h3>💳 Card BIN Lookup <span style="font-size:10px;color:var(--green);font-weight:600">NEW</span></h3><div class="tool-input"><input type="text" id="binIn" placeholder="First 6 digits... e.g. 428332" maxlength="6"><button onclick="lookupBIN()">Check</button></div><div class="tool-output" id="binOut">Enter first 6 digits of a card number</div></div>
 </div></section>
 <section id="data"><h2 data-i18n="data_title">Browse the Data</h2><p class="section-desc" data-i18n="data_desc">Every file links directly to the source on GitHub.</p>
 <div class="file-tree"><div class="ft-head">📂 malaysia-pay-kit/</div><div class="ft-body">
@@ -173,6 +182,9 @@ footer .sig:hover{color:var(--text-dim)}
 <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/ic-state-codes.json" class="ft-item d1"><span class="i">📄</span>ic-state-codes.json<span class="m">88 codes</span></a>
 <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/transaction-codes.json" class="ft-item d1"><span class="i">📄</span>transaction-codes.json<span class="m">89 types</span></a>
 <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/response-codes/fpx.json" class="ft-item d1"><span class="i">📄</span>response-codes/fpx.json<span class="m">77 codes</span></a>
+<a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/jompay-billers.json" class="ft-item d1 new"><span class="i">📄</span>jompay-billers.json<span class="m">NEW · 21,615 billers</span></a>
+<a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/card-bins.json" class="ft-item d1 new"><span class="i">📄</span>card-bins.json<span class="m">NEW · 142 BINs</span></a>
+<a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/cross-border-qr.json" class="ft-item d1 new"><span class="i">📄</span>cross-border-qr.json<span class="m">NEW · 6 corridors</span></a>
 <a href="https://github.com/deadboy18/malaysia-pay-kit/tree/main/validators" class="ft-item dir"><span class="i">📁</span>validators/</a>
 <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/account-number.js" class="ft-item d1"><span class="i">⚡</span>account-number.js</a>
 <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators/phone-number.js" class="ft-item d1"><span class="i">⚡</span>phone-number.js</a>
@@ -185,6 +197,8 @@ footer .sig:hover{color:var(--text-dim)}
 <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/account-formats.md" class="ft-item d1"><span class="i">📝</span>account-formats.md</a>
 <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/duitnow-acquirer-codes.md" class="ft-item d1 new"><span class="i">📝</span>duitnow-acquirer-codes.md<span class="m">NEW · 70 IDs</span></a>
 <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/duitnow-qr-research.md" class="ft-item d1"><span class="i">📝</span>duitnow-qr-research.md</a>
+<a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/card-bins.md" class="ft-item d1 new"><span class="i">📝</span>card-bins.md<span class="m">NEW · 142 BINs</span></a>
+<a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/cross-border-qr.md" class="ft-item d1 new"><span class="i">📝</span>cross-border-qr.md<span class="m">NEW · 6 corridors</span></a>
 <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/fpx-reference.md" class="ft-item d1"><span class="i">📝</span>fpx-reference.md</a>
 <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/response-codes.md" class="ft-item d1"><span class="i">📝</span>response-codes.md</a>
 <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/paynet-developer-docs.md" class="ft-item d1"><span class="i">📝</span>paynet-developer-docs.md</a>
@@ -203,6 +217,8 @@ footer .sig:hover{color:var(--text-dim)}
 <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/duitnow-qr-research.md" class="card"><h3>📊 DuitNow QR</h3><p data-i18n="doc_qr_d">Community reverse engineering of EMV QR payloads.</p></a>
 <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/paynet-developer-docs.md" class="card"><h3>📄 <span data-i18n="doc_paynet">PayNet Docs</span></h3><p data-i18n="doc_paynet_d">Full PayNet developer docs in markdown.</p></a>
 <a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/resources.md" class="card"><h3>🔗 <span data-i18n="doc_resources">Resources</span></h3><p data-i18n="doc_resources_d">Curated links to 35+ community repos.</p></a>
+<a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/card-bins.md" class="card card-new"><h3>💳 Card BIN Reference</h3><p>142 BIN/IIN numbers across 27 Malaysian issuers — Visa & Mastercard, credit/debit identification.</p></a>
+<a href="https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/cross-border-qr.md" class="card card-new"><h3>🌏 Cross-Border QR</h3><p>DuitNow QR interop with Thailand, Indonesia, Singapore, Cambodia, China & India. Participating banks, limits, roadmap.</p></a>
 </div></section>
 <section><h2 data-i18n="credits_title">Credits</h2><p class="section-desc" data-i18n="credits_desc">Community-built, community-maintained.</p>
 <div class="credits">
@@ -248,8 +264,9 @@ function toggleTheme(){var t=document.documentElement.getAttribute('data-theme')
 try{var s=localStorage.getItem('theme');if(s){document.documentElement.setAttribute('data-theme',s);document.getElementById('themeIcon').textContent=s==='dark'?'☀️':'🌙'}}catch(e){}
 
 // ═══ Global Search ═══
-var DATA={banks:[],ewallets:[],acquirers:[]},BASE='https://raw.githubusercontent.com/deadboy18/malaysia-pay-kit/main/data/';
+var DATA={banks:[],ewallets:[],acquirers:[],cardBins:[]},BASE='https://raw.githubusercontent.com/deadboy18/malaysia-pay-kit/main/data/';
 ['banks','ewallets','acquirers'].forEach(function(k){fetch(BASE+k+'.json').then(function(r){return r.json()}).then(function(d){DATA[k]=Array.isArray(d)?d:Object.values(d)}).catch(function(){})});
+fetch(BASE+'card-bins.json').then(function(r){return r.json()}).then(function(d){DATA.cardBins=d.bins||[]}).catch(function(){});
 var searchInput=document.getElementById('searchInput'),searchResults=document.getElementById('searchResults');
 searchInput.addEventListener('input',function(){var q=this.value.trim().toLowerCase();closeDetail();if(q.length<2){searchResults.classList.remove('show');return}var results=[];
 function matchObj(o,q){for(var k in o){if(!o.hasOwnProperty(k))continue;var v=o[k];if(typeof v==='string'&&v.toLowerCase().includes(q))return true;if(typeof v==='number'&&String(v).includes(q))return true}return false}
@@ -259,6 +276,7 @@ DATA.ewallets.forEach(function(w){if(matchObj(w,q))results.push({type:'wallet',n
 DATA.acquirers.forEach(function(a){if(matchObj(a,q))results.push({type:'acq',name:a.name||a.shortName||a.id||'Unknown',meta:a.acquirerId||a.id||'',obj:a})});
 // Also search embedded ACQ data
 ACQ.forEach(function(a){if(a.id.includes(q)||a.n.toLowerCase().includes(q)){var already=results.some(function(r){return r.meta===a.id});if(!already)results.push({type:'acq',name:a.n,meta:a.id,obj:{acquirerId:a.id,shortName:a.n,category:a.c,qrPrefix:a.p||null}})}});
+DATA.cardBins.forEach(function(b){if(b.bin.includes(q)||b.issuerNormalized.toLowerCase().includes(q))results.push({type:'bin',name:b.issuerNormalized,meta:b.bin+' · '+b.network,obj:b})});
 window._searchResults=results;searchResults.innerHTML=results.length===0?'<div class="sr-empty">No results for "'+q+'"</div>':results.slice(0,12).map(function(r,i){return'<div class="sr-item" onclick="showDetail('+i+')"><span class="sr-tag '+r.type+'">'+r.type+'</span><span class="sr-name">'+r.name+'</span><span class="sr-meta">'+r.meta+'</span></div>'}).join('');searchResults.classList.add('show')});
 searchInput.addEventListener('blur',function(){setTimeout(function(){searchResults.classList.remove('show')},250)});
 searchInput.addEventListener('focus',function(){if(this.value.trim().length>=2)searchResults.classList.add('show')});
@@ -266,7 +284,7 @@ function closeDetail(){document.getElementById('detailPanel').classList.remove('
 function field(label,value,accent){if(!value&&value!==0&&value!==false)return'';return'<div class="dp-field"><div class="dp-label">'+label+'</div><div class="dp-value'+(accent?' accent':'')+'">'+value+'</div></div>'}
 function keyToLabel(k){return k.replace(/([A-Z])/g,' $1').replace(/[_-]/g,' ').replace(/\bid\b/gi,'ID').replace(/\bbic\b/gi,'BIC').replace(/\bibg\b/gi,'IBG').replace(/\bfpx\b/gi,'FPX').replace(/^\s/,'').split(' ').map(function(w){return w.charAt(0).toUpperCase()+w.slice(1)}).join(' ')}
 function formatVal(v){if(v===null||v===undefined)return'—';if(typeof v==='boolean')return v?'✓ Yes':'✗ No';if(typeof v==='number')return String(v);if(typeof v==='string')return v||'—';if(Array.isArray(v))return v.join(', ');if(typeof v==='object'){var parts=[];for(var k in v){if(v.hasOwnProperty(k)){var sv=v[k];if(typeof sv==='object'&&!Array.isArray(sv)){parts.push(keyToLabel(k)+': '+formatVal(sv))}else if(Array.isArray(sv)){parts.push(keyToLabel(k)+': '+sv.join(', '))}else{parts.push(keyToLabel(k)+': '+sv)}}}return parts.join(' · ')||'—'}return String(v)}
-function showDetail(idx){var r=window._searchResults[idx];if(!r)return;searchResults.classList.remove('show');var dp=document.getElementById('detailPanel'),title=document.getElementById('dpTitle'),body=document.getElementById('dpBody');var o=r.obj;var typeColors={bank:'background:var(--accent-glow);color:var(--accent)',wallet:'background:var(--green-dim);color:var(--green)',acq:'background:var(--purple-dim);color:var(--purple)'};title.innerHTML='<span>'+r.name+'</span> <span class="dp-type" style="'+typeColors[r.type]+'">'+r.type+'</span>';
+function showDetail(idx){var r=window._searchResults[idx];if(!r)return;searchResults.classList.remove('show');var dp=document.getElementById('detailPanel'),title=document.getElementById('dpTitle'),body=document.getElementById('dpBody');var o=r.obj;var typeColors={bank:'background:var(--accent-glow);color:var(--accent)',wallet:'background:var(--green-dim);color:var(--green)',acq:'background:var(--purple-dim);color:var(--purple)',bin:'background:var(--pink-dim);color:var(--pink)'};title.innerHTML='<span>'+r.name+'</span> <span class="dp-type" style="'+typeColors[r.type]+'">'+r.type+'</span>';
 var skip={id:1,name:1,fullName:1,full_name:1};var primary=[],secondary=[];
 for(var k in o){if(!o.hasOwnProperty(k)||skip[k])continue;var v=o[k];if(typeof v==='object'&&v!==null&&!Array.isArray(v)){secondary.push({key:k,val:v})}else{primary.push({key:k,val:v})}}
 var html='<div class="dp-grid">';primary.forEach(function(p){var isCode=/(bic|ibg|swift|routing|acquirer|fpx)/i.test(p.key);html+=field(keyToLabel(p.key),formatVal(p.val),isCode)});html+='</div>';
@@ -284,6 +302,18 @@ document.getElementById('icIn').addEventListener('keydown',function(e){if(e.key=
 var postcodeRanges=[[1000,2800,'Perlis'],[5000,9810,'Kedah'],[10000,14400,'Pulau Pinang'],[15000,18500,'Kelantan'],[20000,24300,'Terengganu'],[25000,28800,'Pahang'],[30000,36810,'Perak'],[39000,39200,'Perak'],[40000,48300,'Selangor'],[49000,49100,'Selangor'],[50000,60000,'Kuala Lumpur'],[62000,62988,'Putrajaya'],[63000,68100,'Selangor'],[69000,71900,'N. Sembilan'],[73000,73500,'N. Sembilan'],[75000,78000,'Melaka'],[79000,86900,'Johor'],[87000,91309,'Sabah'],[93000,98859,'Sarawak'],[86000,87000,'Labuan']];
 function validatePostcode(){var raw=document.getElementById('postcodeIn').value.trim(),out=document.getElementById('postcodeOut');if(!raw){out.textContent=I18N[LANG].postcode_placeholder;return}if(!/^\d{5}$/.test(raw)){out.innerHTML='<span class="err">✗ '+(LANG==='bm'?'Mesti tepat 5 digit':'Must be exactly 5 digits')+'</span>';return}var num=parseInt(raw),state=null;for(var i=0;i<postcodeRanges.length;i++){if(num>=postcodeRanges[i][0]&&num<=postcodeRanges[i][1]){state=postcodeRanges[i][2];break}}out.innerHTML=state?'<span class="ok">✓ '+(LANG==='bm'?'Sah':'Valid')+'</span>\n<span class="lbl">'+(LANG==='bm'?'Poskod':'Postcode')+':</span> <span class="val">'+raw+'</span>\n<span class="lbl">'+(LANG==='bm'?'Negeri':'State')+':</span> <span class="val">'+state+'</span>':'<span class="err">✗ '+(LANG==='bm'?'Julat poskod tidak diketahui':'Unknown postcode range')+'</span>'}
 document.getElementById('postcodeIn').addEventListener('keydown',function(e){if(e.key==='Enter')validatePostcode()});
+
+// ═══ JomPAY Biller Search ═══
+var BILLERS=[];
+fetch(BASE+'jompay-billers.json').then(function(r){return r.json()}).then(function(d){BILLERS=Array.isArray(d)?d:[];document.getElementById('billerCount').textContent=BILLERS.length+' billers loaded'}).catch(function(){document.getElementById('billerCount').textContent='Failed to load billers'});
+function filterBillers(){var q=document.getElementById('billerIn').value.trim().toLowerCase();if(q.length<2){document.getElementById('billerResults').innerHTML='<div style="padding:12px;text-align:center;color:var(--text-dim);font-size:12px">Type at least 2 characters to search 21,615 billers</div>';document.getElementById('billerCount').textContent=BILLERS.length+' billers loaded';return}var results=BILLERS.filter(function(b){return(b.billerCode&&b.billerCode.includes(q))||(b.name&&b.name.toLowerCase().includes(q))});var html='';results.slice(0,20).forEach(function(b){var typeColor=b.paymentType==='CASA and Card'?'var(--green)':b.paymentType==='CASA Only'?'var(--accent)':'var(--amber)';var limitStr='';if(b.casaLimit&&b.casaLimit.max)limitStr='RM '+Number(b.casaLimit.min).toLocaleString()+' – '+Number(b.casaLimit.max).toLocaleString();html+='<div class="acq-row"><span class="acq-id" style="color:var(--pink)">'+b.billerCode+'</span><span class="acq-name">'+b.name+(limitStr?' <span style="opacity:.4;font-size:10px">'+limitStr+'</span>':'')+'</span><span class="acq-cat" style="background:rgba(0,0,0,.2);color:'+typeColor+'">'+(b.paymentType||'—')+'</span></div>'});document.getElementById('billerResults').innerHTML=html||'<div style="padding:12px;text-align:center;color:var(--text-dim);font-size:12px">No billers found</div>';document.getElementById('billerCount').textContent='Showing '+(results.length>20?'20 of ':'')+results.length+' results'}
+document.getElementById('billerIn').addEventListener('keydown',function(e){if(e.key==='Enter')filterBillers()});
+
+// ═══ Card BIN Lookup ═══
+var BINS=[];
+fetch(BASE+'card-bins.json').then(function(r){return r.json()}).then(function(d){BINS=d.bins||[]}).catch(function(){});
+function lookupBIN(){var raw=document.getElementById('binIn').value.trim().replace(/\s/g,''),out=document.getElementById('binOut');if(!raw||raw.length<4){out.textContent='Enter first 6 digits of a card number';return}var matches=BINS.filter(function(b){return b.bin.startsWith(raw)||raw.startsWith(b.bin)});if(matches.length===0){out.innerHTML='<span class="err">✗ No Malaysian issuer found for BIN '+raw+'</span>';return}var html='';matches.forEach(function(m){html+='<span class="ok">✓ Found</span>\n<span class="lbl">BIN:</span> <span class="val">'+m.bin+'</span>\n<span class="lbl">Issuer:</span> <span class="val">'+m.issuerNormalized+'</span>\n<span class="lbl">Network:</span> <span class="val">'+m.network.toUpperCase()+'</span>\n<span class="lbl">Type:</span> <span class="val">'+m.type.toUpperCase()+'</span>\n'});out.innerHTML=html.trim()}
+document.getElementById('binIn').addEventListener('keydown',function(e){if(e.key==='Enter')lookupBIN()});
 
 // ═══ Easter Eggs ═══
 var konamiSeq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'],konamiPos=0;

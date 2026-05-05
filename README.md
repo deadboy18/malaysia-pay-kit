@@ -83,6 +83,9 @@ malaysia-pay-kit/
 │   ├── phone-prefixes.json         # Mobile prefix → carrier mapping
 │   ├── ic-state-codes.json         # 88 MyKad birth state/country codes
 │   ├── transaction-codes.json      # 89 payment transaction types
+│   ├── jompay-billers.json         # 21,615 JomPAY billers from PayNet
+│   ├── card-bins.json              # 142 card BIN/IINs across 27 issuers
+│   ├── cross-border-qr.json       # 6 DuitNow cross-border QR corridors
 │   └── response-codes/
 │       └── fpx.json                # 77 FPX response codes
 │
@@ -99,6 +102,8 @@ malaysia-pay-kit/
 │   ├── account-formats.md          # Account lengths per bank per type
 │   ├── duitnow-acquirer-codes.md   # 70 acquirer IDs — full EMV QR reference
 │   ├── duitnow-qr-research.md     # Community QR reverse engineering
+│   ├── card-bins.md                # 142 card BIN/IINs — 27 Malaysian issuers
+│   ├── cross-border-qr.md         # DuitNow cross-border interop — 6 corridors
 │   ├── fpx-reference.md            # FPX bank IDs, response codes, tips
 │   ├── response-codes.md           # 500+ codes across all payment types
 │   ├── paynet-developer-docs.md    # Full PayNet docs in markdown
@@ -142,6 +147,9 @@ malaysia-pay-kit/
 | [`phone-prefixes.json`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/phone-prefixes.json) | 10 prefixes | Complete mobile prefix-to-carrier mapping including 011 sub-ranges. |
 | [`ic-state-codes.json`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/ic-state-codes.json) | 88 | All MyKad birth state/country codes. |
 | [`transaction-codes.json`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/transaction-codes.json) | 89 | Payment types: FPX, card, DuitNow QR, e-wallets, BNPL, instalment plans per bank. |
+| [`jompay-billers.json`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/jompay-billers.json) | 21,615 | **Complete JomPAY biller registry** from PayNet — biller code, name, payment type, CASA/card limits, effective date. |
+| [`card-bins.json`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/card-bins.json) | 142 | **Malaysian card BIN/IIN numbers** — Visa & Mastercard, 27 issuers, credit/debit type. |
+| [`cross-border-qr.json`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/cross-border-qr.json) | 6 corridors | **DuitNow cross-border QR interop** — Thailand, Indonesia, Singapore, Cambodia, China, India. Participating banks, limits, roadmap. |
 | [`response-codes/fpx.json`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/response-codes/fpx.json) | 77 | FPX response codes with descriptions. |
 
 ### [`/validators/`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/validators) — Ready-to-use validation
@@ -163,6 +171,8 @@ malaysia-pay-kit/
 | [`account-formats.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/account-formats.md) | Account number lengths per bank per type, special cases |
 | [`duitnow-acquirer-codes.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/duitnow-acquirer-codes.md) | **70 DuitNow QR acquirer IDs** — banks, e-wallets, processors. Full EMV QR structure, MCC codes, CRC16, QR ID prefixes |
 | [`duitnow-qr-research.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/duitnow-qr-research.md) | Community QR reverse engineering (natsu90 + contributors) |
+| [`card-bins.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/card-bins.md) | **142 card BIN/IINs** across 27 Malaysian issuers — Visa & Mastercard, credit/debit, quick lookup table |
+| [`cross-border-qr.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/cross-border-qr.md) | **DuitNow cross-border QR interop** — 6 corridors, participating banks, transaction limits, Project Nexus roadmap |
 | [`fpx-reference.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/fpx-reference.md) | FPX bank IDs, response codes, ID types, developer tips |
 | [`response-codes.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/response-codes.md) | 500+ response codes across all payment types |
 | [`paynet-developer-docs.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/paynet-developer-docs.md) | Full PayNet docs scraped to markdown |
@@ -235,6 +245,63 @@ The most common acquirer IDs you'll encounter in DuitNow QR codes:
 | `898989` | JomPAY | 🧾 Bill Pay |
 
 Full list of all 70 acquirers with EMV QR structure, MCC codes, and CRC16 reference: [`docs/duitnow-acquirer-codes.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/duitnow-acquirer-codes.md)
+
+---
+
+## JomPAY Biller Registry
+
+The **first open-source machine-readable JomPAY biller database** — all 21,615 billers scraped from PayNet's API.
+
+```js
+const billers = require('malaysia-pay-kit/data/jompay-billers.json');
+
+// Find a biller by code
+const tnb = billers.find(b => b.billerCode === '50051');
+// → { billerCode: "50051", name: "TENAGA NASIONAL BERHAD", paymentType: "CASA and Card", ... }
+
+// Search by name
+const results = billers.filter(b => b.name.includes('TELEKOM'));
+```
+
+Each biller includes: `billerCode`, `name`, `paymentType`, `casaLimit` (min/max RM), `cardLimit` (min/max RM), `effectiveDate`.
+
+Full dataset: [`data/jompay-billers.json`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/data/jompay-billers.json)
+
+---
+
+## Card BIN Lookup
+
+142 Malaysian card BIN/IIN numbers across 27 issuers — identify the issuing bank from the first 6 digits of any card number.
+
+```js
+const bins = require('malaysia-pay-kit/data/card-bins.json');
+
+// Identify a card's issuer
+const prefix = '519603';
+const card = bins.bins.find(b => b.bin === prefix);
+// → { bin: "519603", network: "mastercard", type: "debit", issuerNormalized: "CIMB Bank" }
+```
+
+Covers: Maybank, CIMB, Public Bank, Hong Leong, RHB, Citibank, Standard Chartered, HSBC, Bank Islam, AmBank, Alliance, BSN, AEON Credit, UOB, OCBC, Affin, Bank Rakyat, Al Rajhi, BigPay, and more.
+
+Full reference: [`docs/card-bins.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/card-bins.md)
+
+---
+
+## Cross-Border QR
+
+DuitNow QR is interoperable with payment systems across Asia:
+
+| Corridor | Foreign Scheme | Status | Since |
+|----------|---------------|--------|-------|
+| 🇹🇭 Thailand | PromptPay | Live | Jun 2021 |
+| 🇮🇩 Indonesia | QRIS | Live | Jan 2022 |
+| 🇸🇬 Singapore | NETS QR + PayNow | Live | Mar 2023 |
+| 🇰🇭 Cambodia | Bakong QR | Live | 2024 |
+| 🇨🇳 China | Alipay+ / WeChat Pay | Live | Nov 2023 |
+| 🇮🇳 India | UPI | Signed | Feb 2026 |
+
+Free for consumers. RM3,000/tx limit, RM10,000/day. Full details: [`docs/cross-border-qr.md`](https://github.com/deadboy18/malaysia-pay-kit/blob/main/docs/cross-border-qr.md)
 
 ---
 
