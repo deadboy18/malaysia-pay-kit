@@ -1,0 +1,214 @@
+{
+  "_meta": {
+    "description": "DuitNow QR cross-border payment linkages — corridors, participating banks, and technical details",
+    "operator": "Payments Network Malaysia (PayNet)",
+    "lastUpdated": "2026-05-05",
+    "sources": [
+      "PayNet (paynet.my)",
+      "Bank Negara Malaysia (bnm.gov.my)",
+      "Bank of Thailand (bot.or.th)",
+      "Bank Indonesia (bi.go.id)",
+      "Monetary Authority of Singapore (mas.gov.sg)",
+      "NPCI International"
+    ]
+  },
+  "corridors": [
+    {
+      "country": "Thailand",
+      "countryCode": "TH",
+      "foreignScheme": "PromptPay",
+      "foreignOperator": "National ITMX (NITMX)",
+      "centralBank": "Bank of Thailand (BOT)",
+      "status": "live",
+      "launchDate": "2021-06-18",
+      "phases": [
+        {
+          "phase": 1,
+          "date": "2021-06-18",
+          "scope": "Thai users scan DuitNow QR at Malaysian merchants"
+        },
+        {
+          "phase": 2,
+          "date": "2022-01-01",
+          "scope": "Malaysian users scan Thai QR (PromptPay) at Thai merchants"
+        }
+      ],
+      "settlementBank": "CIMB Group",
+      "supportedQrType": "PromptPay QR / Thai QR",
+      "currency": "THB"
+    },
+    {
+      "country": "Indonesia",
+      "countryCode": "ID",
+      "foreignScheme": "QRIS",
+      "foreignOperator": "Alto, Artajasa, Jalin, Rintis",
+      "centralBank": "Bank Indonesia (BI)",
+      "status": "live",
+      "launchDate": "2022-01-27",
+      "phases": [
+        {
+          "phase": 1,
+          "date": "2022-01-27",
+          "scope": "Pilot launch — bidirectional QR scanning"
+        },
+        {
+          "phase": 2,
+          "date": "2023-05-08",
+          "scope": "Full commercial launch"
+        }
+      ],
+      "supportedQrType": "QRIS",
+      "currency": "IDR"
+    },
+    {
+      "country": "Singapore",
+      "countryCode": "SG",
+      "foreignScheme": "NETS QR / PayNow",
+      "foreignOperator": "NETS / ABS",
+      "centralBank": "Monetary Authority of Singapore (MAS)",
+      "status": "live",
+      "launchDate": "2023-03-31",
+      "phases": [
+        {
+          "phase": 1,
+          "date": "2023-03-31",
+          "scope": "Cross-border QR payments — scan NETS QR (SG) and DuitNow QR (MY)"
+        },
+        {
+          "phase": 2,
+          "date": "2023-11-17",
+          "scope": "PayNow-DuitNow real-time fund transfer linkage (P2P via mobile number)"
+        }
+      ],
+      "supportedQrType": "NETS QR",
+      "currency": "SGD",
+      "notes": "PayNow-DuitNow is world's first real-time payment linkage with non-bank participation"
+    },
+    {
+      "country": "Cambodia",
+      "countryCode": "KH",
+      "foreignScheme": "Bakong QR / KHQR",
+      "foreignOperator": "National Bank of Cambodia (NBC)",
+      "centralBank": "National Bank of Cambodia (NBC)",
+      "status": "live",
+      "launchDate": "2024-01-01",
+      "phases": [
+        {
+          "phase": 1,
+          "date": "2024-01-01",
+          "scope": "Bidirectional QR payment scanning"
+        }
+      ],
+      "supportedQrType": "Bakong QR / KHQR",
+      "currency": "KHR / USD"
+    },
+    {
+      "country": "China",
+      "countryCode": "CN",
+      "foreignScheme": "Alipay+ / WeChat Pay",
+      "foreignOperator": "Ant Group / Tencent",
+      "centralBank": "People's Bank of China (PBOC)",
+      "status": "live",
+      "launchDate": "2023-11-01",
+      "phases": [
+        {
+          "phase": 1,
+          "date": "2023-11-01",
+          "scope": "Inbound — Chinese tourists scan DuitNow QR in Malaysia via Alipay/WeChat Pay"
+        },
+        {
+          "phase": 2,
+          "date": "2024-01-01",
+          "scope": "Outbound — Malaysians scan Alipay+ QR at supported merchants globally"
+        }
+      ],
+      "supportedQrType": "Alipay QR / WeChat Pay QR",
+      "currency": "CNY",
+      "notes": "Via Ant Group partnership; also supports tourists from 7+ countries using Alipay+ wallets (GCash, KakaoPay, etc.)"
+    },
+    {
+      "country": "India",
+      "countryCode": "IN",
+      "foreignScheme": "UPI",
+      "foreignOperator": "NPCI International (NIPL)",
+      "centralBank": "Reserve Bank of India (RBI)",
+      "status": "signed",
+      "launchDate": null,
+      "phases": [
+        {
+          "phase": 1,
+          "date": "2026-02-12",
+          "scope": "Agreement signed — Phase 1: Indian tourists scan DuitNow QR in Malaysia via UPI apps"
+        },
+        {
+          "phase": 2,
+          "date": null,
+          "scope": "Planned — Malaysians scan UPI QR in India"
+        }
+      ],
+      "supportedQrType": "UPI QR",
+      "currency": "INR",
+      "notes": "Timed for Visit Malaysia 2026; 2.9 million DuitNow QR merchants ready"
+    }
+  ],
+  "malaysianParticipants": {
+    "inbound": {
+      "description": "Malaysian banks/wallets that accept cross-border QR payments from foreign tourists at DuitNow QR merchants",
+      "participants": [
+        {"name": "Maybank", "type": "bank"},
+        {"name": "CIMB Bank", "type": "bank"},
+        {"name": "Public Bank", "type": "bank"},
+        {"name": "Hong Leong Bank", "type": "bank"},
+        {"name": "OCBC Bank", "type": "bank"},
+        {"name": "AmBank", "type": "bank"},
+        {"name": "Bank of China (Malaysia)", "type": "bank"},
+        {"name": "BigPay", "type": "ewallet"},
+        {"name": "Touch 'n Go eWallet", "type": "ewallet"},
+        {"name": "Finexus", "type": "processor"},
+        {"name": "Razer Merchant Services", "type": "processor"}
+      ]
+    },
+    "outbound": {
+      "description": "Malaysian banks/wallets that allow Malaysians to scan foreign QR codes when travelling",
+      "participants": [
+        {"name": "Public Bank", "corridors": ["TH", "ID", "SG", "KH"]},
+        {"name": "Hong Leong Bank", "corridors": ["TH", "ID", "SG", "KH"]},
+        {"name": "CIMB Bank", "corridors": ["TH", "ID", "SG"]},
+        {"name": "Maybank", "corridors": ["TH", "ID", "SG"]},
+        {"name": "Touch 'n Go eWallet", "corridors": ["TH", "ID", "SG"]}
+      ],
+      "notes": "List is growing; check your bank app for latest supported corridors"
+    }
+  },
+  "transactionLimits": {
+    "perTransaction": "RM3,000",
+    "dailyLimit": "RM10,000",
+    "sharesLimitWith": "DuitNow QR domestic daily limit",
+    "consumerFees": "Free (no charges)",
+    "fxRate": "Provided by PayNet at point of transaction"
+  },
+  "technicalNotes": {
+    "qrStandard": "EMVCo QR Code Specification for Payment Systems (EMV QRCPS)",
+    "emvTag": "Tag 26-51 (Merchant Account Information) carries cross-border routing data",
+    "settlementModel": "Settlement banks in each corridor handle FX conversion and clearing",
+    "authentication": "Follows domestic app authentication (biometric / PIN / AppAuthorise)",
+    "refunds": "Must be requested from the foreign merchant; refund amount may differ due to FX fluctuation"
+  },
+  "futureRoadmap": {
+    "projectNexus": {
+      "description": "BIS Innovation Hub initiative — hub-and-spoke model replacing bilateral links",
+      "participants": ["Malaysia", "India", "Philippines", "Singapore", "Thailand"],
+      "operator": "Nexus Global Payments (Singapore)",
+      "targetLaunch": "2026",
+      "benefit": "Connect once to Nexus, access all participating countries"
+    },
+    "plannedCorridors": [
+      {"country": "Philippines", "scheme": "QR Ph", "status": "under development"},
+      {"country": "Vietnam", "scheme": "VietQR", "status": "planned"},
+      {"country": "Japan", "scheme": "TBD", "status": "exploring"},
+      {"country": "South Korea", "scheme": "TBD", "status": "exploring"},
+      {"country": "Laos", "scheme": "Lao QR", "status": "ASEAN RPC member"}
+    ],
+    "aseanTarget": "Fully integrated ASEAN QR payment zone by 2030"
+  }
+}
